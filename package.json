@@ -37,7 +37,6 @@
     "react-router-dom": "5.3.4",
     "strapi-plugin-heroicons-field": "^0.0.5",
     "strapi-plugin-image-optimizer": "^2.2.1",
-    "strapi-plugin-tagsinput": "file:./packages/strapi-plugin-tagsinput",
     "styled-components": "5.3.3"
   },
   "devDependencies": {
