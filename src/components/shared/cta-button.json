@@ -14,10 +14,6 @@
     "url": {
       "type": "string"
     },
-    "icon": {
-      "type": "customField",
-      "customField": "plugin::heroicons-field.icon-picker"
-    },
     "variant": {
       "type": "enumeration",
       "enum": [
@@ -26,6 +22,10 @@
         "text"
       ],
       "default": "default"
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::react-icons.icon"
     }
   }
 }

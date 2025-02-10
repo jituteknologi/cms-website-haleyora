@@ -22,10 +22,9 @@ export interface SharedCtaButton extends Schema.Component {
   attributes: {
     label: Attribute.String & Attribute.Required;
     url: Attribute.String;
-    icon: Attribute.Text &
-      Attribute.CustomField<'plugin::heroicons-field.icon-picker'>;
     variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
       Attribute.DefaultTo<'default'>;
+    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
   };
 }
 
@@ -64,9 +63,8 @@ export interface MenuSubMenu extends Schema.Component {
     title: Attribute.String & Attribute.Required;
     url: Attribute.String;
     target: Attribute.Enumeration<['_blank', '_parent', '_self', '_top']>;
-    icon: Attribute.Text &
-      Attribute.CustomField<'plugin::heroicons-field.icon-picker'>;
     subtitle: Attribute.String;
+    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
   };
 }
 

@@ -24,7 +24,6 @@
     "@strapi/content-releases": "file:./packages/@strapi/content-releases",
     "@strapi/plugin-cloud": "file:./packages/@strapi/plugin-cloud",
     "@strapi/plugin-color-picker": "^4.25.11",
-    "@strapi/plugin-documentation": "^4.25.11",
     "@strapi/plugin-i18n": "4.25.11",
     "@strapi/plugin-users-permissions": "4.25.11",
     "@strapi/provider-email-msgraph": "npm:strapi-provider-email-msgraph@1.0.1",
@@ -35,8 +34,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-heroicons-field": "^0.0.5",
     "strapi-plugin-image-optimizer": "^2.2.1",
+    "strapi-plugin-react-icons": "^0.3.1",
     "styled-components": "5.3.3"
   },
   "devDependencies": {

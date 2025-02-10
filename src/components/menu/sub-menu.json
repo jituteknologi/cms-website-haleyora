@@ -23,12 +23,13 @@
         "_top"
       ]
     },
-    "icon": {
-      "type": "customField",
-      "customField": "plugin::heroicons-field.icon-picker"
-    },
     "subtitle": {
       "type": "string"
+    },
+    "icon": {
+      "type": "customField",
+      "required": false,
+      "customField": "plugin::react-icons.icon"
     }
   }
 }
