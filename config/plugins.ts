@@ -20,67 +20,6 @@ export default ({ env }) => ({
       },
     },
   },
-  documentation: {
-    enabled: true,
-    config: {
-      info: {
-        version: "1.0.0",
-        title: `${env("ADMIN_ENV")} - HALEYORA CMS Strapi`,
-        description: "",
-        termsOfService: "https://www.haleyora.co.id/privacy-policy",
-        contact: {
-          name: "HALEYORA TEAM",
-          email: "wahyu.taufik@sera.astra.co.id",
-          url: "https://selog.astra.co.id",
-        },
-      },
-    },
-  },
-  "preview-button": {
-    config: {
-      contentTypes: [
-        {
-          uid: "api::post.post",
-          draft: {
-            url: `${env("DOMAIN")}/api/preview`,
-            query: {
-              type: "post",
-              slug: "{slug}",
-            },
-          },
-          published: {
-            url: `${env("WEBSITE_DOMAIN")}/blog/berita/{slug}`,
-          },
-        },
-        {
-          uid: "api::service.service",
-          draft: {
-            url: `${env("DOMAIN")}/api/preview`,
-            query: {
-              type: "service",
-              slug: "{slug}",
-            },
-          },
-          published: {
-            url: `${env("WEBSITE_DOMAIN")}/layanan/{slug}`,
-          },
-        },
-        {
-          uid: "api::solution.solution",
-          draft: {
-            url: `${env("DOMAIN")}/api/preview`,
-            query: {
-              type: "solution",
-              slug: "{slug}",
-            },
-          },
-          published: {
-            url: `${env("WEBSITE_DOMAIN")}/industri/{slug}`,
-          },
-        },
-      ],
-    },
-  },
   "image-optimizer": {
     enabled: true,
     config: {
@@ -98,9 +37,5 @@ export default ({ env }) => ({
         expiresIn: "60m",
       },
     },
-  },
-  "content-export-import": {
-    enabled: true,
-    resolve: "./src/plugins/content-export-import", // path to plugin folder
   },
 });

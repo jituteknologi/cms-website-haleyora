@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^3.0.9",
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.10.5",
     "@strapi/admin": "file:./packages/@strapi/admin",
     "@strapi/content-releases": "file:./packages/@strapi/content-releases",
     "@strapi/plugin-cloud": "file:./packages/@strapi/plugin-cloud",
@@ -38,7 +37,6 @@
     "react-router-dom": "5.3.4",
     "strapi-plugin-heroicons-field": "^0.0.5",
     "strapi-plugin-image-optimizer": "^2.2.1",
-    "strapi-plugin-preview-button": "^2.2.2",
     "strapi-plugin-tagsinput": "file:./packages/strapi-plugin-tagsinput",
     "styled-components": "5.3.3"
   },

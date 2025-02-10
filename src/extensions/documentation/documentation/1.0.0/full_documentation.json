@@ -1,21 +1,21 @@
 {
+  "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "dev - HALEYORA CMS Strapi",
+    "title": "DOCUMENTATION",
     "description": "",
-    "termsOfService": "https://www.haleyora.co.id/privacy-policy",
+    "termsOfService": "YOUR_TERMS_OF_SERVICE_URL",
     "contact": {
-      "name": "HALEYORA TEAM",
-      "email": "wahyu.taufik@sera.astra.co.id",
-      "url": "https://selog.astra.co.id"
+      "name": "TEAM",
+      "email": "contact-email@something.io",
+      "url": "mywebsite.io"
     },
     "license": {
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-02-10T06:08:38.152Z"
+    "x-generation-date": "2025-02-10T07:50:28.691Z"
   },
-  "openapi": "3.0.0",
   "x-strapi-config": {
     "path": "/documentation",
     "plugins": [

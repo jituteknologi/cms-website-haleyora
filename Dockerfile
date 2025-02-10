@@ -19,12 +19,10 @@ RUN npm cache clean --force
 # RUN yarn install --network-timeout 600000
 # RUN yarn add sharp
 # RUN yarn develop
+RUN cd ./packages/strapi-plugin-tagsinput && yarn install && cd ../..
 RUN npm cache clean --force
 RUN yarn install
 COPY . /app
-
-# install dependencies own plugins
-RUN cd ./src/plugins/content-export-import && yarn install && cd ../../..
 
 # build app
 # RUN yarn build
