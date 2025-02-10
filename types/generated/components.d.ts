@@ -166,9 +166,9 @@ export interface HomeDescItem extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     subtitle: Attribute.String & Attribute.Required;
-    icon: Attribute.Text &
+    icon: Attribute.String &
       Attribute.Required &
-      Attribute.CustomField<'plugin::heroicons-field.icon-picker'>;
+      Attribute.CustomField<'plugin::react-icons.icon'>;
   };
 }
 

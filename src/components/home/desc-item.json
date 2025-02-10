@@ -18,7 +18,7 @@
     "icon": {
       "type": "customField",
       "required": true,
-      "customField": "plugin::heroicons-field.icon-picker"
+      "customField": "plugin::react-icons.icon"
     }
   }
 }
