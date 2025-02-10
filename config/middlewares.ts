@@ -35,7 +35,6 @@ export default [
   "strapi::session",
   "strapi::favicon",
   "strapi::public",
-  "api::post.save-tags",
   "global::file-sanitize",
   "global::sanitize-input",
   "global::redirect",

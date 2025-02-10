@@ -1,0 +1,5 @@
+/**
+ * archive service
+ */
+
+export default () => ({});

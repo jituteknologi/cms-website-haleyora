@@ -11,7 +11,6 @@ export default factories.createCoreController(
   ({ strapi }) => ({
     async findOne(ctx: { request: any; params: { slug: any }; query: any }) {
       const { slug } = ctx.params;
-      const read = ctx.request.header?.read && +ctx.request.header.read === 1;
 
       const query = {
         filters: { slug },
@@ -19,11 +18,6 @@ export default factories.createCoreController(
       };
 
       const post = await strapi.entityService.findMany("api::post.post", query);
-      if (read) {
-        await strapi.entityService.update("api::post.post", post[0].id, {
-          data: { views: post[0].views + 1 },
-        });
-      }
 
       const sanitizedEntity = await this.sanitizeOutput(post, ctx);
 
