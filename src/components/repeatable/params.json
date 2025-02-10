@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_repeatable_params",
+  "info": {
+    "displayName": "params",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_cta_buttons",
+  "info": {
+    "displayName": "CTA button",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::heroicons-field.icon-picker"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "outlined",
+        "text"
+      ],
+      "default": "default"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "strapi-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "scripts": {
+    "build": "strapi build",
+    "deploy": "strapi deploy",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "watch": "strapi develop --watch-admin"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^3.0.9",
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.10.5",
+    "@strapi/admin": "file:./packages/@strapi/admin",
+    "@strapi/content-releases": "file:./packages/@strapi/content-releases",
+    "@strapi/plugin-cloud": "file:./packages/@strapi/plugin-cloud",
+    "@strapi/plugin-color-picker": "^4.25.11",
+    "@strapi/plugin-documentation": "^4.25.11",
+    "@strapi/plugin-i18n": "4.25.11",
+    "@strapi/plugin-users-permissions": "4.25.11",
+    "@strapi/provider-email-msgraph": "npm:strapi-provider-email-msgraph@1.0.1",
+    "@strapi/strapi": "4.25.11",
+    "moment-timezone": "^0.5.46",
+    "mysql2": "^3.11.4",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "strapi-plugin-heroicons-field": "^0.0.5",
+    "strapi-plugin-image-optimizer": "^2.2.1",
+    "strapi-plugin-preview-button": "^2.2.2",
+    "strapi-plugin-tagsinput": "file:./packages/strapi-plugin-tagsinput",
+    "styled-components": "5.3.3"
+  },
+  "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "e728cab2-41c2-4245-b38a-8d5604b92a4f"
+  }
+}

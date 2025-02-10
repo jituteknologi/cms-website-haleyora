@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Page Home",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "home_page": {
+      "type": "dynamiczone",
+      "components": [
+        "home.hero",
+        "home.services",
+        "home.cis",
+        "home.publication",
+        "home.our-client"
+      ],
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.seo-properties"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_whatsapps",
+  "info": {
+    "displayName": "whatsapp",
+    "icon": "message"
+  },
+  "options": {},
+  "attributes": {
+    "phone_number": {
+      "type": "string",
+      "required": true
+    },
+    "initial_message": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

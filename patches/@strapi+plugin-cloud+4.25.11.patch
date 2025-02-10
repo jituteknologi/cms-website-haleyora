@@ -1,0 +1,46 @@
+diff --git a/node_modules/@strapi/plugin-cloud/dist/_chunks/index-DQ7yF1-E.mjs b/node_modules/@strapi/plugin-cloud/dist/_chunks/index-DQ7yF1-E.mjs
+index 6bd29d0..c491083 100644
+--- a/node_modules/@strapi/plugin-cloud/dist/_chunks/index-DQ7yF1-E.mjs
++++ b/node_modules/@strapi/plugin-cloud/dist/_chunks/index-DQ7yF1-E.mjs
+@@ -25,18 +25,6 @@ const index = {
+   register(app) {
+     const { backendURL } = window.strapi;
+     if (backendURL?.includes("localhost")) {
+-      app.addMenuLink({
+-        to: `/plugins/${pluginId}`,
+-        icon: PluginIcon,
+-        intlLabel: {
+-          id: `${pluginId}.plugin.name`,
+-          defaultMessage: name
+-        },
+-        Component: async () => {
+-          const { App } = await import("./App-nHWVlMbd.mjs");
+-          return App;
+-        }
+-      });
+       const plugin = {
+         id: pluginId,
+         initializer: Initializer,
+diff --git a/node_modules/@strapi/plugin-cloud/dist/_chunks/index-mjWlxKqq.js b/node_modules/@strapi/plugin-cloud/dist/_chunks/index-mjWlxKqq.js
+index 19726a2..e4248e2 100644
+--- a/node_modules/@strapi/plugin-cloud/dist/_chunks/index-mjWlxKqq.js
++++ b/node_modules/@strapi/plugin-cloud/dist/_chunks/index-mjWlxKqq.js
+@@ -26,18 +26,6 @@ const index = {
+   register(app) {
+     const { backendURL } = window.strapi;
+     if (backendURL?.includes("localhost")) {
+-      app.addMenuLink({
+-        to: `/plugins/${pluginId}`,
+-        icon: PluginIcon,
+-        intlLabel: {
+-          id: `${pluginId}.plugin.name`,
+-          defaultMessage: name
+-        },
+-        Component: async () => {
+-          const { App } = await Promise.resolve().then(() => require("./App-Gh4oSOHw.js"));
+-          return App;
+-        }
+-      });
+       const plugin = {
+         id: pluginId,
+         initializer: Initializer,

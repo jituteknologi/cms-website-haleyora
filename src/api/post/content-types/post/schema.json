@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "News",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "pluginOptions": {},
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
+    },
+    "post_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::post-category.post-category",
+      "inversedBy": "posts"
+    },
+    "views": {
+      "pluginOptions": {},
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "SEO": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {},
+      "component": "repeatable.seo-properties"
+    },
+    "short_description": {
+      "pluginOptions": {},
+      "type": "text",
+      "required": true
+    }
+  }
+}

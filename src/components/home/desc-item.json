@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_menu_desc_items",
+  "info": {
+    "displayName": "desc item",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::heroicons-field.icon-picker"
+    }
+  }
+}

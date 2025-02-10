@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "singularName": "setting",
+    "pluralName": "settings",
+    "displayName": "Setting",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company_name": {
+      "type": "string"
+    },
+    "company_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "company_address": {
+      "type": "text"
+    },
+    "company_phone": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "displayName": "whatsapp",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.whatsapp",
+      "required": true
+    }
+  }
+}

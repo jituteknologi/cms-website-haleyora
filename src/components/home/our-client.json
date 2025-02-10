@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_home_our_clients",
+  "info": {
+    "displayName": "our client",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "endpoint": {
+      "type": "string",
+      "required": true
+    },
+    "params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.params"
+    }
+  }
+}

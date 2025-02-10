@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_menu_sub_menus",
+  "info": {
+    "displayName": "sub menu",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_blank",
+        "_parent",
+        "_self",
+        "_top"
+      ]
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::heroicons-field.icon-picker"
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}

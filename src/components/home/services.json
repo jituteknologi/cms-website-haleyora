@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_home_services",
+  "info": {
+    "displayName": "services",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button",
+      "required": true
+    }
+  }
+}

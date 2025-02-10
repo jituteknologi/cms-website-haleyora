@@ -1,0 +1,517 @@
+diff --git a/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-V2Dm6x5Q.mjs b/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-V2Dm6x5Q.mjs
+index 6b02baf..2bba32f 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-V2Dm6x5Q.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-V2Dm6x5Q.mjs
+@@ -1,6 +1,6 @@
+ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+ import * as React from "react";
+-import { pxToRem, useGuidedTour, useTracking, usePersistentState, useAppInfo, useRBACProvider, useStrapiApp, hasPermissions, LoadingIndicatorPage, AppInfoProvider } from "@strapi/helper-plugin";
++import { pxToRem, useGuidedTour, useTracking, usePersistentState, useAppInfo, useRBACProvider, useStrapiApp, hasPermissions, LoadingIndicatorPage, AppInfoProvider, to } from "@strapi/helper-plugin";
+ import lt from "semver/functions/lt";
+ import valid from "semver/functions/valid";
+ import { u as useConfiguration, a as useAuth, c as createTypedSelector, b as useOnce, d as createRoute, e as useInformationQuery, f as useGetMyPermissionsQuery, R as RBACProvider, N as NpsSurvey } from "./index-qQynS5yD.mjs";
+@@ -740,6 +740,7 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
+       NavBrand,
+       {
+         as: NavLink,
++        to:'/content-manager',
+         workplace: formatMessage({
+           id: "app.components.LeftMenu.navbrand.workplace",
+           defaultMessage: "Workplace"
+@@ -815,7 +816,6 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
+               NavLink$1,
+               {
+                 as: NavLink,
+-                badgeContent: link.notificationsCount && link.notificationsCount > 0 ? link.notificationsCount.toString() : void 0,
+                 to: link.to,
+                 icon: /* @__PURE__ */ jsx(LinkIcon, {}),
+                 onClick: () => handleClickOnLink(link.to),
+@@ -1113,24 +1113,6 @@ const useMenu = () => {
+   const permissions = useSelector(selectAdminPermissions);
+   const [menuWithUserPermissions, setMenuWithUserPermissions] = React.useState({
+     generalSectionLinks: [
+-      {
+-        icon: Puzzle,
+-        intlLabel: {
+-          id: "global.plugins",
+-          defaultMessage: "Plugins"
+-        },
+-        to: "/list-plugins",
+-        permissions: permissions.marketplace?.main ?? []
+-      },
+-      {
+-        icon: ShoppingCart,
+-        intlLabel: {
+-          id: "global.marketplace",
+-          defaultMessage: "Marketplace"
+-        },
+-        to: "/marketplace",
+-        permissions: permissions.marketplace?.main ?? []
+-      },
+       {
+         icon: Cog,
+         intlLabel: {
+@@ -1141,7 +1123,6 @@ const useMenu = () => {
+         // Permissions of this link are retrieved in the init phase
+         // using the settings menu
+         permissions: [],
+-        notificationsCount: 0
+       }
+     ],
+     pluginsSectionLinks: [],
+diff --git a/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-d4HwjDw9.js b/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-d4HwjDw9.js
+index 91841ea..5e34eb3 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-d4HwjDw9.js
++++ b/node_modules/@strapi/admin/dist/_chunks/AuthenticatedApp-d4HwjDw9.js
+@@ -768,6 +768,7 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
+       v2.NavBrand,
+       {
+         as: reactRouterDom.NavLink,
++        to:'/content-manager',
+         workplace: formatMessage({
+           id: "app.components.LeftMenu.navbrand.workplace",
+           defaultMessage: "Workplace"
+@@ -843,7 +844,6 @@ const LeftMenu = ({ generalSectionLinks, pluginsSectionLinks }) => {
+               v2.NavLink,
+               {
+                 as: reactRouterDom.NavLink,
+-                badgeContent: link.notificationsCount && link.notificationsCount > 0 ? link.notificationsCount.toString() : void 0,
+                 to: link.to,
+                 icon: /* @__PURE__ */ jsxRuntime.jsx(LinkIcon, {}),
+                 onClick: () => handleClickOnLink(link.to),
+@@ -1141,24 +1141,6 @@ const useMenu = () => {
+   const permissions = reactRedux.useSelector(selectAdminPermissions);
+   const [menuWithUserPermissions, setMenuWithUserPermissions] = React__namespace.useState({
+     generalSectionLinks: [
+-      {
+-        icon: Icons.Puzzle,
+-        intlLabel: {
+-          id: "global.plugins",
+-          defaultMessage: "Plugins"
+-        },
+-        to: "/list-plugins",
+-        permissions: permissions.marketplace?.main ?? []
+-      },
+-      {
+-        icon: Icons.ShoppingCart,
+-        intlLabel: {
+-          id: "global.marketplace",
+-          defaultMessage: "Marketplace"
+-        },
+-        to: "/marketplace",
+-        permissions: permissions.marketplace?.main ?? []
+-      },
+       {
+         icon: Icons.Cog,
+         intlLabel: {
+@@ -1169,7 +1151,6 @@ const useMenu = () => {
+         // Permissions of this link are retrieved in the init phase
+         // using the settings menu
+         permissions: [],
+-        notificationsCount: 0
+       }
+     ],
+     pluginsSectionLinks: [],
+@@ -1216,7 +1197,6 @@ const getGeneralLinks = async (userPermissions, generalSectionRawLinks, shouldUp
+     return [];
+   }
+   const authorizedGeneralLinksClone = cloneDeep__default.default(authorizedGeneralSectionLinks);
+-  authorizedGeneralLinksClone[settingsLinkIndex].notificationsCount = shouldUpdateStrapi ? 1 : 0;
+   return authorizedGeneralLinksClone;
+ };
+ const getPluginSectionLinks = async (userPermissions, pluginsSectionRawLinks) => {
+diff --git a/node_modules/@strapi/admin/dist/_chunks/SettingsPage-Wo10cVFB.mjs b/node_modules/@strapi/admin/dist/_chunks/SettingsPage-Wo10cVFB.mjs
+index 5036e47..0e8b183 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/SettingsPage-Wo10cVFB.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/SettingsPage-Wo10cVFB.mjs
+@@ -355,30 +355,6 @@ const ROUTES_CE = [
+     to: "/settings/transfer-tokens/:id",
+     exact: true
+   },
+-  {
+-    async Component() {
+-      const { PurchaseAuditLogs } = await import("./PurchaseAuditLogs-KILCZp5x.mjs");
+-      return PurchaseAuditLogs;
+-    },
+-    to: "/settings/purchase-audit-logs",
+-    exact: true
+-  },
+-  {
+-    async Component() {
+-      const { PurchaseReviewWorkflows } = await import("./PurchaseReviewWorkflows-rVcCufNv.mjs");
+-      return PurchaseReviewWorkflows;
+-    },
+-    to: "/settings/purchase-review-workflows",
+-    exact: true
+-  },
+-  {
+-    async Component() {
+-      const { PurchaseSingleSignOn } = await import("./PurchaseSingleSignOn-H8KWtk1K.mjs");
+-      return PurchaseSingleSignOn;
+-    },
+-    to: "/settings/purchase-single-sign-on",
+-    exact: true
+-  }
+ ];
+ const DIMENSION = 750;
+ const SIZE = 100;
+diff --git a/node_modules/@strapi/admin/dist/_chunks/SettingsPage-r7M2dq3I.js b/node_modules/@strapi/admin/dist/_chunks/SettingsPage-r7M2dq3I.js
+index 88885b3..3abb79d 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/SettingsPage-r7M2dq3I.js
++++ b/node_modules/@strapi/admin/dist/_chunks/SettingsPage-r7M2dq3I.js
+@@ -380,30 +380,6 @@ const ROUTES_CE = [
+     to: "/settings/transfer-tokens/:id",
+     exact: true
+   },
+-  {
+-    async Component() {
+-      const { PurchaseAuditLogs } = await Promise.resolve().then(() => require("./PurchaseAuditLogs-bs-tiD4M.js"));
+-      return PurchaseAuditLogs;
+-    },
+-    to: "/settings/purchase-audit-logs",
+-    exact: true
+-  },
+-  {
+-    async Component() {
+-      const { PurchaseReviewWorkflows } = await Promise.resolve().then(() => require("./PurchaseReviewWorkflows-cdGh-HED.js"));
+-      return PurchaseReviewWorkflows;
+-    },
+-    to: "/settings/purchase-review-workflows",
+-    exact: true
+-  },
+-  {
+-    async Component() {
+-      const { PurchaseSingleSignOn } = await Promise.resolve().then(() => require("./PurchaseSingleSignOn-OqlM4WkQ.js"));
+-      return PurchaseSingleSignOn;
+-    },
+-    to: "/settings/purchase-single-sign-on",
+-    exact: true
+-  }
+ ];
+ const DIMENSION = 750;
+ const SIZE = 100;
+diff --git a/node_modules/@strapi/admin/dist/_chunks/en-LlTBXie5.mjs b/node_modules/@strapi/admin/dist/_chunks/en-LlTBXie5.mjs
+index 77f716d..8fdf323 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/en-LlTBXie5.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/en-LlTBXie5.mjs
+@@ -57,12 +57,12 @@ const en = {
+   "Auth.form.password.hint": "Must be at least 8 characters, 1 uppercase, 1 lowercase & 1 number",
+   "Auth.form.password.show-password": "Show password",
+   "Auth.form.register.news.label": "Keep me updated about new features & upcoming improvements (by doing this you accept the {terms} and the {policy}).",
+-  "Auth.form.register.subtitle": "Credentials are only used to authenticate in Strapi. All saved data will be stored in your database.",
++  "Auth.form.register.subtitle": "Credentials are only used to authenticate in CMS. All saved data will be stored in your database.",
+   "Auth.form.rememberMe.label": "Remember me",
+   "Auth.form.username.label": "Username",
+   "Auth.form.username.placeholder": "e.g. Kai_Doe",
+-  "Auth.form.welcome.subtitle": "Log in to your Strapi account",
+-  "Auth.form.welcome.title": "Welcome to Strapi!",
++  "Auth.form.welcome.subtitle": "Log in to your CMS account",
++  "Auth.form.welcome.title": "Welcome to CMS!",
+   "Auth.link.forgot-password": "Forgot your password?",
+   "Auth.link.ready": "Ready to sign in?",
+   "Auth.link.signin": "Sign in",
+diff --git a/node_modules/@strapi/admin/dist/_chunks/en-UdTZS0x5.js b/node_modules/@strapi/admin/dist/_chunks/en-UdTZS0x5.js
+index 9e9eae7..81e3759 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/en-UdTZS0x5.js
++++ b/node_modules/@strapi/admin/dist/_chunks/en-UdTZS0x5.js
+@@ -59,12 +59,12 @@ const en = {
+   "Auth.form.password.hint": "Must be at least 8 characters, 1 uppercase, 1 lowercase & 1 number",
+   "Auth.form.password.show-password": "Show password",
+   "Auth.form.register.news.label": "Keep me updated about new features & upcoming improvements (by doing this you accept the {terms} and the {policy}).",
+-  "Auth.form.register.subtitle": "Credentials are only used to authenticate in Strapi. All saved data will be stored in your database.",
++  "Auth.form.register.subtitle": "Credentials are only used to authenticate in CMS. All saved data will be stored in your database.",
+   "Auth.form.rememberMe.label": "Remember me",
+   "Auth.form.username.label": "Username",
+   "Auth.form.username.placeholder": "e.g. Kai_Doe",
+-  "Auth.form.welcome.subtitle": "Log in to your Strapi account",
+-  "Auth.form.welcome.title": "Welcome to Strapi!",
++  "Auth.form.welcome.subtitle": "Log in to your CMS account",
++  "Auth.form.welcome.title": "Welcome to CMS!",
+   "Auth.link.forgot-password": "Forgot your password?",
+   "Auth.link.ready": "Ready to sign in?",
+   "Auth.link.signin": "Sign in",
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-0WWbaSNa.mjs b/node_modules/@strapi/admin/dist/_chunks/index-0WWbaSNa.mjs
+index 3d93b76..e2aceb8 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-0WWbaSNa.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/index-0WWbaSNa.mjs
+@@ -282,7 +282,7 @@ const DefaultDocument = ({ entryPath }) => {
+       /* @__PURE__ */ jsx("meta", { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" }),
+       /* @__PURE__ */ jsx("meta", { name: "robots", content: "noindex" }),
+       /* @__PURE__ */ jsx("meta", { name: "referrer", content: "same-origin" }),
+-      /* @__PURE__ */ jsx("title", { children: "Strapi Admin" }),
++      /* @__PURE__ */ jsx("title", { children: "CMS Admin" }),
+       /* @__PURE__ */ jsx("style", { children: globalStyles })
+     ] }),
+     /* @__PURE__ */ jsxs("body", { children: [
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-VyjiJi0S.js b/node_modules/@strapi/admin/dist/_chunks/index-VyjiJi0S.js
+index 68a632e..85c8dad 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-VyjiJi0S.js
++++ b/node_modules/@strapi/admin/dist/_chunks/index-VyjiJi0S.js
+@@ -179,7 +179,7 @@ const DefaultDocument = ({ entryPath }) => {
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" }),
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "robots", content: "noindex" }),
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "referrer", content: "same-origin" }),
+-      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Strapi Admin" }),
++      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "CMS Admin" }),
+       /* @__PURE__ */ jsxRuntime.jsx("style", { children: globalStyles })
+     ] }),
+     /* @__PURE__ */ jsxRuntime.jsxs("body", { children: [
+@@ -755,29 +755,6 @@ const SETTINGS_LINKS_CE = () => ({
+       to: "/settings/transfer-tokens?sort=name:ASC",
+       id: "transfer-tokens"
+     },
+-    // If the Enterprise/Cloud feature is not enabled and if the config doesn't disable it, we promote the Enterprise/Cloud feature by displaying them in the settings menu.
+-    // Disable this by adding "promoteEE: false" to your `./config/admin.js` file
+-    ...!window.strapi.features.isEnabled(window.strapi.features.SSO) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: { id: "Settings.sso.title", defaultMessage: "Single Sign-On" },
+-        to: "/settings/purchase-single-sign-on",
+-        id: "sso-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : [],
+-    ...!window.strapi.features.isEnabled(window.strapi.features.REVIEW_WORKFLOWS) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: {
+-          id: "Settings.review-workflows.page.title",
+-          defaultMessage: "Review Workflows"
+-        },
+-        to: "/settings/purchase-review-workflows",
+-        id: "review-workflows-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : []
+   ],
+   admin: [
+     {
+@@ -791,15 +768,6 @@ const SETTINGS_LINKS_CE = () => ({
+       to: "/settings/users?pageSize=10&page=1&sort=firstname",
+       id: "users"
+     },
+-    ...!window.strapi.features.isEnabled(window.strapi.features.AUDIT_LOGS) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: { id: "global.auditLogs", defaultMessage: "Audit Logs" },
+-        to: "/settings/purchase-audit-logs",
+-        id: "auditLogs-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : []
+   ]
+ });
+ const admin = adminApi.injectEndpoints({
+@@ -1074,7 +1042,7 @@ const Login = ({ children }) => {
+       setApiError(message);
+     } else {
+       const redirectTo = query.get("redirectTo");
+-      const redirectUrl = redirectTo ? decodeURIComponent(redirectTo) : "/";
++      const redirectUrl = redirectTo ? decodeURIComponent(redirectTo) : "/content-manager";
+       push(redirectUrl);
+     }
+   };
+@@ -1088,7 +1056,7 @@ const Login = ({ children }) => {
+         }) }) }),
+         /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { paddingBottom: 7, children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "epsilon", textColor: "neutral600", children: formatMessage({
+           id: "Auth.form.welcome.subtitle",
+-          defaultMessage: "Log in to your Strapi account"
++          defaultMessage: "Log in to your CMS account"
+         }) }) }),
+         apiError ? /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { id: "global-form-error", role: "alert", tabIndex: -1, textColor: "danger600", children: apiError }) : null
+       ] }),
+@@ -1695,11 +1663,11 @@ const Register = ({ hasAdmin }) => {
+       /* @__PURE__ */ jsxRuntime.jsx(Logo, {}),
+       /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { as: "h1", variant: "alpha", textAlign: "center", children: formatMessage({
+         id: "Auth.form.welcome.title",
+-        defaultMessage: "Welcome to Strapi!"
++        defaultMessage: "Welcome to CMS!"
+       }) }),
+       /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "epsilon", textColor: "neutral600", textAlign: "center", children: formatMessage({
+         id: "Auth.form.register.subtitle",
+-        defaultMessage: "Credentials are only used to authenticate in Strapi. All saved data will be stored in your database."
++        defaultMessage: "Credentials are only used to authenticate in CMS. All saved data will be stored in your database."
+       }) }),
+       apiError ? /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { id: "global-form-error", role: "alert", tabIndex: -1, textColor: "danger600", children: apiError }) : null
+     ] }),
+@@ -1870,33 +1838,6 @@ const Register = ({ hasAdmin }) => {
+                 type: confirmPasswordShown ? "text" : "password"
+               }
+             ),
+-            /* @__PURE__ */ jsxRuntime.jsx(
+-              designSystem.Checkbox,
+-              {
+-                onValueChange: (checked) => {
+-                  handleChange({ target: { value: checked, name: "news" } });
+-                },
+-                value: values.news,
+-                name: "news",
+-                "aria-label": "news",
+-                children: formatMessage(
+-                  {
+-                    id: "Auth.form.register.news.label",
+-                    defaultMessage: "Keep me updated about new features & upcoming improvements (by doing this you accept the {terms} and the {policy})."
+-                  },
+-                  {
+-                    terms: /* @__PURE__ */ jsxRuntime.jsx(A, { target: "_blank", href: "https://strapi.io/terms", rel: "noreferrer", children: formatMessage({
+-                      id: "Auth.privacy-policy-agreement.terms",
+-                      defaultMessage: "terms"
+-                    }) }),
+-                    policy: /* @__PURE__ */ jsxRuntime.jsx(A, { target: "_blank", href: "https://strapi.io/privacy", rel: "noreferrer", children: formatMessage({
+-                      id: "Auth.privacy-policy-agreement.policy",
+-                      defaultMessage: "policy"
+-                    }) })
+-                  }
+-                )
+-              }
+-            ),
+             /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { fullWidth: true, size: "L", type: "submit", children: formatMessage({
+               id: "Auth.form.button.register",
+               defaultMessage: "Let's start"
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-qQynS5yD.mjs b/node_modules/@strapi/admin/dist/_chunks/index-qQynS5yD.mjs
+index 9f374a1..1979b35 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-qQynS5yD.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/index-qQynS5yD.mjs
+@@ -119,7 +119,7 @@ const DefaultDocument = ({ entryPath }) => {
+       /* @__PURE__ */ jsx("meta", { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" }),
+       /* @__PURE__ */ jsx("meta", { name: "robots", content: "noindex" }),
+       /* @__PURE__ */ jsx("meta", { name: "referrer", content: "same-origin" }),
+-      /* @__PURE__ */ jsx("title", { children: "Strapi Admin" }),
++      /* @__PURE__ */ jsx("title", { children: "CMS Admin" }),
+       /* @__PURE__ */ jsx("style", { children: globalStyles })
+     ] }),
+     /* @__PURE__ */ jsxs("body", { children: [
+@@ -695,29 +695,7 @@ const SETTINGS_LINKS_CE = () => ({
+       to: "/settings/transfer-tokens?sort=name:ASC",
+       id: "transfer-tokens"
+     },
+-    // If the Enterprise/Cloud feature is not enabled and if the config doesn't disable it, we promote the Enterprise/Cloud feature by displaying them in the settings menu.
+-    // Disable this by adding "promoteEE: false" to your `./config/admin.js` file
+-    ...!window.strapi.features.isEnabled(window.strapi.features.SSO) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: { id: "Settings.sso.title", defaultMessage: "Single Sign-On" },
+-        to: "/settings/purchase-single-sign-on",
+-        id: "sso-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : [],
+-    ...!window.strapi.features.isEnabled(window.strapi.features.REVIEW_WORKFLOWS) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: {
+-          id: "Settings.review-workflows.page.title",
+-          defaultMessage: "Review Workflows"
+-        },
+-        to: "/settings/purchase-review-workflows",
+-        id: "review-workflows-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : []
++
+   ],
+   admin: [
+     {
+@@ -731,15 +709,6 @@ const SETTINGS_LINKS_CE = () => ({
+       to: "/settings/users?pageSize=10&page=1&sort=firstname",
+       id: "users"
+     },
+-    ...!window.strapi.features.isEnabled(window.strapi.features.AUDIT_LOGS) && window.strapi?.flags?.promoteEE ? [
+-      {
+-        intlLabel: { id: "global.auditLogs", defaultMessage: "Audit Logs" },
+-        to: "/settings/purchase-audit-logs",
+-        id: "auditLogs-purchase-page",
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      }
+-    ] : []
+   ]
+ });
+ const admin = adminApi.injectEndpoints({
+@@ -1014,7 +983,7 @@ const Login = ({ children }) => {
+       setApiError(message);
+     } else {
+       const redirectTo = query.get("redirectTo");
+-      const redirectUrl = redirectTo ? decodeURIComponent(redirectTo) : "/";
++      const redirectUrl = redirectTo ? decodeURIComponent(redirectTo) : "/content-manager";
+       push(redirectUrl);
+     }
+   };
+@@ -1028,7 +997,7 @@ const Login = ({ children }) => {
+         }) }) }),
+         /* @__PURE__ */ jsx(Box, { paddingBottom: 7, children: /* @__PURE__ */ jsx(Typography, { variant: "epsilon", textColor: "neutral600", children: formatMessage({
+           id: "Auth.form.welcome.subtitle",
+-          defaultMessage: "Log in to your Strapi account"
++          defaultMessage: "Log in to your CMS account"
+         }) }) }),
+         apiError ? /* @__PURE__ */ jsx(Typography, { id: "global-form-error", role: "alert", tabIndex: -1, textColor: "danger600", children: apiError }) : null
+       ] }),
+@@ -1635,11 +1604,11 @@ const Register = ({ hasAdmin }) => {
+       /* @__PURE__ */ jsx(Logo, {}),
+       /* @__PURE__ */ jsx(Typography, { as: "h1", variant: "alpha", textAlign: "center", children: formatMessage({
+         id: "Auth.form.welcome.title",
+-        defaultMessage: "Welcome to Strapi!"
++        defaultMessage: "Welcome to CMS!"
+       }) }),
+       /* @__PURE__ */ jsx(Typography, { variant: "epsilon", textColor: "neutral600", textAlign: "center", children: formatMessage({
+         id: "Auth.form.register.subtitle",
+-        defaultMessage: "Credentials are only used to authenticate in Strapi. All saved data will be stored in your database."
++        defaultMessage: "Credentials are only used to authenticate in CMS. All saved data will be stored in your database."
+       }) }),
+       apiError ? /* @__PURE__ */ jsx(Typography, { id: "global-form-error", role: "alert", tabIndex: -1, textColor: "danger600", children: apiError }) : null
+     ] }),
+@@ -1810,33 +1779,6 @@ const Register = ({ hasAdmin }) => {
+                 type: confirmPasswordShown ? "text" : "password"
+               }
+             ),
+-            /* @__PURE__ */ jsx(
+-              Checkbox,
+-              {
+-                onValueChange: (checked) => {
+-                  handleChange({ target: { value: checked, name: "news" } });
+-                },
+-                value: values.news,
+-                name: "news",
+-                "aria-label": "news",
+-                children: formatMessage(
+-                  {
+-                    id: "Auth.form.register.news.label",
+-                    defaultMessage: "Keep me updated about new features & upcoming improvements (by doing this you accept the {terms} and the {policy})."
+-                  },
+-                  {
+-                    terms: /* @__PURE__ */ jsx(A, { target: "_blank", href: "https://strapi.io/terms", rel: "noreferrer", children: formatMessage({
+-                      id: "Auth.privacy-policy-agreement.terms",
+-                      defaultMessage: "terms"
+-                    }) }),
+-                    policy: /* @__PURE__ */ jsx(A, { target: "_blank", href: "https://strapi.io/privacy", rel: "noreferrer", children: formatMessage({
+-                      id: "Auth.privacy-policy-agreement.policy",
+-                      defaultMessage: "policy"
+-                    }) })
+-                  }
+-                )
+-              }
+-            ),
+             /* @__PURE__ */ jsx(Button, { fullWidth: true, size: "L", type: "submit", children: formatMessage({
+               id: "Auth.form.button.register",
+               defaultMessage: "Let's start"
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-sNH2VWbC.js b/node_modules/@strapi/admin/dist/_chunks/index-sNH2VWbC.js
+index b284917..5373e26 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-sNH2VWbC.js
++++ b/node_modules/@strapi/admin/dist/_chunks/index-sNH2VWbC.js
+@@ -322,7 +322,7 @@ const DefaultDocument = ({ entryPath }) => {
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" }),
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "robots", content: "noindex" }),
+       /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "referrer", content: "same-origin" }),
+-      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Strapi Admin" }),
++      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "CMS Admin" }),
+       /* @__PURE__ */ jsxRuntime.jsx("style", { children: globalStyles })
+     ] }),
+     /* @__PURE__ */ jsxRuntime.jsxs("body", { children: [
+@@ -789,7 +789,6 @@ const develop = async ({
+         }
+         case "stop": {
+           process.exit(1);
+-          break;
+         }
+       }
+     });

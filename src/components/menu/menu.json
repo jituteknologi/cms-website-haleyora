@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_menu_menus",
+  "info": {
+    "displayName": "menu",
+    "icon": "layer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": false
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_blank",
+        "_parent",
+        "_top",
+        "_self"
+      ]
+    },
+    "sub_menu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.sub-menu"
+    }
+  }
+}

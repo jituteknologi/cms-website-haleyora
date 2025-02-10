@@ -1,0 +1,52 @@
+diff --git a/node_modules/@strapi/content-releases/dist/_chunks/index-CVO0Rqdm.js b/node_modules/@strapi/content-releases/dist/_chunks/index-CVO0Rqdm.js
+index ef47ce4..4fea1e8 100644
+--- a/node_modules/@strapi/content-releases/dist/_chunks/index-CVO0Rqdm.js
++++ b/node_modules/@strapi/content-releases/dist/_chunks/index-CVO0Rqdm.js
+@@ -1280,21 +1280,6 @@ const admin = {
+         return actions;
+       });
+       app.registerHook("Admin/CM/pages/ListView/inject-column-in-table", addColumnToTableHook);
+-    } else if (!window.strapi.features.isEnabled("cms-content-releases") && window.strapi?.flags?.promoteEE) {
+-      app.addMenuLink({
+-        to: `/plugins/purchase-content-releases`,
+-        icon: icons.PaperPlane,
+-        intlLabel: {
+-          id: `${pluginId}.plugin.name`,
+-          defaultMessage: "Releases"
+-        },
+-        async Component() {
+-          const { PurchaseContentReleases } = await Promise.resolve().then(() => require("./PurchaseContentReleases-bpIYXOfu.js"));
+-          return PurchaseContentReleases;
+-        },
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      });
+     }
+   },
+   async registerTrads({ locales }) {
+diff --git a/node_modules/@strapi/content-releases/dist/_chunks/index-PiOGBETy.mjs b/node_modules/@strapi/content-releases/dist/_chunks/index-PiOGBETy.mjs
+index f422c45..abb89f0 100644
+--- a/node_modules/@strapi/content-releases/dist/_chunks/index-PiOGBETy.mjs
++++ b/node_modules/@strapi/content-releases/dist/_chunks/index-PiOGBETy.mjs
+@@ -1257,21 +1257,6 @@ const admin = {
+         return actions;
+       });
+       app.registerHook("Admin/CM/pages/ListView/inject-column-in-table", addColumnToTableHook);
+-    } else if (!window.strapi.features.isEnabled("cms-content-releases") && window.strapi?.flags?.promoteEE) {
+-      app.addMenuLink({
+-        to: `/plugins/purchase-content-releases`,
+-        icon: PaperPlane,
+-        intlLabel: {
+-          id: `${pluginId}.plugin.name`,
+-          defaultMessage: "Releases"
+-        },
+-        async Component() {
+-          const { PurchaseContentReleases } = await import("./PurchaseContentReleases-3tRbmbY3.mjs");
+-          return PurchaseContentReleases;
+-        },
+-        lockIcon: true
+-        // TODO: to replace with another name in v5
+-      });
+     }
+   },
+   async registerTrads({ locales }) {

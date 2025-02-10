@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_home_company_descriptions",
+  "info": {
+    "displayName": "company description",
+    "icon": "write"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "motto": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
