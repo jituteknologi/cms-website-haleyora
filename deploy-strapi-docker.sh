@@ -31,3 +31,6 @@ docker run -d --name $CONTAINER_NAME -p $PORT:1337 \
   $IMAGE_NAME
 
 echo "Strapi berjalan di http://localhost:$PORT"
+
+echo "Menghapus docker tidak terpakai..."
+docker system prune -a

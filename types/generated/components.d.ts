@@ -105,11 +105,27 @@ export interface HomeServices extends Schema.Component {
   info: {
     displayName: 'services';
     icon: 'bulletList';
+    description: '';
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media<'images'> & Attribute.Required;
     cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
+    items: Attribute.Component<'home.service-item', true> & Attribute.Required;
+  };
+}
+
+export interface HomeServiceItem extends Schema.Component {
+  collectionName: 'components_home_service_items';
+  info: {
+    displayName: 'service item';
+    icon: 'layer';
+  };
+  attributes: {
+    service: Attribute.Enumeration<['RETAIL', 'COMMERCIAL', 'CORE']> &
+      Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    dynamic_endpoint: Attribute.Text & Attribute.Required;
   };
 }
 
@@ -231,6 +247,7 @@ declare module '@strapi/types' {
       'menu.menu': MenuMenu;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
+      'home.service-item': HomeServiceItem;
       'home.publication': HomePublication;
       'home.our-client': HomeOurClient;
       'home.hero': HomeHero;
