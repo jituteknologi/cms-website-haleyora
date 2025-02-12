@@ -32,9 +32,9 @@
     },
     "posts": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::post.post",
-      "mappedBy": "post_category"
+      "mappedBy": "post_categories"
     }
   }
 }

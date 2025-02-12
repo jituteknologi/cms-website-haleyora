@@ -982,9 +982,9 @@ export interface ApiPostPost extends Schema.CollectionType {
         }
       >;
     featured_image: Attribute.Media<'images'> & Attribute.Required;
-    post_category: Attribute.Relation<
+    post_categories: Attribute.Relation<
       'api::post.post',
-      'manyToOne',
+      'manyToMany',
       'api::post-category.post-category'
     >;
     views: Attribute.Integer & Attribute.DefaultTo<0>;
@@ -1018,7 +1018,7 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
     SEO: Attribute.Component<'repeatable.seo-properties', true>;
     posts: Attribute.Relation<
       'api::post-category.post-category',
-      'oneToMany',
+      'manyToMany',
       'api::post.post'
     >;
     createdAt: Attribute.DateTime;
@@ -1058,6 +1058,9 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::service.service'
     >;
+    image: Attribute.Media<'images'>;
+    image_title: Attribute.String;
+    image_subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1068,6 +1071,46 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProfileProfile extends Schema.SingleType {
+  collectionName: 'profiles';
+  info: {
+    singularName: 'profile';
+    pluralName: 'profiles';
+    displayName: 'Profile';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    vision: Attribute.Component<'profile.vision'> & Attribute.Required;
+    mission: Attribute.Component<'profile.mission'> & Attribute.Required;
+    history: Attribute.Component<'profile.history'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::profile.profile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::profile.profile',
       'oneToOne',
       'admin::user'
     > &
@@ -1171,6 +1214,7 @@ declare module '@strapi/types' {
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
       'api::product.product': ApiProductProduct;
+      'api::profile.profile': ApiProfileProfile;
       'api::service.service': ApiServiceService;
       'api::setting.setting': ApiSettingSetting;
     }

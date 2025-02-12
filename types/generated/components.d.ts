@@ -28,6 +28,18 @@ export interface SharedCtaButton extends Schema.Component {
   };
 }
 
+export interface RepeatableTitleDesc extends Schema.Component {
+  collectionName: 'components_repeatable_title_descs';
+  info: {
+    displayName: 'title desc';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
 export interface RepeatableSeoProperties extends Schema.Component {
   collectionName: 'components_repeatable_seo_properties';
   info: {
@@ -49,6 +61,103 @@ export interface RepeatableParams extends Schema.Component {
   attributes: {
     key: Attribute.String & Attribute.Required;
     value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface ProfileVision extends Schema.Component {
+  collectionName: 'components_profile_visions';
+  info: {
+    displayName: 'vision';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
+export interface ProfileValue extends Schema.Component {
+  collectionName: 'components_profile_values';
+  info: {
+    displayName: 'value';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
+export interface ProfileStructure extends Schema.Component {
+  collectionName: 'components_profile_structures';
+  info: {
+    displayName: 'structure';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface ProfileMission extends Schema.Component {
+  collectionName: 'components_profile_missions';
+  info: {
+    displayName: 'mission';
+    icon: 'book';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    item: Attribute.Component<'repeatable.title-desc', true>;
+  };
+}
+
+export interface ProfileHistory extends Schema.Component {
+  collectionName: 'components_profile_histories';
+  info: {
+    displayName: 'history';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    item: Attribute.Component<'profile.history-item', true> &
+      Attribute.Required;
+  };
+}
+
+export interface ProfileHistoryItem extends Schema.Component {
+  collectionName: 'components_profile_history_items';
+  info: {
+    displayName: 'history item';
+    icon: 'book';
+  };
+  attributes: {
+    year: Attribute.String & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
   };
 }
 
@@ -241,8 +350,15 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.whatsapp': SharedWhatsapp;
       'shared.cta-button': SharedCtaButton;
+      'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
+      'profile.vision': ProfileVision;
+      'profile.value': ProfileValue;
+      'profile.structure': ProfileStructure;
+      'profile.mission': ProfileMission;
+      'profile.history': ProfileHistory;
+      'profile.history-item': ProfileHistoryItem;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
       'home.slide': HomeSlide;

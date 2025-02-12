@@ -27,6 +27,19 @@
       "relation": "manyToOne",
       "target": "api::service.service",
       "inversedBy": "products"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "image_title": {
+      "type": "string"
+    },
+    "image_subtitle": {
+      "type": "string"
     }
   }
 }

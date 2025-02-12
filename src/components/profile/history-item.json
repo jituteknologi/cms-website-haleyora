@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_profile_history_items",
+  "info": {
+    "displayName": "history item",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

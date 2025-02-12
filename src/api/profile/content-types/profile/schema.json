@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "profiles",
+  "info": {
+    "singularName": "profile",
+    "pluralName": "profiles",
+    "displayName": "Profile",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "vision": {
+      "type": "component",
+      "repeatable": false,
+      "component": "profile.vision",
+      "required": true
+    },
+    "mission": {
+      "type": "component",
+      "repeatable": false,
+      "component": "profile.mission",
+      "required": true
+    },
+    "history": {
+      "type": "component",
+      "repeatable": false,
+      "component": "profile.history",
+      "required": true
+    }
+  }
+}

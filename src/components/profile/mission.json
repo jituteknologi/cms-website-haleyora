@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_profile_missions",
+  "info": {
+    "displayName": "mission",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "required": false,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "item": {
+      "displayName": "title desc",
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.title-desc",
+      "required": false
+    }
+  }
+}

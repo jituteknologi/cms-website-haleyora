@@ -41,9 +41,9 @@
       ],
       "pluginOptions": {}
     },
-    "post_category": {
+    "post_categories": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::post-category.post-category",
       "inversedBy": "posts"
     },
