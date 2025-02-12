@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_service_main_services",
+  "info": {
+    "displayName": "main service",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "endpoint": {
+      "type": "string",
+      "required": true
+    },
+    "params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.params"
+    }
+  }
+}

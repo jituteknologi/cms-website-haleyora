@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organization_members",
+  "info": {
+    "singularName": "organization-member",
+    "pluralName": "organization-members",
+    "displayName": "Organization Member"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "organizational_position": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::organizational-position.organizational-position",
+      "inversedBy": "organization_member"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

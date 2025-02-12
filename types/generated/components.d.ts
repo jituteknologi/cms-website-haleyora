@@ -28,6 +28,32 @@ export interface SharedCtaButton extends Schema.Component {
   };
 }
 
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
 export interface RepeatableTitleDesc extends Schema.Component {
   collectionName: 'components_repeatable_title_descs';
   info: {
@@ -350,6 +376,8 @@ declare module '@strapi/types' {
     export interface Components {
       'shared.whatsapp': SharedWhatsapp;
       'shared.cta-button': SharedCtaButton;
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;

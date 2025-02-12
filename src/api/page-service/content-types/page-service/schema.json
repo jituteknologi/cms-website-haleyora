@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_services",
+  "info": {
+    "singularName": "page-service",
+    "pluralName": "page-services",
+    "displayName": "Page Service"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "services": {
+      "type": "dynamiczone",
+      "components": [
+        "service.other-service",
+        "service.main-service"
+      ],
+      "required": true
+    }
+  }
+}

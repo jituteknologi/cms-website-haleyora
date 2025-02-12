@@ -928,6 +928,116 @@ export interface ApiMenuListMenuList extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrganizationMemberOrganizationMember
+  extends Schema.CollectionType {
+  collectionName: 'organization_members';
+  info: {
+    singularName: 'organization-member';
+    pluralName: 'organization-members';
+    displayName: 'Organization Member';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    organizational_position: Attribute.Relation<
+      'api::organization-member.organization-member',
+      'oneToOne',
+      'api::organizational-position.organizational-position'
+    >;
+    photo: Attribute.Media<'images'> & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::organization-member.organization-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::organization-member.organization-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrganizationalPositionOrganizationalPosition
+  extends Schema.CollectionType {
+  collectionName: 'organizational_positions';
+  info: {
+    singularName: 'organizational-position';
+    pluralName: 'organizational-positions';
+    displayName: 'Organizational Position';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    organization_member: Attribute.Relation<
+      'api::organizational-position.organizational-position',
+      'oneToOne',
+      'api::organization-member.organization-member'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::organizational-position.organizational-position',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::organizational-position.organizational-position',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageServicePageService extends Schema.SingleType {
+  collectionName: 'page_services';
+  info: {
+    singularName: 'page-service';
+    pluralName: 'page-services';
+    displayName: 'Page Service';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    services: Attribute.DynamicZone<
+      ['service.other-service', 'service.main-service']
+    > &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-service.page-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-service.page-service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
@@ -1083,7 +1193,7 @@ export interface ApiProfileProfile extends Schema.SingleType {
   info: {
     singularName: 'profile';
     pluralName: 'profiles';
-    displayName: 'Profile';
+    displayName: 'Page Profile';
     description: '';
   };
   options: {
@@ -1210,6 +1320,9 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::home.home': ApiHomeHome;
       'api::menu-list.menu-list': ApiMenuListMenuList;
+      'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
+      'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
+      'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
