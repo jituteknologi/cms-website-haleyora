@@ -1,2 +1,3 @@
-# SELOG_Website_CMS
-Repository untuk SELOG Website CMS
+# Haleyora_Website_CMS
+
+Repository untuk Haleyora Website CMS
