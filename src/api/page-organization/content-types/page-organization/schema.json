@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_organizations",
+  "info": {
+    "singularName": "page-organization",
+    "pluralName": "page-organizations",
+    "displayName": "Page Organization",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "organization": {
+      "type": "dynamiczone",
+      "components": [
+        "organization.div-head",
+        "organization.director",
+        "organization.commissioner"
+      ],
+      "required": true
+    }
+  }
+}

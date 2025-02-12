@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_organization_directors",
+  "info": {
+    "displayName": "director",
+    "icon": "shield"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "endpoint": {
+      "type": "string",
+      "required": true
+    },
+    "params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.params"
+    }
+  }
+}

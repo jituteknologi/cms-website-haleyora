@@ -187,6 +187,45 @@ export interface ProfileHistoryItem extends Schema.Component {
   };
 }
 
+export interface OrganizationDivHead extends Schema.Component {
+  collectionName: 'components_organization_div_heads';
+  info: {
+    displayName: 'div head';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+  };
+  attributes: {
+    image_structure: Attribute.Media<'images'> & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
 export interface MenuSubMenu extends Schema.Component {
   collectionName: 'components_menu_sub_menus';
   info: {
@@ -387,6 +426,9 @@ declare module '@strapi/types' {
       'profile.mission': ProfileMission;
       'profile.history': ProfileHistory;
       'profile.history-item': ProfileHistoryItem;
+      'organization.div-head': OrganizationDivHead;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
       'home.slide': HomeSlide;

@@ -935,6 +935,7 @@ export interface ApiOrganizationMemberOrganizationMember
     singularName: 'organization-member';
     pluralName: 'organization-members';
     displayName: 'Organization Member';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -954,6 +955,15 @@ export interface ApiOrganizationMemberOrganizationMember
           preset: 'default';
         }
       >;
+    slug: Attribute.UID<
+      'api::organization-member.organization-member',
+      'name'
+    > &
+      Attribute.Required;
+    type: Attribute.Enumeration<
+      ['Dewan Komisaris', 'Dewan Direksi', 'Kepala Divisi']
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -999,6 +1009,44 @@ export interface ApiOrganizationalPositionOrganizationalPosition
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::organizational-position.organizational-position',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageOrganizationPageOrganization extends Schema.SingleType {
+  collectionName: 'page_organizations';
+  info: {
+    singularName: 'page-organization';
+    pluralName: 'page-organizations';
+    displayName: 'Page Organization';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    organization: Attribute.DynamicZone<
+      [
+        'organization.div-head',
+        'organization.director',
+        'organization.commissioner'
+      ]
+    > &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-organization.page-organization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-organization.page-organization',
       'oneToOne',
       'admin::user'
     > &
@@ -1322,6 +1370,7 @@ declare module '@strapi/types' {
       'api::menu-list.menu-list': ApiMenuListMenuList;
       'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
       'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
+      'api::page-organization.page-organization': ApiPageOrganizationPageOrganization;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;
       'api::post.post': ApiPostPost;

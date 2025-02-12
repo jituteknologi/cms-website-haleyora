@@ -4,7 +4,8 @@
   "info": {
     "singularName": "organization-member",
     "pluralName": "organization-members",
-    "displayName": "Organization Member"
+    "displayName": "Organization Member",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,12 +23,12 @@
       "inversedBy": "organization_member"
     },
     "photo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "customField",
@@ -35,6 +36,20 @@
         "preset": "default"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Dewan Komisaris",
+        "Dewan Direksi",
+        "Kepala Divisi"
+      ],
+      "required": true
     }
   }
 }
