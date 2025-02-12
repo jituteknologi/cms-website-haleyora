@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "investors",
+  "info": {
+    "singularName": "investor",
+    "pluralName": "investors",
+    "displayName": "investor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "summary_title": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "displayName": "summary",
+      "type": "component",
+      "repeatable": true,
+      "component": "investor.summary"
+    },
+    "report": {
+      "displayName": "report",
+      "type": "component",
+      "repeatable": true,
+      "component": "investor.report"
+    }
+  }
+}

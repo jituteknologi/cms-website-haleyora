@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_investor_summaries",
+  "info": {
+    "displayName": "summary"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "currency": {
+      "type": "string",
+      "required": true
+    },
+    "data": {
+      "displayName": "data",
+      "type": "component",
+      "repeatable": true,
+      "component": "investor.data"
+    }
+  }
+}

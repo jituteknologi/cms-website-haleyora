@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_investor_data",
+  "info": {
+    "displayName": "data",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string",
+      "maxLength": 4,
+      "minLength": 4,
+      "regex": "^\\d{4}$"
+    },
+    "value": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

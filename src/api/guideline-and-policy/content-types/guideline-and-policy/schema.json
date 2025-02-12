@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guideline_and_policies",
+  "info": {
+    "singularName": "guideline-and-policy",
+    "pluralName": "guideline-and-policies",
+    "displayName": "Guideline & Policy",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

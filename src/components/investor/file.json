@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_investor_files",
+  "info": {
+    "displayName": "file",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{4}$",
+      "maxLength": 4,
+      "minLength": 4
+    },
+    "pdf_file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

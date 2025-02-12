@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "compliances",
+  "info": {
+    "singularName": "compliance",
+    "pluralName": "compliances",
+    "displayName": "Page Compliance",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "guideline": {
+      "type": "component",
+      "repeatable": true,
+      "component": "governance.guideline",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "governances",
+  "info": {
+    "singularName": "governance",
+    "pluralName": "governances",
+    "displayName": "Page Governance",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "guideline": {
+      "displayName": "guideline",
+      "type": "component",
+      "repeatable": true,
+      "component": "governance.guideline",
+      "required": true
+    },
+    "image_achievement": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

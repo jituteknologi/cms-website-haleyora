@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Konfigurasi
-IMAGE_NAME="strapi-app"
-CONTAINER_NAME="strapi-container"
+IMAGE_NAME="haleyora-cms-app"
+CONTAINER_NAME="haleyora-cms-container"
 PORT="1337"
 
 echo "=== Deploy Strapi dengan Docker ==="

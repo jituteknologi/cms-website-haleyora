@@ -257,6 +257,67 @@ export interface MenuMenu extends Schema.Component {
   };
 }
 
+export interface InvestorSummary extends Schema.Component {
+  collectionName: 'components_investor_summaries';
+  info: {
+    displayName: 'summary';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    data: Attribute.Component<'investor.data', true>;
+  };
+}
+
+export interface InvestorReport extends Schema.Component {
+  collectionName: 'components_investor_reports';
+  info: {
+    displayName: 'report';
+    icon: 'book';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    files: Attribute.Component<'investor.file', true> & Attribute.Required;
+  };
+}
+
+export interface InvestorFile extends Schema.Component {
+  collectionName: 'components_investor_files';
+  info: {
+    displayName: 'file';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    pdf_file: Attribute.Media<'files'> & Attribute.Required;
+  };
+}
+
+export interface InvestorData extends Schema.Component {
+  collectionName: 'components_investor_data';
+  info: {
+    displayName: 'data';
+    icon: 'bulletList';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    value: Attribute.Integer & Attribute.Required;
+  };
+}
+
 export interface HomeSlide extends Schema.Component {
   collectionName: 'components_home_slides';
   info: {
@@ -410,6 +471,29 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
+export interface GovernanceGuideline extends Schema.Component {
+  collectionName: 'components_governance_guidelines';
+  info: {
+    displayName: 'guideline';
+    icon: 'filePdf';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    cover: Attribute.Media<'images'>;
+    file: Attribute.Media<'files'>;
+    link: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -431,6 +515,10 @@ declare module '@strapi/types' {
       'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
+      'investor.summary': InvestorSummary;
+      'investor.report': InvestorReport;
+      'investor.file': InvestorFile;
+      'investor.data': InvestorData;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -441,6 +529,7 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'governance.guideline': GovernanceGuideline;
     }
   }
 }

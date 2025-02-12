@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "evhcs",
+  "info": {
+    "singularName": "evhc",
+    "pluralName": "evhcs",
+    "displayName": "Page EVHC (TBC)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

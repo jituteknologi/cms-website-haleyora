@@ -833,29 +833,129 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiClientClient extends Schema.CollectionType {
-  collectionName: 'clients';
+export interface ApiComplianceCompliance extends Schema.SingleType {
+  collectionName: 'compliances';
   info: {
-    singularName: 'client';
-    pluralName: 'clients';
-    displayName: 'Master Client';
+    singularName: 'compliance';
+    pluralName: 'compliances';
+    displayName: 'Page Compliance';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    logo: Attribute.Media<'images'> & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    banner: Attribute.Media<'images'>;
+    guideline: Attribute.Component<'governance.guideline', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::client.client',
+      'api::compliance.compliance',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::client.client',
+      'api::compliance.compliance',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEvhcEvhc extends Schema.SingleType {
+  collectionName: 'evhcs';
+  info: {
+    singularName: 'evhc';
+    pluralName: 'evhcs';
+    displayName: 'Page EVHC (TBC)';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGovernanceGovernance extends Schema.SingleType {
+  collectionName: 'governances';
+  info: {
+    singularName: 'governance';
+    pluralName: 'governances';
+    displayName: 'Page Governance';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    guideline: Attribute.Component<'governance.guideline', true> &
+      Attribute.Required;
+    image_achievement: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::governance.governance',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::governance.governance',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGuidelineAndPolicyGuidelineAndPolicy
+  extends Schema.CollectionType {
+  collectionName: 'guideline_and_policies';
+  info: {
+    singularName: 'guideline-and-policy';
+    pluralName: 'guideline-and-policies';
+    displayName: 'Guideline & Policy';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    cover: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'>;
+    link: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guideline-and-policy.guideline-and-policy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guideline-and-policy.guideline-and-policy',
       'oneToOne',
       'admin::user'
     > &
@@ -891,6 +991,40 @@ export interface ApiHomeHome extends Schema.SingleType {
     createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInvestorInvestor extends Schema.SingleType {
+  collectionName: 'investors';
+  info: {
+    singularName: 'investor';
+    pluralName: 'investors';
+    displayName: 'investor';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.Text;
+    summary_title: Attribute.String & Attribute.Required;
+    summary: Attribute.Component<'investor.summary', true>;
+    report: Attribute.Component<'investor.report', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::investor.investor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::investor.investor',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1009,6 +1143,37 @@ export interface ApiOrganizationalPositionOrganizationalPosition
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::organizational-position.organizational-position',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageGuidelinePageGuideline extends Schema.SingleType {
+  collectionName: 'page_guidelines';
+  info: {
+    singularName: 'page-guideline';
+    pluralName: 'page-guidelines';
+    displayName: 'Page Guidelines & Policies';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    guideline: Attribute.Component<'governance.guideline', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-guideline.page-guideline',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-guideline.page-guideline',
       'oneToOne',
       'admin::user'
     > &
@@ -1346,6 +1511,46 @@ export interface ApiSettingSetting extends Schema.SingleType {
   };
 }
 
+export interface ApiSustainabilitySustainability extends Schema.SingleType {
+  collectionName: 'sustainabilities';
+  info: {
+    singularName: 'sustainability';
+    pluralName: 'sustainabilities';
+    displayName: 'Page Sustainability';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    image: Attribute.Media<'images'>;
+    image_label: Attribute.String;
+    image_description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sustainability.sustainability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sustainability.sustainability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1365,11 +1570,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::client.client': ApiClientClient;
+      'api::compliance.compliance': ApiComplianceCompliance;
+      'api::evhc.evhc': ApiEvhcEvhc;
+      'api::governance.governance': ApiGovernanceGovernance;
+      'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
       'api::home.home': ApiHomeHome;
+      'api::investor.investor': ApiInvestorInvestor;
       'api::menu-list.menu-list': ApiMenuListMenuList;
       'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
       'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
+      'api::page-guideline.page-guideline': ApiPageGuidelinePageGuideline;
       'api::page-organization.page-organization': ApiPageOrganizationPageOrganization;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;
@@ -1379,6 +1589,7 @@ declare module '@strapi/types' {
       'api::profile.profile': ApiProfileProfile;
       'api::service.service': ApiServiceService;
       'api::setting.setting': ApiSettingSetting;
+      'api::sustainability.sustainability': ApiSustainabilitySustainability;
     }
   }
 }
