@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_evhc_faqs",
+  "info": {
+    "displayName": "faq",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "displayName": "faq item",
+      "type": "component",
+      "repeatable": true,
+      "component": "evhc.faq-item"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_evhc_procedures",
+  "info": {
+    "displayName": "procedure",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "procedure_item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "evhc.procedure-item"
+    }
+  }
+}

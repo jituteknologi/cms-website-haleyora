@@ -4,7 +4,7 @@
   "info": {
     "singularName": "evhc",
     "pluralName": "evhcs",
-    "displayName": "Page EVHC (TBC)",
+    "displayName": "Page EV Home Charging",
     "description": ""
   },
   "options": {
@@ -15,6 +15,69 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "banner_video_url": {
+      "type": "string",
+      "required": true
+    },
+    "product_photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "manual_book": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "compatibility": {
+      "displayName": "compatibility",
+      "type": "component",
+      "repeatable": true,
+      "component": "evhc.compatibility",
+      "required": true
+    },
+    "incentive": {
+      "displayName": "incentive",
+      "type": "component",
+      "repeatable": false,
+      "component": "evhc.incentive"
+    },
+    "promo": {
+      "displayName": "promo",
+      "type": "component",
+      "repeatable": false,
+      "component": "evhc.promo"
+    },
+    "faq": {
+      "displayName": "faq",
+      "type": "component",
+      "repeatable": false,
+      "component": "evhc.faq"
+    },
+    "prodedure": {
+      "displayName": "procedure",
+      "type": "component",
+      "repeatable": false,
+      "component": "evhc.procedure"
     }
   }
 }

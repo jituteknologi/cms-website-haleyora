@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_evhc_compatibilities",
+  "info": {
+    "displayName": "compatibility",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "brand_logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}

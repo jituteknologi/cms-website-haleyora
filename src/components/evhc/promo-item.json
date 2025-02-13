@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_evhc_promo_items",
+  "info": {
+    "displayName": "promo item",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "banner": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "term_condition": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_evhc_promos",
+  "info": {
+    "displayName": "promo",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "evhc.promo-item"
+    }
+  }
+}

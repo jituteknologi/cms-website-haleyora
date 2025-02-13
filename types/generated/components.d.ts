@@ -330,45 +330,6 @@ export interface InvestorData extends Schema.Component {
   };
 }
 
-export interface CoverageItem extends Schema.Component {
-  collectionName: 'components_coverage_items';
-  info: {
-    displayName: 'item';
-    icon: 'layer';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    phone: Attribute.String;
-    website: Attribute.String;
-  };
-}
-
-export interface CoverageHeadOffice extends Schema.Component {
-  collectionName: 'components_coverage_head_offices';
-  info: {
-    displayName: 'head office';
-    icon: 'star';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    item: Attribute.Component<'coverage.item'> & Attribute.Required;
-  };
-}
-
-export interface CoverageAffiliation extends Schema.Component {
-  collectionName: 'components_coverage_affiliations';
-  info: {
-    displayName: 'affiliation';
-    icon: 'store';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
-  };
-}
-
 export interface HomeSlide extends Schema.Component {
   collectionName: 'components_home_slides';
   info: {
@@ -522,6 +483,159 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
+export interface EvhcPromo extends Schema.Component {
+  collectionName: 'components_evhc_promos';
+  info: {
+    displayName: 'promo';
+    icon: 'landscape';
+  };
+  attributes: {
+    item: Attribute.Component<'evhc.promo-item', true>;
+  };
+}
+
+export interface EvhcPromoItem extends Schema.Component {
+  collectionName: 'components_evhc_promo_items';
+  info: {
+    displayName: 'promo item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    term_condition: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
+export interface EvhcProcedure extends Schema.Component {
+  collectionName: 'components_evhc_procedures';
+  info: {
+    displayName: 'procedure';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    procedure_item: Attribute.Component<'evhc.procedure-item', true>;
+  };
+}
+
+export interface EvhcProcedureItem extends Schema.Component {
+  collectionName: 'components_evhc_procedure_items';
+  info: {
+    displayName: 'procedure item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    icon: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::react-icons.icon'>;
+    label: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface EvhcIncentive extends Schema.Component {
+  collectionName: 'components_evhc_incentives';
+  info: {
+    displayName: 'incentive';
+    icon: 'layout';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    incentive_list: Attribute.Component<'evhc.incentive-list', true> &
+      Attribute.Required;
+    link: Attribute.Component<'shared.cta-button'>;
+  };
+}
+
+export interface EvhcIncentiveList extends Schema.Component {
+  collectionName: 'components_evhc_incentive_lists';
+  info: {
+    displayName: 'incentive list';
+    icon: 'bulletList';
+  };
+  attributes: {
+    item: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface EvhcFaq extends Schema.Component {
+  collectionName: 'components_evhc_faqs';
+  info: {
+    displayName: 'faq';
+    icon: 'bulletList';
+  };
+  attributes: {
+    item: Attribute.Component<'evhc.faq-item', true>;
+  };
+}
+
+export interface EvhcFaqItem extends Schema.Component {
+  collectionName: 'components_evhc_faq_items';
+  info: {
+    displayName: 'faq item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    question: Attribute.String & Attribute.Required;
+    answer: Attribute.Text;
+  };
+}
+
+export interface EvhcCompatibility extends Schema.Component {
+  collectionName: 'components_evhc_compatibilities';
+  info: {
+    displayName: 'compatibility';
+    icon: 'landscape';
+  };
+  attributes: {
+    brand_logo: Attribute.Media<'images', true> & Attribute.Required;
+  };
+}
+
+export interface CoverageItem extends Schema.Component {
+  collectionName: 'components_coverage_items';
+  info: {
+    displayName: 'item';
+    icon: 'layer';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    address: Attribute.Text & Attribute.Required;
+    phone: Attribute.String;
+    website: Attribute.String;
+  };
+}
+
+export interface CoverageHeadOffice extends Schema.Component {
+  collectionName: 'components_coverage_head_offices';
+  info: {
+    displayName: 'head office';
+    icon: 'star';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    item: Attribute.Component<'coverage.item'> & Attribute.Required;
+  };
+}
+
+export interface CoverageAffiliation extends Schema.Component {
+  collectionName: 'components_coverage_affiliations';
+  info: {
+    displayName: 'affiliation';
+    icon: 'store';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -548,9 +662,6 @@ declare module '@strapi/types' {
       'investor.report': InvestorReport;
       'investor.file': InvestorFile;
       'investor.data': InvestorData;
-      'coverage.item': CoverageItem;
-      'coverage.head-office': CoverageHeadOffice;
-      'coverage.affiliation': CoverageAffiliation;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -561,6 +672,18 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'evhc.promo': EvhcPromo;
+      'evhc.promo-item': EvhcPromoItem;
+      'evhc.procedure': EvhcProcedure;
+      'evhc.procedure-item': EvhcProcedureItem;
+      'evhc.incentive': EvhcIncentive;
+      'evhc.incentive-list': EvhcIncentiveList;
+      'evhc.faq': EvhcFaq;
+      'evhc.faq-item': EvhcFaqItem;
+      'evhc.compatibility': EvhcCompatibility;
+      'coverage.item': CoverageItem;
+      'coverage.head-office': CoverageHeadOffice;
+      'coverage.affiliation': CoverageAffiliation;
     }
   }
 }

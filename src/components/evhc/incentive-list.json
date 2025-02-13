@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_evhc_incentive_lists",
+  "info": {
+    "displayName": "incentive list",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

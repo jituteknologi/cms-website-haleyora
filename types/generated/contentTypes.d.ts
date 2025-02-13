@@ -833,6 +833,37 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiClientClient extends Schema.CollectionType {
+  collectionName: 'clients';
+  info: {
+    singularName: 'client';
+    pluralName: 'clients';
+    displayName: 'Master Client';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    logo: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiComplianceCompliance extends Schema.SingleType {
   collectionName: 'compliances';
   info: {
@@ -903,7 +934,7 @@ export interface ApiEvhcEvhc extends Schema.SingleType {
   info: {
     singularName: 'evhc';
     pluralName: 'evhcs';
-    displayName: 'Page EVHC (TBC)';
+    displayName: 'Page EV Home Charging';
     description: '';
   };
   options: {
@@ -911,6 +942,24 @@ export interface ApiEvhcEvhc extends Schema.SingleType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String & Attribute.Required;
+    banner_video_url: Attribute.String & Attribute.Required;
+    product_photo: Attribute.Media<'images'> & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    manual_book: Attribute.Media<'files'> & Attribute.Required;
+    compatibility: Attribute.Component<'evhc.compatibility', true> &
+      Attribute.Required;
+    incentive: Attribute.Component<'evhc.incentive'>;
+    promo: Attribute.Component<'evhc.promo'>;
+    faq: Attribute.Component<'evhc.faq'>;
+    prodedure: Attribute.Component<'evhc.procedure'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
@@ -1783,6 +1832,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::client.client': ApiClientClient;
       'api::compliance.compliance': ApiComplianceCompliance;
       'api::coverage.coverage': ApiCoverageCoverage;
       'api::evhc.evhc': ApiEvhcEvhc;
