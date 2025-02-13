@@ -16,10 +16,11 @@
       "type": "string",
       "required": true
     },
-    "guideline": {
+    "dynamic_endpoint": {
       "type": "component",
-      "repeatable": true,
-      "component": "governance.guideline"
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
     }
   }
 }

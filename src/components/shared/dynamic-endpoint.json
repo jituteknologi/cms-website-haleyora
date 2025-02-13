@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_dynamic_endpoints",
+  "info": {
+    "displayName": "dynamic endpoint",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "endpoint": {
+      "type": "string",
+      "required": true
+    },
+    "params": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.params"
+    }
+  }
+}

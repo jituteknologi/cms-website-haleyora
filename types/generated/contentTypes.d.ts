@@ -847,7 +847,8 @@ export interface ApiComplianceCompliance extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     banner: Attribute.Media<'images'>;
-    guideline: Attribute.Component<'governance.guideline', true>;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -901,9 +902,19 @@ export interface ApiGovernanceGovernance extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     banner: Attribute.Media<'images'> & Attribute.Required;
-    guideline: Attribute.Component<'governance.guideline', true> &
+    subtitle: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    description_image: Attribute.Media<'images'> & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
       Attribute.Required;
-    image_achievement: Attribute.Media<'images'>;
+    achievement_image: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -946,6 +957,11 @@ export interface ApiGuidelineAndPolicyGuidelineAndPolicy
     cover: Attribute.Media<'images'> & Attribute.Required;
     file: Attribute.Media<'files'>;
     link: Attribute.String;
+    guideline_category: Attribute.Relation<
+      'api::guideline-and-policy.guideline-and-policy',
+      'manyToOne',
+      'api::guideline-category.guideline-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -956,6 +972,41 @@ export interface ApiGuidelineAndPolicyGuidelineAndPolicy
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::guideline-and-policy.guideline-and-policy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGuidelineCategoryGuidelineCategory
+  extends Schema.CollectionType {
+  collectionName: 'guideline_categories';
+  info: {
+    singularName: 'guideline-category';
+    pluralName: 'guideline-categories';
+    displayName: 'Guideline Category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    guideline_and_policies: Attribute.Relation<
+      'api::guideline-category.guideline-category',
+      'oneToMany',
+      'api::guideline-and-policy.guideline-and-policy'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guideline-category.guideline-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guideline-category.guideline-category',
       'oneToOne',
       'admin::user'
     > &
@@ -1163,7 +1214,8 @@ export interface ApiPageGuidelinePageGuideline extends Schema.SingleType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    guideline: Attribute.Component<'governance.guideline', true>;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1574,6 +1626,7 @@ declare module '@strapi/types' {
       'api::evhc.evhc': ApiEvhcEvhc;
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
+      'api::guideline-category.guideline-category': ApiGuidelineCategoryGuidelineCategory;
       'api::home.home': ApiHomeHome;
       'api::investor.investor': ApiInvestorInvestor;
       'api::menu-list.menu-list': ApiMenuListMenuList;

@@ -12,6 +12,18 @@ export interface SharedWhatsapp extends Schema.Component {
   };
 }
 
+export interface SharedDynamicEndpoint extends Schema.Component {
+  collectionName: 'components_shared_dynamic_endpoints';
+  info: {
+    displayName: 'dynamic endpoint';
+    icon: 'code';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
 export interface SharedCtaButton extends Schema.Component {
   collectionName: 'components_shared_cta_buttons';
   info: {
@@ -87,6 +99,45 @@ export interface RepeatableParams extends Schema.Component {
   attributes: {
     key: Attribute.String & Attribute.Required;
     value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface OrganizationDivHead extends Schema.Component {
+  collectionName: 'components_organization_div_heads';
+  info: {
+    displayName: 'div head';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+  };
+  attributes: {
+    image_structure: Attribute.Media<'images'> & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -184,45 +235,6 @@ export interface ProfileHistoryItem extends Schema.Component {
     year: Attribute.String & Attribute.Required;
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
-  };
-}
-
-export interface OrganizationDivHead extends Schema.Component {
-  collectionName: 'components_organization_div_heads';
-  info: {
-    displayName: 'div head';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-  };
-  attributes: {
-    image_structure: Attribute.Media<'images'> & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -471,48 +483,26 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
-export interface GovernanceGuideline extends Schema.Component {
-  collectionName: 'components_governance_guidelines';
-  info: {
-    displayName: 'guideline';
-    icon: 'filePdf';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-    cover: Attribute.Media<'images'>;
-    file: Attribute.Media<'files'>;
-    link: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'shared.whatsapp': SharedWhatsapp;
+      'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
       'service.other-service': ServiceOtherService;
       'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
+      'organization.div-head': OrganizationDivHead;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;
       'profile.mission': ProfileMission;
       'profile.history': ProfileHistory;
       'profile.history-item': ProfileHistoryItem;
-      'organization.div-head': OrganizationDivHead;
-      'organization.director': OrganizationDirector;
-      'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
       'investor.summary': InvestorSummary;
@@ -529,7 +519,6 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
-      'governance.guideline': GovernanceGuideline;
     }
   }
 }

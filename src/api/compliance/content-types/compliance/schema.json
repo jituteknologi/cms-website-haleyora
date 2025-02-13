@@ -24,11 +24,11 @@
         "images"
       ]
     },
-    "guideline": {
+    "dynamic_endpoint": {
       "type": "component",
-      "repeatable": true,
-      "component": "governance.guideline",
-      "required": false
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
     }
   }
 }
