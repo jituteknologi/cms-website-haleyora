@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operational_areas",
+  "info": {
+    "singularName": "operational-area",
+    "pluralName": "operational-areas",
+    "displayName": "Operational Area"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text"
+    },
+    "latitude": {
+      "type": "string",
+      "regex": "^(\\\\+|-)?(?:90(?:(?:\\\\.0+)?)|[1-8]?\\\\d(?:\\\\.\\\\d+)?)$"
+    },
+    "longitude": {
+      "type": "string",
+      "regex": "^(\\\\+|-)?(?:180(?:(?:\\\\.0+)?)|(?:[1-9]?\\\\d|1[0-7]\\\\d)(?:\\\\.\\\\d+)?)$"
+    }
+  }
+}

@@ -866,6 +866,38 @@ export interface ApiComplianceCompliance extends Schema.SingleType {
   };
 }
 
+export interface ApiCoverageCoverage extends Schema.SingleType {
+  collectionName: 'coverages';
+  info: {
+    singularName: 'coverage';
+    pluralName: 'coverages';
+    displayName: 'Page Coverage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    head_office: Attribute.Component<'coverage.head-office'>;
+    affiliation: Attribute.Component<'coverage.affiliation'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::coverage.coverage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::coverage.coverage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEvhcEvhc extends Schema.SingleType {
   collectionName: 'evhcs';
   info: {
@@ -1051,7 +1083,7 @@ export interface ApiInvestorInvestor extends Schema.SingleType {
   info: {
     singularName: 'investor';
     pluralName: 'investors';
-    displayName: 'investor';
+    displayName: 'Page Investor';
     description: '';
   };
   options: {
@@ -1073,6 +1105,38 @@ export interface ApiInvestorInvestor extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::investor.investor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMagazineMagazine extends Schema.CollectionType {
+  collectionName: 'magazines';
+  info: {
+    singularName: 'magazine';
+    pluralName: 'magazines';
+    displayName: 'Magazine';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    cover: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'>;
+    link: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::magazine.magazine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::magazine.magazine',
       'oneToOne',
       'admin::user'
     > &
@@ -1106,6 +1170,40 @@ export interface ApiMenuListMenuList extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::menu-list.menu-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOperationalAreaOperationalArea
+  extends Schema.CollectionType {
+  collectionName: 'operational_areas';
+  info: {
+    singularName: 'operational-area';
+    pluralName: 'operational-areas';
+    displayName: 'Operational Area';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String & Attribute.Required;
+    address: Attribute.Text;
+    latitude: Attribute.String;
+    longitude: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::operational-area.operational-area',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::operational-area.operational-area',
       'oneToOne',
       'admin::user'
     > &
@@ -1201,6 +1299,38 @@ export interface ApiOrganizationalPositionOrganizationalPosition
   };
 }
 
+export interface ApiPageCsrPageCsr extends Schema.SingleType {
+  collectionName: 'page_csrs';
+  info: {
+    singularName: 'page-csr';
+    pluralName: 'page-csrs';
+    displayName: 'Page CSR';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-csr.page-csr',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-csr.page-csr',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageGuidelinePageGuideline extends Schema.SingleType {
   collectionName: 'page_guidelines';
   info: {
@@ -1226,6 +1356,37 @@ export interface ApiPageGuidelinePageGuideline extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::page-guideline.page-guideline',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageMagazinePageMagazine extends Schema.SingleType {
+  collectionName: 'page_magazines';
+  info: {
+    singularName: 'page-magazine';
+    pluralName: 'page-magazines';
+    displayName: 'Page Magazine';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-magazine.page-magazine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-magazine.page-magazine',
       'oneToOne',
       'admin::user'
     > &
@@ -1623,16 +1784,21 @@ declare module '@strapi/types' {
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::compliance.compliance': ApiComplianceCompliance;
+      'api::coverage.coverage': ApiCoverageCoverage;
       'api::evhc.evhc': ApiEvhcEvhc;
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
       'api::guideline-category.guideline-category': ApiGuidelineCategoryGuidelineCategory;
       'api::home.home': ApiHomeHome;
       'api::investor.investor': ApiInvestorInvestor;
+      'api::magazine.magazine': ApiMagazineMagazine;
       'api::menu-list.menu-list': ApiMenuListMenuList;
+      'api::operational-area.operational-area': ApiOperationalAreaOperationalArea;
       'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
       'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
+      'api::page-csr.page-csr': ApiPageCsrPageCsr;
       'api::page-guideline.page-guideline': ApiPageGuidelinePageGuideline;
+      'api::page-magazine.page-magazine': ApiPageMagazinePageMagazine;
       'api::page-organization.page-organization': ApiPageOrganizationPageOrganization;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;

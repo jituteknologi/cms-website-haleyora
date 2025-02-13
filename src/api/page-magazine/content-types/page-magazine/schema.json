@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_magazines",
+  "info": {
+    "singularName": "page-magazine",
+    "pluralName": "page-magazines",
+    "displayName": "Page Magazine"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    }
+  }
+}

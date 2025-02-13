@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_csrs",
+  "info": {
+    "singularName": "page-csr",
+    "pluralName": "page-csrs",
+    "displayName": "Page CSR"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    }
+  }
+}
