@@ -1,31 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface SharedWhatsapp extends Schema.Component {
   collectionName: 'components_shared_whatsapps';
   info: {
@@ -63,6 +37,32 @@ export interface SharedCtaButton extends Schema.Component {
     variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
       Attribute.DefaultTo<'default'>;
     icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
+  };
+}
+
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -238,6 +238,34 @@ export interface OrganizationCommissioner extends Schema.Component {
   };
 }
 
+export interface InvestorSummary extends Schema.Component {
+  collectionName: 'components_investor_summaries';
+  info: {
+    displayName: 'summary';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    data: Attribute.Component<'investor.data', true>;
+  };
+}
+
+export interface InvestorData extends Schema.Component {
+  collectionName: 'components_investor_data';
+  info: {
+    displayName: 'data';
+    icon: 'bulletList';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    value: Attribute.Integer & Attribute.Required;
+  };
+}
+
 export interface MenuSubMenu extends Schema.Component {
   collectionName: 'components_menu_sub_menus';
   info: {
@@ -266,67 +294,6 @@ export interface MenuMenu extends Schema.Component {
     url: Attribute.String;
     target: Attribute.Enumeration<['_blank', '_parent', '_top', '_self']>;
     sub_menu: Attribute.Component<'menu.sub-menu', true>;
-  };
-}
-
-export interface InvestorSummary extends Schema.Component {
-  collectionName: 'components_investor_summaries';
-  info: {
-    displayName: 'summary';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    currency: Attribute.String & Attribute.Required;
-    data: Attribute.Component<'investor.data', true>;
-  };
-}
-
-export interface InvestorReport extends Schema.Component {
-  collectionName: 'components_investor_reports';
-  info: {
-    displayName: 'report';
-    icon: 'book';
-  };
-  attributes: {
-    year: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    files: Attribute.Component<'investor.file', true> & Attribute.Required;
-  };
-}
-
-export interface InvestorFile extends Schema.Component {
-  collectionName: 'components_investor_files';
-  info: {
-    displayName: 'file';
-    icon: 'book';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    pdf_file: Attribute.Media<'files'> & Attribute.Required;
-  };
-}
-
-export interface InvestorData extends Schema.Component {
-  collectionName: 'components_investor_data';
-  info: {
-    displayName: 'data';
-    icon: 'bulletList';
-  };
-  attributes: {
-    year: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    value: Attribute.Integer & Attribute.Required;
   };
 }
 
@@ -639,11 +606,11 @@ export interface CoverageAffiliation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
       'shared.whatsapp': SharedWhatsapp;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
@@ -656,12 +623,10 @@ declare module '@strapi/types' {
       'organization.div-head': OrganizationDivHead;
       'organization.director': OrganizationDirector;
       'organization.commissioner': OrganizationCommissioner;
+      'investor.summary': InvestorSummary;
+      'investor.data': InvestorData;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
-      'investor.summary': InvestorSummary;
-      'investor.report': InvestorReport;
-      'investor.file': InvestorFile;
-      'investor.data': InvestorData;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;

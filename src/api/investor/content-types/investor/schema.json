@@ -29,11 +29,11 @@
       "repeatable": true,
       "component": "investor.summary"
     },
-    "report": {
-      "displayName": "report",
+    "dynamic_endpoint": {
       "type": "component",
-      "repeatable": true,
-      "component": "investor.report"
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
     }
   }
 }

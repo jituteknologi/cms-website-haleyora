@@ -11,11 +11,11 @@ COPY ./yarn.lock /app
 COPY ./.env /app
 COPY patches /app/patches
 COPY packages /app/packages
-RUN rm -f /.cache
-
+RUN rm -f /.cache \
 # install dependencies
-RUN npm cache clean --force
-RUN yarn install
+    && npm cache clean --force \
+    && yarn install
+
 COPY . /app
 
 # build app

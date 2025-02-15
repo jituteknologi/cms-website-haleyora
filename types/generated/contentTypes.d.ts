@@ -1143,7 +1143,8 @@ export interface ApiInvestorInvestor extends Schema.SingleType {
     subtitle: Attribute.Text;
     summary_title: Attribute.String & Attribute.Required;
     summary: Attribute.Component<'investor.summary', true>;
-    report: Attribute.Component<'investor.report', true>;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1703,6 +1704,82 @@ export interface ApiProfileProfile extends Schema.SingleType {
   };
 }
 
+export interface ApiReportReport extends Schema.CollectionType {
+  collectionName: 'reports';
+  info: {
+    singularName: 'report';
+    pluralName: 'reports';
+    displayName: 'Report';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    report_year: Attribute.Relation<
+      'api::report.report',
+      'manyToOne',
+      'api::report-year.report-year'
+    >;
+    cover: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::report.report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::report.report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReportYearReportYear extends Schema.CollectionType {
+  collectionName: 'report_years';
+  info: {
+    singularName: 'report-year';
+    pluralName: 'report-years';
+    displayName: 'Report Year';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    reports: Attribute.Relation<
+      'api::report-year.report-year',
+      'oneToMany',
+      'api::report.report'
+    >;
+    year: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::report-year.report-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::report-year.report-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Schema.CollectionType {
   collectionName: 'services';
   info: {
@@ -1856,6 +1933,8 @@ declare module '@strapi/types' {
       'api::post-category.post-category': ApiPostCategoryPostCategory;
       'api::product.product': ApiProductProduct;
       'api::profile.profile': ApiProfileProfile;
+      'api::report.report': ApiReportReport;
+      'api::report-year.report-year': ApiReportYearReportYear;
       'api::service.service': ApiServiceService;
       'api::setting.setting': ApiSettingSetting;
       'api::sustainability.sustainability': ApiSustainabilitySustainability;

@@ -26,7 +26,8 @@ docker build -t $IMAGE_NAME .
 
 # Jalankan container Strapi tanpa database eksternal
 echo "Menjalankan container Strapi..."
-docker run -d --name $CONTAINER_NAME -p $PORT:1337 \
+docker run -d -v $(pwd)/public/uploads:/app/public/uploads \
+  --restart always --name $CONTAINER_NAME -p $PORT:1337 \
   -e NODE_ENV=production \
   $IMAGE_NAME
 

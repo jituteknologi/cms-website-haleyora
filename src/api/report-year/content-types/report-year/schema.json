@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "report_years",
+  "info": {
+    "singularName": "report-year",
+    "pluralName": "report-years",
+    "displayName": "Report Year",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report",
+      "mappedBy": "report_year"
+    },
+    "year": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{4}$",
+      "maxLength": 4,
+      "minLength": 4
+    }
+  }
+}
