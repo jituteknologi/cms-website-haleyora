@@ -4,7 +4,8 @@
   "info": {
     "singularName": "operational-area",
     "pluralName": "operational-areas",
-    "displayName": "Operational Area"
+    "displayName": "Operational Area",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,13 +23,9 @@
     "address": {
       "type": "text"
     },
-    "latitude": {
-      "type": "string",
-      "regex": "^(\\\\+|-)?(?:90(?:(?:\\\\.0+)?)|[1-8]?\\\\d(?:\\\\.\\\\d+)?)$"
-    },
-    "longitude": {
-      "type": "string",
-      "regex": "^(\\\\+|-)?(?:180(?:(?:\\\\.0+)?)|(?:[1-9]?\\\\d|1[0-7]\\\\d)(?:\\\\.\\\\d+)?)$"
+    "google_maps_link": {
+      "type": "text",
+      "required": true
     }
   }
 }

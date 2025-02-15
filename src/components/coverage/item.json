@@ -2,7 +2,8 @@
   "collectionName": "components_coverage_items",
   "info": {
     "displayName": "item",
-    "icon": "layer"
+    "icon": "layer",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -19,6 +20,14 @@
     },
     "website": {
       "type": "string"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

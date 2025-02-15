@@ -912,6 +912,9 @@ export interface ApiCoverageCoverage extends Schema.SingleType {
     head_office: Attribute.Component<'coverage.head-office'>;
     affiliation: Attribute.Component<'coverage.affiliation'> &
       Attribute.Required;
+    operational_area_title: Attribute.String & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1234,6 +1237,7 @@ export interface ApiOperationalAreaOperationalArea
     singularName: 'operational-area';
     pluralName: 'operational-areas';
     displayName: 'Operational Area';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1242,8 +1246,7 @@ export interface ApiOperationalAreaOperationalArea
     title: Attribute.String & Attribute.Required;
     subtitle: Attribute.String & Attribute.Required;
     address: Attribute.Text;
-    latitude: Attribute.String;
-    longitude: Attribute.String;
+    google_maps_link: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
