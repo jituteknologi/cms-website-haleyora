@@ -4,7 +4,8 @@
   "info": {
     "singularName": "report",
     "pluralName": "reports",
-    "displayName": "Report"
+    "displayName": "Report",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,20 +23,20 @@
       "inversedBy": "reports"
     },
     "cover": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "file": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }

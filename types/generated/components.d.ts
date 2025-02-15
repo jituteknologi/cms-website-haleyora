@@ -238,34 +238,6 @@ export interface OrganizationCommissioner extends Schema.Component {
   };
 }
 
-export interface InvestorSummary extends Schema.Component {
-  collectionName: 'components_investor_summaries';
-  info: {
-    displayName: 'summary';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    currency: Attribute.String & Attribute.Required;
-    data: Attribute.Component<'investor.data', true>;
-  };
-}
-
-export interface InvestorData extends Schema.Component {
-  collectionName: 'components_investor_data';
-  info: {
-    displayName: 'data';
-    icon: 'bulletList';
-  };
-  attributes: {
-    year: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    value: Attribute.Integer & Attribute.Required;
-  };
-}
-
 export interface MenuSubMenu extends Schema.Component {
   collectionName: 'components_menu_sub_menus';
   info: {
@@ -294,6 +266,34 @@ export interface MenuMenu extends Schema.Component {
     url: Attribute.String;
     target: Attribute.Enumeration<['_blank', '_parent', '_top', '_self']>;
     sub_menu: Attribute.Component<'menu.sub-menu', true>;
+  };
+}
+
+export interface InvestorSummary extends Schema.Component {
+  collectionName: 'components_investor_summaries';
+  info: {
+    displayName: 'summary';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    data: Attribute.Component<'investor.data', true>;
+  };
+}
+
+export interface InvestorData extends Schema.Component {
+  collectionName: 'components_investor_data';
+  info: {
+    displayName: 'data';
+    icon: 'bulletList';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    value: Attribute.Integer & Attribute.Required;
   };
 }
 
@@ -623,10 +623,10 @@ declare module '@strapi/types' {
       'organization.div-head': OrganizationDivHead;
       'organization.director': OrganizationDirector;
       'organization.commissioner': OrganizationCommissioner;
-      'investor.summary': InvestorSummary;
-      'investor.data': InvestorData;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
+      'investor.summary': InvestorSummary;
+      'investor.data': InvestorData;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;

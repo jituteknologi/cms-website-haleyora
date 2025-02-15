@@ -1710,6 +1710,7 @@ export interface ApiReportReport extends Schema.CollectionType {
     singularName: 'report';
     pluralName: 'reports';
     displayName: 'Report';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1722,7 +1723,7 @@ export interface ApiReportReport extends Schema.CollectionType {
       'api::report-year.report-year'
     >;
     cover: Attribute.Media<'images'> & Attribute.Required;
-    file: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
