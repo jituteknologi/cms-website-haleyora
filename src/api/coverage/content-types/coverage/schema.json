@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "coverages",
+  "info": {
+    "singularName": "coverage",
+    "pluralName": "coverages",
+    "displayName": "Page Coverage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "head_office": {
+      "displayName": "head office",
+      "type": "component",
+      "repeatable": false,
+      "component": "coverage.head-office"
+    },
+    "affiliation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "coverage.affiliation",
+      "required": true
+    }
+  }
+}

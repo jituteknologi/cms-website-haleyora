@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_coverage_affiliations",
+  "info": {
+    "displayName": "affiliation",
+    "icon": "store",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "coverage.item",
+      "required": true
+    }
+  }
+}

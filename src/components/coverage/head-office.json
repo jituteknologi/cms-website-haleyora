@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_coverage_head_offices",
+  "info": {
+    "displayName": "head office",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "item": {
+      "type": "component",
+      "repeatable": false,
+      "component": "coverage.item",
+      "required": true
+    }
+  }
+}
