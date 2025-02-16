@@ -1,5 +1,31 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
 export interface SharedWhatsapp extends Schema.Component {
   collectionName: 'components_shared_whatsapps';
   info: {
@@ -40,32 +66,6 @@ export interface SharedCtaButton extends Schema.Component {
   };
 }
 
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface RepeatableTitleDesc extends Schema.Component {
   collectionName: 'components_repeatable_title_descs';
   info: {
@@ -99,45 +99,6 @@ export interface RepeatableParams extends Schema.Component {
   attributes: {
     key: Attribute.String & Attribute.Required;
     value: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface OrganizationDivHead extends Schema.Component {
-  collectionName: 'components_organization_div_heads';
-  info: {
-    displayName: 'div head';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-  };
-  attributes: {
-    image_structure: Attribute.Media<'images'> & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -238,31 +199,42 @@ export interface ProfileHistoryItem extends Schema.Component {
   };
 }
 
-export interface InvestorSummary extends Schema.Component {
-  collectionName: 'components_investor_summaries';
+export interface OrganizationDivHead extends Schema.Component {
+  collectionName: 'components_organization_div_heads';
   info: {
-    displayName: 'summary';
+    displayName: 'div head';
+    icon: 'shield';
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    currency: Attribute.String & Attribute.Required;
-    data: Attribute.Component<'investor.data', true>;
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
-export interface InvestorData extends Schema.Component {
-  collectionName: 'components_investor_data';
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
   info: {
-    displayName: 'data';
-    icon: 'bulletList';
+    displayName: 'director';
+    icon: 'shield';
   };
   attributes: {
-    year: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    value: Attribute.Integer & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+  };
+  attributes: {
+    image_structure: Attribute.Media<'images'> & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -294,6 +266,34 @@ export interface MenuMenu extends Schema.Component {
     url: Attribute.String;
     target: Attribute.Enumeration<['_blank', '_parent', '_top', '_self']>;
     sub_menu: Attribute.Component<'menu.sub-menu', true>;
+  };
+}
+
+export interface InvestorSummary extends Schema.Component {
+  collectionName: 'components_investor_summaries';
+  info: {
+    displayName: 'summary';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    data: Attribute.Component<'investor.data', true>;
+  };
+}
+
+export interface InvestorData extends Schema.Component {
+  collectionName: 'components_investor_data';
+  info: {
+    displayName: 'data';
+    icon: 'bulletList';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    value: Attribute.Integer & Attribute.Required;
   };
 }
 
@@ -450,47 +450,6 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
-export interface CoverageItem extends Schema.Component {
-  collectionName: 'components_coverage_items';
-  info: {
-    displayName: 'item';
-    icon: 'layer';
-    description: '';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    phone: Attribute.String;
-    website: Attribute.String;
-    photo: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface CoverageHeadOffice extends Schema.Component {
-  collectionName: 'components_coverage_head_offices';
-  info: {
-    displayName: 'head office';
-    icon: 'star';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    item: Attribute.Component<'coverage.item'> & Attribute.Required;
-  };
-}
-
-export interface CoverageAffiliation extends Schema.Component {
-  collectionName: 'components_coverage_affiliations';
-  info: {
-    displayName: 'affiliation';
-    icon: 'store';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
-  };
-}
-
 export interface EvhcPromo extends Schema.Component {
   collectionName: 'components_evhc_promos';
   info: {
@@ -537,12 +496,14 @@ export interface EvhcProcedureItem extends Schema.Component {
   info: {
     displayName: 'procedure item';
     icon: 'bulletList';
+    description: '';
   };
   attributes: {
     icon: Attribute.String &
       Attribute.Required &
       Attribute.CustomField<'plugin::react-icons.icon'>;
     label: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
   };
 }
 
@@ -605,30 +566,71 @@ export interface EvhcCompatibility extends Schema.Component {
   };
 }
 
+export interface CoverageItem extends Schema.Component {
+  collectionName: 'components_coverage_items';
+  info: {
+    displayName: 'item';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    address: Attribute.Text & Attribute.Required;
+    phone: Attribute.String;
+    website: Attribute.String;
+    photo: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface CoverageHeadOffice extends Schema.Component {
+  collectionName: 'components_coverage_head_offices';
+  info: {
+    displayName: 'head office';
+    icon: 'star';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    item: Attribute.Component<'coverage.item'> & Attribute.Required;
+  };
+}
+
+export interface CoverageAffiliation extends Schema.Component {
+  collectionName: 'components_coverage_affiliations';
+  info: {
+    displayName: 'affiliation';
+    icon: 'store';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
       'shared.whatsapp': SharedWhatsapp;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
-      'organization.div-head': OrganizationDivHead;
-      'organization.director': OrganizationDirector;
-      'organization.commissioner': OrganizationCommissioner;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;
       'profile.mission': ProfileMission;
       'profile.history': ProfileHistory;
       'profile.history-item': ProfileHistoryItem;
-      'investor.summary': InvestorSummary;
-      'investor.data': InvestorData;
+      'organization.div-head': OrganizationDivHead;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
+      'investor.summary': InvestorSummary;
+      'investor.data': InvestorData;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -639,9 +641,6 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
-      'coverage.item': CoverageItem;
-      'coverage.head-office': CoverageHeadOffice;
-      'coverage.affiliation': CoverageAffiliation;
       'evhc.promo': EvhcPromo;
       'evhc.promo-item': EvhcPromoItem;
       'evhc.procedure': EvhcProcedure;
@@ -651,6 +650,9 @@ declare module '@strapi/types' {
       'evhc.faq': EvhcFaq;
       'evhc.faq-item': EvhcFaqItem;
       'evhc.compatibility': EvhcCompatibility;
+      'coverage.item': CoverageItem;
+      'coverage.head-office': CoverageHeadOffice;
+      'coverage.affiliation': CoverageAffiliation;
     }
   }
 }
