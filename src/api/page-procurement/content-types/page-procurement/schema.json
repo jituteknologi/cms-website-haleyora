@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_procurements",
+  "info": {
+    "singularName": "page-procurement",
+    "pluralName": "page-procurements",
+    "displayName": "Page Procurement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "procedure": {
+      "displayName": "document",
+      "type": "component",
+      "repeatable": false,
+      "component": "procurement.document",
+      "required": true
+    },
+    "registration": {
+      "type": "component",
+      "repeatable": false,
+      "component": "procurement.document",
+      "required": true
+    },
+    "classification_title": {
+      "type": "string",
+      "required": true
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proc_anouncements",
+  "info": {
+    "singularName": "proc-anouncement",
+    "pluralName": "proc-anouncements",
+    "displayName": "Procurement Anouncement"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "number": {
+      "type": "uid",
+      "required": true
+    },
+    "tender": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proc-tender.proc-tender",
+      "inversedBy": "anouncement"
+    },
+    "vendor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proc-vendor.proc-vendor",
+      "inversedBy": "anouncement"
+    },
+    "final_value": {
+      "type": "integer",
+      "required": true
+    },
+    "objection_period": {
+      "type": "date"
+    },
+    "document": {
+      "allowedTypes": ["files"],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -962,7 +962,7 @@ export interface ApiEvhcEvhc extends Schema.SingleType {
     incentive: Attribute.Component<'evhc.incentive'>;
     promo: Attribute.Component<'evhc.promo'>;
     faq: Attribute.Component<'evhc.faq'>;
-    prodedure: Attribute.Component<'evhc.procedure'>;
+    procedure: Attribute.Component<'evhc.procedure'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
@@ -1485,6 +1485,41 @@ export interface ApiPageOrganizationPageOrganization extends Schema.SingleType {
   };
 }
 
+export interface ApiPageProcurementPageProcurement extends Schema.SingleType {
+  collectionName: 'page_procurements';
+  info: {
+    singularName: 'page-procurement';
+    pluralName: 'page-procurements';
+    displayName: 'Page Procurement';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    procedure: Attribute.Component<'procurement.document'> & Attribute.Required;
+    registration: Attribute.Component<'procurement.document'> &
+      Attribute.Required;
+    classification_title: Attribute.String & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-procurement.page-procurement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-procurement.page-procurement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageServicePageService extends Schema.SingleType {
   collectionName: 'page_services';
   info: {
@@ -1620,6 +1655,186 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::post-category.post-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcAnouncementProcAnouncement
+  extends Schema.CollectionType {
+  collectionName: 'proc_anouncements';
+  info: {
+    singularName: 'proc-anouncement';
+    pluralName: 'proc-anouncements';
+    displayName: 'Procurement Anouncement';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    number: Attribute.UID & Attribute.Required;
+    tender: Attribute.Relation<
+      'api::proc-anouncement.proc-anouncement',
+      'oneToOne',
+      'api::proc-tender.proc-tender'
+    >;
+    vendor: Attribute.Relation<
+      'api::proc-anouncement.proc-anouncement',
+      'manyToOne',
+      'api::proc-vendor.proc-vendor'
+    >;
+    final_value: Attribute.Integer & Attribute.Required;
+    objection_period: Attribute.Date;
+    document: Attribute.Media<'files'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-anouncement.proc-anouncement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-anouncement.proc-anouncement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcClassificationProcClassification
+  extends Schema.CollectionType {
+  collectionName: 'proc_classifications';
+  info: {
+    singularName: 'proc-classification';
+    pluralName: 'proc-classifications';
+    displayName: 'Procurement Classification';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'> & Attribute.Required;
+    class_item: Attribute.Component<'repeatable.title-desc', true> &
+      Attribute.Required;
+    proc_vendors: Attribute.Relation<
+      'api::proc-classification.proc-classification',
+      'manyToMany',
+      'api::proc-vendor.proc-vendor'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-classification.proc-classification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-classification.proc-classification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcTenderProcTender extends Schema.CollectionType {
+  collectionName: 'proc_tenders';
+  info: {
+    singularName: 'proc-tender';
+    pluralName: 'proc-tenders';
+    displayName: 'Procurement Tender';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    rks_number: Attribute.UID & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    registration_start: Attribute.Date & Attribute.Required;
+    registration_deadline: Attribute.Date & Attribute.Required;
+    aanwijizing_start: Attribute.DateTime & Attribute.Required;
+    aawijizing_end: Attribute.DateTime;
+    document: Attribute.Media<'files'> & Attribute.Required;
+    type: Attribute.Enumeration<['KHS', 'Non-KHS']> & Attribute.Required;
+    anouncement: Attribute.Relation<
+      'api::proc-tender.proc-tender',
+      'oneToOne',
+      'api::proc-anouncement.proc-anouncement'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-tender.proc-tender',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-tender.proc-tender',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcVendorProcVendor extends Schema.CollectionType {
+  collectionName: 'proc_vendors';
+  info: {
+    singularName: 'proc-vendor';
+    pluralName: 'proc-vendors';
+    displayName: 'Procurement Vendor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    company_name: Attribute.String & Attribute.Required;
+    vendor_id: Attribute.UID & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    classifications: Attribute.Relation<
+      'api::proc-vendor.proc-vendor',
+      'manyToMany',
+      'api::proc-classification.proc-classification'
+    >;
+    last_update: Attribute.Date & Attribute.Required;
+    next_update: Attribute.Date & Attribute.Required;
+    certificate_expiry: Attribute.Date;
+    status: Attribute.Enumeration<
+      [
+        'MENDAFTAR',
+        'DIPERIKSA',
+        'DITERIMA',
+        'DITOLAK',
+        'MASA SANGGAH',
+        'PERLU PERPANJANGAN',
+        'TIDAK AKTIF'
+      ]
+    > &
+      Attribute.Required;
+    anouncement: Attribute.Relation<
+      'api::proc-vendor.proc-vendor',
+      'oneToMany',
+      'api::proc-anouncement.proc-anouncement'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-vendor.proc-vendor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-vendor.proc-vendor',
       'oneToOne',
       'admin::user'
     > &
@@ -1931,10 +2146,15 @@ declare module '@strapi/types' {
       'api::page-guideline.page-guideline': ApiPageGuidelinePageGuideline;
       'api::page-magazine.page-magazine': ApiPageMagazinePageMagazine;
       'api::page-organization.page-organization': ApiPageOrganizationPageOrganization;
+      'api::page-procurement.page-procurement': ApiPageProcurementPageProcurement;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
+      'api::proc-anouncement.proc-anouncement': ApiProcAnouncementProcAnouncement;
+      'api::proc-classification.proc-classification': ApiProcClassificationProcClassification;
+      'api::proc-tender.proc-tender': ApiProcTenderProcTender;
+      'api::proc-vendor.proc-vendor': ApiProcVendorProcVendor;
       'api::product.product': ApiProductProduct;
       'api::profile.profile': ApiProfileProfile;
       'api::report.report': ApiReportReport;

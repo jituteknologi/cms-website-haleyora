@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proc_vendors",
+  "info": {
+    "singularName": "proc-vendor",
+    "pluralName": "proc-vendors",
+    "displayName": "Procurement Vendor"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company_name": {
+      "type": "string",
+      "required": true
+    },
+    "vendor_id": {
+      "type": "uid",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "classifications": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::proc-classification.proc-classification",
+      "inversedBy": "proc_vendors"
+    },
+    "last_update": {
+      "type": "date",
+      "required": true
+    },
+    "next_update": {
+      "type": "date",
+      "required": true
+    },
+    "certificate_expiry": {
+      "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "MENDAFTAR",
+        "DIPERIKSA",
+        "DITERIMA",
+        "DITOLAK",
+        "MASA SANGGAH",
+        "PERLU PERPANJANGAN",
+        "TIDAK AKTIF"
+      ],
+      "required": true
+    },
+    "anouncement": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::proc-anouncement.proc-anouncement",
+      "mappedBy": "vendor"
+    }
+  }
+}

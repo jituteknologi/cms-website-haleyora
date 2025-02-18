@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proc_tenders",
+  "info": {
+    "singularName": "proc-tender",
+    "pluralName": "proc-tenders",
+    "displayName": "Procurement Tender",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "rks_number": {
+      "type": "uid",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "registration_start": {
+      "type": "date",
+      "required": true
+    },
+    "registration_deadline": {
+      "type": "date",
+      "required": true
+    },
+    "aanwijizing_start": {
+      "type": "datetime",
+      "required": true
+    },
+    "aawijizing_end": {
+      "type": "datetime"
+    },
+    "document": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["files"]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["KHS", "Non-KHS"],
+      "required": true
+    },
+    "anouncement": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proc-anouncement.proc-anouncement",
+      "mappedBy": "tender"
+    }
+  }
+}

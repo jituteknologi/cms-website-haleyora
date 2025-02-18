@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proc_classifications",
+  "info": {
+    "singularName": "proc-classification",
+    "pluralName": "proc-classifications",
+    "displayName": "Procurement Classification"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "class_item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "repeatable.title-desc",
+      "required": true
+    },
+    "proc_vendors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::proc-vendor.proc-vendor",
+      "mappedBy": "classifications"
+    }
+  }
+}

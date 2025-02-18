@@ -28,9 +28,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "description": {
       "type": "customField",
@@ -44,9 +42,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "files"
-      ]
+      "allowedTypes": ["files"]
     },
     "compatibility": {
       "displayName": "compatibility",
@@ -73,7 +69,7 @@
       "repeatable": false,
       "component": "evhc.faq"
     },
-    "prodedure": {
+    "procedure": {
       "displayName": "procedure",
       "type": "component",
       "repeatable": false,
