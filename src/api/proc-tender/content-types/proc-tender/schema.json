@@ -13,8 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "rks_number": {
-      "type": "uid",
-      "required": true
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "title": {
       "type": "string",

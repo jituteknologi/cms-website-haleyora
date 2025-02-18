@@ -4,7 +4,8 @@
   "info": {
     "singularName": "proc-vendor",
     "pluralName": "proc-vendors",
-    "displayName": "Procurement Vendor"
+    "displayName": "Procurement Vendor",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -13,10 +14,6 @@
   "attributes": {
     "company_name": {
       "type": "string",
-      "required": true
-    },
-    "vendor_id": {
-      "type": "uid",
       "required": true
     },
     "location": {
@@ -31,11 +28,11 @@
     },
     "last_update": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "next_update": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "certificate_expiry": {
       "type": "date"
@@ -58,6 +55,11 @@
       "relation": "oneToMany",
       "target": "api::proc-anouncement.proc-anouncement",
       "mappedBy": "vendor"
+    },
+    "vendor_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

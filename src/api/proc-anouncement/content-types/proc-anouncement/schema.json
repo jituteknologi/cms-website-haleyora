@@ -12,8 +12,9 @@
   "pluginOptions": {},
   "attributes": {
     "number": {
-      "type": "uid",
-      "required": true
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "tender": {
       "type": "relation",

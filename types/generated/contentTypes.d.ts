@@ -1674,7 +1674,7 @@ export interface ApiProcAnouncementProcAnouncement
     draftAndPublish: false;
   };
   attributes: {
-    number: Attribute.UID & Attribute.Required;
+    number: Attribute.String & Attribute.Required & Attribute.Unique;
     tender: Attribute.Relation<
       'api::proc-anouncement.proc-anouncement',
       'oneToOne',
@@ -1756,7 +1756,7 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    rks_number: Attribute.UID & Attribute.Required;
+    rks_number: Attribute.String & Attribute.Required & Attribute.Unique;
     title: Attribute.String & Attribute.Required;
     registration_start: Attribute.Date & Attribute.Required;
     registration_deadline: Attribute.Date & Attribute.Required;
@@ -1792,21 +1792,21 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
     singularName: 'proc-vendor';
     pluralName: 'proc-vendors';
     displayName: 'Procurement Vendor';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     company_name: Attribute.String & Attribute.Required;
-    vendor_id: Attribute.UID & Attribute.Required;
     location: Attribute.String & Attribute.Required;
     classifications: Attribute.Relation<
       'api::proc-vendor.proc-vendor',
       'manyToMany',
       'api::proc-classification.proc-classification'
     >;
-    last_update: Attribute.Date & Attribute.Required;
-    next_update: Attribute.Date & Attribute.Required;
+    last_update: Attribute.Date;
+    next_update: Attribute.Date;
     certificate_expiry: Attribute.Date;
     status: Attribute.Enumeration<
       [
@@ -1825,6 +1825,7 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
       'oneToMany',
       'api::proc-anouncement.proc-anouncement'
     >;
+    vendor_id: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
