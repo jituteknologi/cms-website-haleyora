@@ -1758,8 +1758,8 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
   attributes: {
     rks_number: Attribute.String & Attribute.Required & Attribute.Unique;
     title: Attribute.String & Attribute.Required;
-    registration_start: Attribute.Date & Attribute.Required;
-    registration_deadline: Attribute.Date & Attribute.Required;
+    registration_start: Attribute.DateTime & Attribute.Required;
+    registration_deadline: Attribute.DateTime & Attribute.Required;
     aanwijizing_start: Attribute.DateTime & Attribute.Required;
     aawijizing_end: Attribute.DateTime;
     document: Attribute.Media<'files'> & Attribute.Required;

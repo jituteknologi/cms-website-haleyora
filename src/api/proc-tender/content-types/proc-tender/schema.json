@@ -22,11 +22,11 @@
       "required": true
     },
     "registration_start": {
-      "type": "date",
+      "type": "datetime",
       "required": true
     },
     "registration_deadline": {
-      "type": "date",
+      "type": "datetime",
       "required": true
     },
     "aanwijizing_start": {
