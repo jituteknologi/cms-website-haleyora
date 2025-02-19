@@ -1280,7 +1280,7 @@ export interface ApiOrganizationMemberOrganizationMember
     name: Attribute.String & Attribute.Required;
     organizational_position: Attribute.Relation<
       'api::organization-member.organization-member',
-      'oneToOne',
+      'manyToOne',
       'api::organizational-position.organizational-position'
     >;
     photo: Attribute.Media<'images'> & Attribute.Required;
@@ -1330,9 +1330,9 @@ export interface ApiOrganizationalPositionOrganizationalPosition
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    organization_member: Attribute.Relation<
+    organization_members: Attribute.Relation<
       'api::organizational-position.organizational-position',
-      'oneToOne',
+      'oneToMany',
       'api::organization-member.organization-member'
     >;
     createdAt: Attribute.DateTime;

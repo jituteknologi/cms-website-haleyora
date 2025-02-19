@@ -18,9 +18,9 @@
     },
     "organizational_position": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::organizational-position.organizational-position",
-      "inversedBy": "organization_member"
+      "inversedBy": "organization_members"
     },
     "photo": {
       "type": "media",

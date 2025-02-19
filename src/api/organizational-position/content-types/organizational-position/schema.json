@@ -15,9 +15,9 @@
       "type": "string",
       "required": true
     },
-    "organization_member": {
+    "organization_members": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::organization-member.organization-member",
       "mappedBy": "organizational_position"
     }
