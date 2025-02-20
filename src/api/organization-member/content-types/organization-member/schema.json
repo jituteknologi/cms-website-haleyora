@@ -50,6 +50,9 @@
         "Kepala Divisi"
       ],
       "required": true
+    },
+    "short_description": {
+      "type": "text"
     }
   }
 }

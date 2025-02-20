@@ -1300,6 +1300,7 @@ export interface ApiOrganizationMemberOrganizationMember
       ['Dewan Komisaris', 'Dewan Direksi', 'Kepala Divisi']
     > &
       Attribute.Required;
+    short_description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1906,6 +1907,9 @@ export interface ApiProfileProfile extends Schema.SingleType {
     vision: Attribute.Component<'profile.vision'> & Attribute.Required;
     mission: Attribute.Component<'profile.mission'> & Attribute.Required;
     history: Attribute.Component<'profile.history'> & Attribute.Required;
+    company_structure: Attribute.Media<'images'> & Attribute.Required;
+    company_value: Attribute.Component<'profile.company-value'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

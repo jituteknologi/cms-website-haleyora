@@ -40,6 +40,20 @@
       "repeatable": false,
       "component": "profile.history",
       "required": true
+    },
+    "company_structure": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "company_value": {
+      "type": "component",
+      "repeatable": false,
+      "component": "profile.company-value",
+      "required": true
     }
   }
 }
