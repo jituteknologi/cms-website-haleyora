@@ -92,115 +92,6 @@ export interface ServiceMainService extends Schema.Component {
   };
 }
 
-export interface RepeatableTitleDesc extends Schema.Component {
-  collectionName: 'components_repeatable_title_descs';
-  info: {
-    displayName: 'title desc';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-  };
-}
-
-export interface RepeatableSeoProperties extends Schema.Component {
-  collectionName: 'components_repeatable_seo_properties';
-  info: {
-    displayName: 'SEOProperties';
-    icon: 'layout';
-  };
-  attributes: {
-    name: Attribute.String;
-    content: Attribute.Text;
-  };
-}
-
-export interface RepeatableParams extends Schema.Component {
-  collectionName: 'components_repeatable_params';
-  info: {
-    displayName: 'params';
-    icon: 'layer';
-  };
-  attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface ProcurementDocument extends Schema.Component {
-  collectionName: 'components_procurement_documents';
-  info: {
-    displayName: 'document';
-    icon: 'book';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.Text;
-    cover: Attribute.Media<'images'> & Attribute.Required;
-    file: Attribute.Media<'files'> & Attribute.Required;
-  };
-}
-
-export interface ProcurementClassification extends Schema.Component {
-  collectionName: 'components_proc_classes';
-  info: {
-    displayName: 'classification';
-    icon: 'bulletList';
-  };
-  attributes: {
-    proc_classification: Attribute.Relation<
-      'procurement.classification',
-      'oneToOne',
-      'api::proc-classification.proc-classification'
-    >;
-    proc_sub_classification: Attribute.Relation<
-      'procurement.classification',
-      'oneToOne',
-      'api::proc-sub-classification.proc-sub-classification'
-    >;
-  };
-}
-
-export interface OrganizationDivHead extends Schema.Component {
-  collectionName: 'components_organization_div_heads';
-  info: {
-    displayName: 'div head';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-  };
-  attributes: {
-    image_structure: Attribute.Media<'images'> & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface ProfileVision extends Schema.Component {
   collectionName: 'components_profile_visions';
   info: {
@@ -314,6 +205,115 @@ export interface ProfileCompanyValue extends Schema.Component {
           preset: 'default';
         }
       >;
+  };
+}
+
+export interface RepeatableTitleDesc extends Schema.Component {
+  collectionName: 'components_repeatable_title_descs';
+  info: {
+    displayName: 'title desc';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface RepeatableSeoProperties extends Schema.Component {
+  collectionName: 'components_repeatable_seo_properties';
+  info: {
+    displayName: 'SEOProperties';
+    icon: 'layout';
+  };
+  attributes: {
+    name: Attribute.String;
+    content: Attribute.Text;
+  };
+}
+
+export interface RepeatableParams extends Schema.Component {
+  collectionName: 'components_repeatable_params';
+  info: {
+    displayName: 'params';
+    icon: 'layer';
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface ProcurementDocument extends Schema.Component {
+  collectionName: 'components_procurement_documents';
+  info: {
+    displayName: 'document';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.Text;
+    cover: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'> & Attribute.Required;
+  };
+}
+
+export interface ProcurementClassification extends Schema.Component {
+  collectionName: 'components_proc_classes';
+  info: {
+    displayName: 'classification';
+    icon: 'bulletList';
+  };
+  attributes: {
+    proc_classification: Attribute.Relation<
+      'procurement.classification',
+      'oneToOne',
+      'api::proc-classification.proc-classification'
+    >;
+    proc_sub_classification: Attribute.Relation<
+      'procurement.classification',
+      'oneToOne',
+      'api::proc-sub-classification.proc-sub-classification'
+    >;
+  };
+}
+
+export interface OrganizationDivHead extends Schema.Component {
+  collectionName: 'components_organization_div_heads';
+  info: {
+    displayName: 'div head';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+  };
+  attributes: {
+    image_structure: Attribute.Media<'images'> & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -694,6 +694,13 @@ declare module '@strapi/types' {
       'shared.cta-button': SharedCtaButton;
       'service.other-service': ServiceOtherService;
       'service.main-service': ServiceMainService;
+      'profile.vision': ProfileVision;
+      'profile.value': ProfileValue;
+      'profile.structure': ProfileStructure;
+      'profile.mission': ProfileMission;
+      'profile.history': ProfileHistory;
+      'profile.history-item': ProfileHistoryItem;
+      'profile.company-value': ProfileCompanyValue;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
@@ -702,13 +709,6 @@ declare module '@strapi/types' {
       'organization.div-head': OrganizationDivHead;
       'organization.director': OrganizationDirector;
       'organization.commissioner': OrganizationCommissioner;
-      'profile.vision': ProfileVision;
-      'profile.value': ProfileValue;
-      'profile.structure': ProfileStructure;
-      'profile.mission': ProfileMission;
-      'profile.history': ProfileHistory;
-      'profile.history-item': ProfileHistoryItem;
-      'profile.company-value': ProfileCompanyValue;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
       'investor.summary': InvestorSummary;

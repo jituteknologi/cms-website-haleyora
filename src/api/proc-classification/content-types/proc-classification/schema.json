@@ -4,7 +4,8 @@
   "info": {
     "singularName": "proc-classification",
     "pluralName": "proc-classifications",
-    "displayName": "Procurement Classification"
+    "displayName": "Procurement Classification",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -16,20 +17,20 @@
       "required": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "file": {
-      "allowedTypes": [
-        "files"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
     },
     "class_item": {
       "type": "component",

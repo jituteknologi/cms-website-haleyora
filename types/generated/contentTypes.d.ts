@@ -1615,6 +1615,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     views: Attribute.Integer & Attribute.DefaultTo<0>;
     SEO: Attribute.Component<'repeatable.seo-properties', true>;
     short_description: Attribute.Text & Attribute.Required;
+    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1656,6 +1657,38 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::post-category.post-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcAnnouncementPeriodProcAnnouncementPeriod
+  extends Schema.SingleType {
+  collectionName: 'proc_announcement_periods';
+  info: {
+    singularName: 'proc-announcement-period';
+    pluralName: 'proc-announcement-periods';
+    displayName: 'Procurement Announcement Period';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    start_date: Attribute.Date & Attribute.Required;
+    end_date: Attribute.Date & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-announcement-period.proc-announcement-period',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-announcement-period.proc-announcement-period',
       'oneToOne',
       'admin::user'
     > &
@@ -1713,14 +1746,15 @@ export interface ApiProcClassificationProcClassification
     singularName: 'proc-classification';
     pluralName: 'proc-classifications';
     displayName: 'Procurement Classification';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    file: Attribute.Media<'files'> & Attribute.Required;
+    image: Attribute.Media<'images'>;
+    file: Attribute.Media<'files'>;
     class_item: Attribute.Component<'repeatable.title-desc', true> &
       Attribute.Required;
     proc_sub_classifications: Attribute.Relation<
@@ -2197,6 +2231,7 @@ declare module '@strapi/types' {
       'api::partner.partner': ApiPartnerPartner;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
+      'api::proc-announcement-period.proc-announcement-period': ApiProcAnnouncementPeriodProcAnnouncementPeriod;
       'api::proc-anouncement.proc-anouncement': ApiProcAnouncementProcAnouncement;
       'api::proc-classification.proc-classification': ApiProcClassificationProcClassification;
       'api::proc-sub-classification.proc-sub-classification': ApiProcSubClassificationProcSubClassification;
