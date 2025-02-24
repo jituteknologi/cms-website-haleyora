@@ -16,7 +16,7 @@
     },
     "achievements": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "home.achievement",
       "required": true
     },

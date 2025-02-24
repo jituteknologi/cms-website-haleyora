@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_social_medias",
+  "info": {
+    "displayName": "social media",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "caption": {
+      "type": "text",
+      "required": true
+    },
+    "socmed_link": {
+      "displayName": "socmed link",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.socmed-link"
+    }
+  }
+}

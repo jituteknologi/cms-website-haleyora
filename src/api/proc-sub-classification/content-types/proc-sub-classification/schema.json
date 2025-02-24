@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proc_sub_classifications",
+  "info": {
+    "singularName": "proc-sub-classification",
+    "pluralName": "proc-sub-classifications",
+    "displayName": "Procurement Sub Classification",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "kbli_number": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "proc_classification": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proc-classification.proc-classification",
+      "inversedBy": "proc_sub_classifications"
+    }
+  }
+}

@@ -37,11 +37,11 @@
       "component": "repeatable.title-desc",
       "required": true
     },
-    "proc_vendors": {
+    "proc_sub_classifications": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::proc-vendor.proc-vendor",
-      "mappedBy": "classifications"
+      "relation": "oneToMany",
+      "target": "api::proc-sub-classification.proc-sub-classification",
+      "mappedBy": "proc_classification"
     }
   }
 }

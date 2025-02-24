@@ -1670,6 +1670,7 @@ export interface ApiProcAnouncementProcAnouncement
     singularName: 'proc-anouncement';
     pluralName: 'proc-anouncements';
     displayName: 'Procurement Anouncement';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1681,14 +1682,13 @@ export interface ApiProcAnouncementProcAnouncement
       'oneToOne',
       'api::proc-tender.proc-tender'
     >;
-    vendor: Attribute.Relation<
-      'api::proc-anouncement.proc-anouncement',
-      'manyToOne',
-      'api::proc-vendor.proc-vendor'
-    >;
-    final_value: Attribute.Integer & Attribute.Required;
     objection_period: Attribute.Date;
     document: Attribute.Media<'files'> & Attribute.Required;
+    vendors: Attribute.Relation<
+      'api::proc-anouncement.proc-anouncement',
+      'oneToMany',
+      'api::proc-vendor.proc-vendor'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1723,10 +1723,10 @@ export interface ApiProcClassificationProcClassification
     file: Attribute.Media<'files'> & Attribute.Required;
     class_item: Attribute.Component<'repeatable.title-desc', true> &
       Attribute.Required;
-    proc_vendors: Attribute.Relation<
+    proc_sub_classifications: Attribute.Relation<
       'api::proc-classification.proc-classification',
-      'manyToMany',
-      'api::proc-vendor.proc-vendor'
+      'oneToMany',
+      'api::proc-sub-classification.proc-sub-classification'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1738,6 +1738,43 @@ export interface ApiProcClassificationProcClassification
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::proc-classification.proc-classification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProcSubClassificationProcSubClassification
+  extends Schema.CollectionType {
+  collectionName: 'proc_sub_classifications';
+  info: {
+    singularName: 'proc-sub-classification';
+    pluralName: 'proc-sub-classifications';
+    displayName: 'Procurement Sub Classification';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    kbli_number: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+    proc_classification: Attribute.Relation<
+      'api::proc-sub-classification.proc-sub-classification',
+      'manyToOne',
+      'api::proc-classification.proc-classification'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proc-sub-classification.proc-sub-classification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proc-sub-classification.proc-sub-classification',
       'oneToOne',
       'admin::user'
     > &
@@ -1770,6 +1807,7 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
       'oneToOne',
       'api::proc-anouncement.proc-anouncement'
     >;
+    tender_value: Attribute.Integer & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1801,11 +1839,6 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
   attributes: {
     company_name: Attribute.String & Attribute.Required;
     location: Attribute.String & Attribute.Required;
-    classifications: Attribute.Relation<
-      'api::proc-vendor.proc-vendor',
-      'manyToMany',
-      'api::proc-classification.proc-classification'
-    >;
     last_update: Attribute.Date;
     next_update: Attribute.Date;
     certificate_expiry: Attribute.Date;
@@ -1821,12 +1854,19 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
       ]
     > &
       Attribute.Required;
+    vendor_id: Attribute.String & Attribute.Required & Attribute.Unique;
+    classes: Attribute.Component<'procurement.classification', true> &
+      Attribute.Required;
+    company_owner: Attribute.String & Attribute.Required;
+    company_address: Attribute.Text & Attribute.Required;
+    company_npwp: Attribute.String & Attribute.Required;
+    company_phone: Attribute.String & Attribute.Required;
+    company_email: Attribute.Email & Attribute.Required;
     anouncement: Attribute.Relation<
       'api::proc-vendor.proc-vendor',
-      'oneToMany',
+      'manyToOne',
       'api::proc-anouncement.proc-anouncement'
     >;
-    vendor_id: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2057,6 +2097,7 @@ export interface ApiSettingSetting extends Schema.SingleType {
     company_address: Attribute.Text;
     company_phone: Attribute.String;
     whatsapp: Attribute.Component<'shared.whatsapp'> & Attribute.Required;
+    social_media: Attribute.Component<'shared.social-media'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2158,6 +2199,7 @@ declare module '@strapi/types' {
       'api::post-category.post-category': ApiPostCategoryPostCategory;
       'api::proc-anouncement.proc-anouncement': ApiProcAnouncementProcAnouncement;
       'api::proc-classification.proc-classification': ApiProcClassificationProcClassification;
+      'api::proc-sub-classification.proc-sub-classification': ApiProcSubClassificationProcSubClassification;
       'api::proc-tender.proc-tender': ApiProcTenderProcTender;
       'api::proc-vendor.proc-vendor': ApiProcVendorProcVendor;
       'api::product.product': ApiProductProduct;

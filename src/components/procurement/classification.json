@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_proc_classes",
+  "info": {
+    "displayName": "classification",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "proc_classification": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proc-classification.proc-classification"
+    },
+    "proc_sub_classification": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proc-sub-classification.proc-sub-classification"
+    }
+  }
+}

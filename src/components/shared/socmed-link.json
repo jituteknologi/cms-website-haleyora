@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_socmed_links",
+  "info": {
+    "displayName": "socmed link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::react-icons.icon",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

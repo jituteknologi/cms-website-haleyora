@@ -35,6 +35,12 @@
       "repeatable": false,
       "component": "shared.whatsapp",
       "required": true
+    },
+    "social_media": {
+      "displayName": "social media",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.social-media"
     }
   }
 }

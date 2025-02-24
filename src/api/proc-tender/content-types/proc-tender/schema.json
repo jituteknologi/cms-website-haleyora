@@ -40,11 +40,16 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["files"]
+      "allowedTypes": [
+        "files"
+      ]
     },
     "type": {
       "type": "enumeration",
-      "enum": ["KHS", "Non-KHS"],
+      "enum": [
+        "KHS",
+        "Non-KHS"
+      ],
       "required": true
     },
     "anouncement": {
@@ -52,6 +57,10 @@
       "relation": "oneToOne",
       "target": "api::proc-anouncement.proc-anouncement",
       "mappedBy": "tender"
+    },
+    "tender_value": {
+      "type": "integer",
+      "required": true
     }
   }
 }

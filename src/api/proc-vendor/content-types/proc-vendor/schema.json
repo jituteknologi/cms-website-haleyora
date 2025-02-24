@@ -20,12 +20,6 @@
       "type": "string",
       "required": true
     },
-    "classifications": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::proc-classification.proc-classification",
-      "inversedBy": "proc_vendors"
-    },
     "last_update": {
       "type": "date",
       "required": false
@@ -50,16 +44,42 @@
       ],
       "required": true
     },
-    "anouncement": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::proc-anouncement.proc-anouncement",
-      "mappedBy": "vendor"
-    },
     "vendor_id": {
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "classes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "procurement.classification",
+      "required": true
+    },
+    "company_owner": {
+      "type": "string",
+      "required": true
+    },
+    "company_address": {
+      "type": "text",
+      "required": true
+    },
+    "company_npwp": {
+      "type": "string",
+      "required": true
+    },
+    "company_phone": {
+      "type": "string",
+      "required": true
+    },
+    "company_email": {
+      "type": "email",
+      "required": true
+    },
+    "anouncement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proc-anouncement.proc-anouncement",
+      "inversedBy": "vendors"
     }
   }
 }
