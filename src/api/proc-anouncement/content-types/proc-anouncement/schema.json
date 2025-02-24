@@ -26,19 +26,18 @@
     "objection_period": {
       "type": "date"
     },
-    "document": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "files"
-      ]
-    },
     "vendors": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::proc-vendor.proc-vendor",
       "mappedBy": "anouncement"
+    },
+    "announcement_doc": {
+      "displayName": "announcement doc",
+      "type": "component",
+      "repeatable": true,
+      "component": "procurement.announcement-doc",
+      "required": true
     }
   }
 }

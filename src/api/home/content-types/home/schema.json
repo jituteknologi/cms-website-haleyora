@@ -22,11 +22,6 @@
         "home.our-client"
       ],
       "required": true
-    },
-    "seo": {
-      "type": "component",
-      "repeatable": true,
-      "component": "repeatable.seo-properties"
     }
   }
 }

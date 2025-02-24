@@ -1120,7 +1120,6 @@ export interface ApiHomeHome extends Schema.SingleType {
       ]
     > &
       Attribute.Required;
-    seo: Attribute.Component<'repeatable.seo-properties', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
@@ -1613,7 +1612,6 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::post-category.post-category'
     >;
     views: Attribute.Integer & Attribute.DefaultTo<0>;
-    SEO: Attribute.Component<'repeatable.seo-properties', true>;
     short_description: Attribute.Text & Attribute.Required;
     subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
@@ -1641,7 +1639,6 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::post-category.post-category', 'name'> &
       Attribute.Required;
-    SEO: Attribute.Component<'repeatable.seo-properties', true>;
     posts: Attribute.Relation<
       'api::post-category.post-category',
       'manyToMany',
@@ -1716,12 +1713,16 @@ export interface ApiProcAnouncementProcAnouncement
       'api::proc-tender.proc-tender'
     >;
     objection_period: Attribute.Date;
-    document: Attribute.Media<'files'> & Attribute.Required;
     vendors: Attribute.Relation<
       'api::proc-anouncement.proc-anouncement',
       'oneToMany',
       'api::proc-vendor.proc-vendor'
     >;
+    announcement_doc: Attribute.Component<
+      'procurement.announcement-doc',
+      true
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

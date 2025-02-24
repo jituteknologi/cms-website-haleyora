@@ -53,12 +53,6 @@
       "required": false,
       "default": 0
     },
-    "SEO": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {},
-      "component": "repeatable.seo-properties"
-    },
     "short_description": {
       "pluginOptions": {},
       "type": "text",
