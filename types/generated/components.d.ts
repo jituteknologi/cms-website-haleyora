@@ -1,31 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface SharedWhatsapp extends Schema.Component {
   collectionName: 'components_shared_whatsapps';
   info: {
@@ -89,6 +63,32 @@ export interface SharedCtaButton extends Schema.Component {
     variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
       Attribute.DefaultTo<'default'>;
     icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
+  };
+}
+
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
   };
 }
 
@@ -290,19 +290,6 @@ export interface ProcurementAnnouncementDoc extends Schema.Component {
   };
 }
 
-export interface OrganizationDivHead extends Schema.Component {
-  collectionName: 'components_organization_div_heads';
-  info: {
-    displayName: 'div head';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface OrganizationDirector extends Schema.Component {
   collectionName: 'components_organization_directors';
   info: {
@@ -321,11 +308,12 @@ export interface OrganizationCommissioner extends Schema.Component {
   info: {
     displayName: 'commissioner';
     icon: 'shield';
+    description: '';
   };
   attributes: {
-    image_structure: Attribute.Media<'images'> & Attribute.Required;
     endpoint: Attribute.String & Attribute.Required;
     params: Attribute.Component<'repeatable.params', true>;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -699,13 +687,13 @@ export interface CoverageAffiliation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
       'shared.whatsapp': SharedWhatsapp;
       'shared.socmed-link': SharedSocmedLink;
       'shared.social-media': SharedSocialMedia;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
@@ -719,7 +707,6 @@ declare module '@strapi/types' {
       'procurement.document': ProcurementDocument;
       'procurement.classification': ProcurementClassification;
       'procurement.announcement-doc': ProcurementAnnouncementDoc;
-      'organization.div-head': OrganizationDivHead;
       'organization.director': OrganizationDirector;
       'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;

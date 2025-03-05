@@ -2,18 +2,11 @@
   "collectionName": "components_organization_commissioners",
   "info": {
     "displayName": "commissioner",
-    "icon": "shield"
+    "icon": "shield",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "image_structure": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
     "endpoint": {
       "type": "string",
       "required": true
@@ -22,6 +15,10 @@
       "type": "component",
       "repeatable": true,
       "component": "repeatable.params"
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   }
 }

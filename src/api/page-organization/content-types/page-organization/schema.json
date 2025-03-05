@@ -19,7 +19,6 @@
     "organization": {
       "type": "dynamiczone",
       "components": [
-        "organization.div-head",
         "organization.director",
         "organization.commissioner"
       ],

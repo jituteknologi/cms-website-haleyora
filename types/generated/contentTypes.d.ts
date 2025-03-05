@@ -1461,11 +1461,7 @@ export interface ApiPageOrganizationPageOrganization extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     organization: Attribute.DynamicZone<
-      [
-        'organization.div-head',
-        'organization.director',
-        'organization.commissioner'
-      ]
+      ['organization.director', 'organization.commissioner']
     > &
       Attribute.Required;
     createdAt: Attribute.DateTime;
