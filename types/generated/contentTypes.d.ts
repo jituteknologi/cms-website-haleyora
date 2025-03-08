@@ -864,39 +864,6 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
-export interface ApiComplianceCompliance extends Schema.SingleType {
-  collectionName: 'compliances';
-  info: {
-    singularName: 'compliance';
-    pluralName: 'compliances';
-    displayName: 'Page Compliance';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    banner: Attribute.Media<'images'>;
-    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
-      Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::compliance.compliance',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::compliance.compliance',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCoverageCoverage extends Schema.SingleType {
   collectionName: 'coverages';
   info: {
@@ -985,20 +952,8 @@ export interface ApiGovernanceGovernance extends Schema.SingleType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    banner: Attribute.Media<'images'> & Attribute.Required;
-    subtitle: Attribute.String & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-    description_image: Attribute.Media<'images'> & Attribute.Required;
     dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
       Attribute.Required;
-    achievement_image: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1041,11 +996,8 @@ export interface ApiGuidelineAndPolicyGuidelineAndPolicy
     cover: Attribute.Media<'images'> & Attribute.Required;
     file: Attribute.Media<'files'>;
     link: Attribute.String;
-    guideline_category: Attribute.Relation<
-      'api::guideline-and-policy.guideline-and-policy',
-      'manyToOne',
-      'api::guideline-category.guideline-category'
-    >;
+    subtitle: Attribute.String;
+    order: Attribute.Integer & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1056,41 +1008,6 @@ export interface ApiGuidelineAndPolicyGuidelineAndPolicy
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::guideline-and-policy.guideline-and-policy',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiGuidelineCategoryGuidelineCategory
-  extends Schema.CollectionType {
-  collectionName: 'guideline_categories';
-  info: {
-    singularName: 'guideline-category';
-    pluralName: 'guideline-categories';
-    displayName: 'Guideline Category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    guideline_and_policies: Attribute.Relation<
-      'api::guideline-category.guideline-category',
-      'oneToMany',
-      'api::guideline-and-policy.guideline-and-policy'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::guideline-category.guideline-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::guideline-category.guideline-category',
       'oneToOne',
       'admin::user'
     > &
@@ -2186,6 +2103,45 @@ export interface ApiSustainabilitySustainability extends Schema.SingleType {
   };
 }
 
+export interface ApiWhistleblowerWhistleblower extends Schema.SingleType {
+  collectionName: 'whistleblowers';
+  info: {
+    singularName: 'whistleblower';
+    pluralName: 'whistleblowers';
+    displayName: 'whistleblower';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    image: Attribute.Media<'images'>;
+    cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::whistleblower.whistleblower',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::whistleblower.whistleblower',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -2206,12 +2162,10 @@ declare module '@strapi/types' {
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::client.client': ApiClientClient;
-      'api::compliance.compliance': ApiComplianceCompliance;
       'api::coverage.coverage': ApiCoverageCoverage;
       'api::evhc.evhc': ApiEvhcEvhc;
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
-      'api::guideline-category.guideline-category': ApiGuidelineCategoryGuidelineCategory;
       'api::home.home': ApiHomeHome;
       'api::investor.investor': ApiInvestorInvestor;
       'api::magazine.magazine': ApiMagazineMagazine;
@@ -2241,6 +2195,7 @@ declare module '@strapi/types' {
       'api::service.service': ApiServiceService;
       'api::setting.setting': ApiSettingSetting;
       'api::sustainability.sustainability': ApiSustainabilitySustainability;
+      'api::whistleblower.whistleblower': ApiWhistleblowerWhistleblower;
     }
   }
 }

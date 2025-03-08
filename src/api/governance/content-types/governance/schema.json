@@ -16,47 +16,11 @@
       "type": "string",
       "required": true
     },
-    "banner": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "subtitle": {
-      "type": "string",
-      "required": true
-    },
-    "description": {
-      "type": "customField",
-      "options": {
-        "preset": "default"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor5.CKEditor"
-    },
-    "description_image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "dynamic_endpoint": {
       "type": "component",
       "repeatable": false,
       "component": "shared.dynamic-endpoint",
       "required": true
-    },
-    "achievement_image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
     }
   }
 }

@@ -43,11 +43,12 @@
     "link": {
       "type": "string"
     },
-    "guideline_category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::guideline-category.guideline-category",
-      "inversedBy": "guideline_and_policies"
+    "subtitle": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "required": true
     }
   }
 }
