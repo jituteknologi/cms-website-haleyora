@@ -1339,6 +1339,7 @@ export interface ApiPageMagazinePageMagazine extends Schema.SingleType {
     singularName: 'page-magazine';
     pluralName: 'page-magazines';
     displayName: 'Page Magazine';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1347,6 +1348,7 @@ export interface ApiPageMagazinePageMagazine extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
       Attribute.Required;
+    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

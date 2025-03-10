@@ -4,7 +4,8 @@
   "info": {
     "singularName": "page-magazine",
     "pluralName": "page-magazines",
-    "displayName": "Page Magazine"
+    "displayName": "Page Magazine",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -20,6 +21,9 @@
       "repeatable": false,
       "component": "shared.dynamic-endpoint",
       "required": true
+    },
+    "subtitle": {
+      "type": "string"
     }
   }
 }
