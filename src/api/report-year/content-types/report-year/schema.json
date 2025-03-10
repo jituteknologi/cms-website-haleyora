@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "reports": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::report.report",
-      "mappedBy": "report_year"
-    },
     "year": {
       "type": "string",
       "required": true,

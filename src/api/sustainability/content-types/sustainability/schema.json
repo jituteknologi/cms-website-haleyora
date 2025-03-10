@@ -36,6 +36,19 @@
     },
     "image_description": {
       "type": "text"
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "report_title": {
+      "type": "string",
+      "required": true
     }
   }
 }

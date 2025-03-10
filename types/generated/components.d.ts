@@ -1,67 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface RepeatableTitleDesc extends Schema.Component {
-  collectionName: 'components_repeatable_title_descs';
-  info: {
-    displayName: 'title desc';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-  };
-}
-
-export interface RepeatableSeoProperties extends Schema.Component {
-  collectionName: 'components_repeatable_seo_properties';
-  info: {
-    displayName: 'SEOProperties';
-    icon: 'layout';
-  };
-  attributes: {
-    name: Attribute.String;
-    content: Attribute.Text;
-  };
-}
-
-export interface RepeatableParams extends Schema.Component {
-  collectionName: 'components_repeatable_params';
-  info: {
-    displayName: 'params';
-    icon: 'layer';
-  };
-  attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface SharedWhatsapp extends Schema.Component {
   collectionName: 'components_shared_whatsapps';
   info: {
@@ -125,6 +63,68 @@ export interface SharedCtaButton extends Schema.Component {
     variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
       Attribute.DefaultTo<'default'>;
     icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
+  };
+}
+
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface RepeatableTitleDesc extends Schema.Component {
+  collectionName: 'components_repeatable_title_descs';
+  info: {
+    displayName: 'title desc';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface RepeatableSeoProperties extends Schema.Component {
+  collectionName: 'components_repeatable_seo_properties';
+  info: {
+    displayName: 'SEOProperties';
+    icon: 'layout';
+  };
+  attributes: {
+    name: Attribute.String;
+    content: Attribute.Text;
+  };
+}
+
+export interface RepeatableParams extends Schema.Component {
+  collectionName: 'components_repeatable_params';
+  info: {
+    displayName: 'params';
+    icon: 'layer';
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String & Attribute.Required;
   };
 }
 
@@ -278,6 +278,20 @@ export interface ProcurementClassification extends Schema.Component {
   };
 }
 
+export interface ProcurementAnnouncementPeriod extends Schema.Component {
+  collectionName: 'components_procurement_announcement_periods';
+  info: {
+    displayName: 'announcement Period';
+    icon: 'calendar';
+    description: '';
+  };
+  attributes: {
+    start_date: Attribute.Date & Attribute.Required;
+    end_date: Attribute.Date & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ProcurementAnnouncementDoc extends Schema.Component {
   collectionName: 'components_procurement_announcement_docs';
   info: {
@@ -287,33 +301,6 @@ export interface ProcurementAnnouncementDoc extends Schema.Component {
   attributes: {
     document: Attribute.Media<'files'> & Attribute.Required;
     submit_date: Attribute.Date & Attribute.Required;
-  };
-}
-
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-    description: '';
-  };
-  attributes: {
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -348,6 +335,33 @@ export interface MenuMenu extends Schema.Component {
   };
 }
 
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+    description: '';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+    title: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface InvestorSummary extends Schema.Component {
   collectionName: 'components_investor_summaries';
   info: {
@@ -373,6 +387,160 @@ export interface InvestorData extends Schema.Component {
         maxLength: 4;
       }>;
     value: Attribute.Integer & Attribute.Required;
+  };
+}
+
+export interface HomeSlide extends Schema.Component {
+  collectionName: 'components_home_slides';
+  info: {
+    displayName: 'slide';
+    icon: 'picture';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    caption: Attribute.Text;
+    background: Attribute.Media<'images' | 'videos'> & Attribute.Required;
+    cta_label: Attribute.String & Attribute.Required;
+    cta_url: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface HomeServices extends Schema.Component {
+  collectionName: 'components_home_services';
+  info: {
+    displayName: 'services';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
+    items: Attribute.Component<'home.service-item', true> & Attribute.Required;
+  };
+}
+
+export interface HomeServiceItem extends Schema.Component {
+  collectionName: 'components_home_service_items';
+  info: {
+    displayName: 'service item';
+    icon: 'layer';
+  };
+  attributes: {
+    service: Attribute.Enumeration<['RETAIL', 'COMMERCIAL', 'CORE']> &
+      Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    dynamic_endpoint: Attribute.Text & Attribute.Required;
+  };
+}
+
+export interface HomePublication extends Schema.Component {
+  collectionName: 'components_home_publications';
+  info: {
+    displayName: 'publication';
+    icon: 'book';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+    section_title: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface HomeOurClient extends Schema.Component {
+  collectionName: 'components_home_our_clients';
+  info: {
+    displayName: 'our client';
+    icon: 'command';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface HomeHero extends Schema.Component {
+  collectionName: 'components_home_heroes';
+  info: {
+    displayName: 'hero';
+    icon: 'monitor';
+    description: '';
+  };
+  attributes: {
+    slides: Attribute.Component<'home.slide', true> & Attribute.Required;
+    achievements: Attribute.Component<'home.achievement'> & Attribute.Required;
+    description: Attribute.Component<'home.company-description'> &
+      Attribute.Required;
+    desc_items: Attribute.Component<'home.desc-item', true>;
+  };
+}
+
+export interface HomeDescItem extends Schema.Component {
+  collectionName: 'components_menu_desc_items';
+  info: {
+    displayName: 'desc item';
+    icon: 'grid';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String & Attribute.Required;
+    icon: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::react-icons.icon'>;
+  };
+}
+
+export interface HomeCompanyDescription extends Schema.Component {
+  collectionName: 'components_home_company_descriptions';
+  info: {
+    displayName: 'company description';
+    icon: 'write';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    motto: Attribute.Text & Attribute.Required;
+  };
+}
+
+export interface HomeCis extends Schema.Component {
+  collectionName: 'components_home_cis';
+  info: {
+    displayName: 'cis';
+    icon: 'discuss';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    feature: Attribute.Component<'home.desc-item', true>;
+    cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
+    section_title: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface HomeAchievement extends Schema.Component {
+  collectionName: 'components_home_achievements';
+  info: {
+    displayName: 'achievement';
+    icon: 'crown';
+    description: '';
+  };
+  attributes: {
+    endpoint: Attribute.Text & Attribute.Required;
   };
 }
 
@@ -493,156 +661,6 @@ export interface EvhcCompatibility extends Schema.Component {
   };
 }
 
-export interface HomeSlide extends Schema.Component {
-  collectionName: 'components_home_slides';
-  info: {
-    displayName: 'slide';
-    icon: 'picture';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.String;
-    caption: Attribute.Text;
-    background: Attribute.Media<'images' | 'videos'> & Attribute.Required;
-    cta_label: Attribute.String & Attribute.Required;
-    cta_url: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface HomeServices extends Schema.Component {
-  collectionName: 'components_home_services';
-  info: {
-    displayName: 'services';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
-    items: Attribute.Component<'home.service-item', true> & Attribute.Required;
-  };
-}
-
-export interface HomeServiceItem extends Schema.Component {
-  collectionName: 'components_home_service_items';
-  info: {
-    displayName: 'service item';
-    icon: 'layer';
-  };
-  attributes: {
-    service: Attribute.Enumeration<['RETAIL', 'COMMERCIAL', 'CORE']> &
-      Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    dynamic_endpoint: Attribute.Text & Attribute.Required;
-  };
-}
-
-export interface HomePublication extends Schema.Component {
-  collectionName: 'components_home_publications';
-  info: {
-    displayName: 'publication';
-    icon: 'book';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface HomeOurClient extends Schema.Component {
-  collectionName: 'components_home_our_clients';
-  info: {
-    displayName: 'our client';
-    icon: 'command';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface HomeHero extends Schema.Component {
-  collectionName: 'components_home_heroes';
-  info: {
-    displayName: 'hero';
-    icon: 'monitor';
-    description: '';
-  };
-  attributes: {
-    slides: Attribute.Component<'home.slide', true> & Attribute.Required;
-    achievements: Attribute.Component<'home.achievement'> & Attribute.Required;
-    description: Attribute.Component<'home.company-description'> &
-      Attribute.Required;
-    desc_items: Attribute.Component<'home.desc-item', true>;
-  };
-}
-
-export interface HomeDescItem extends Schema.Component {
-  collectionName: 'components_menu_desc_items';
-  info: {
-    displayName: 'desc item';
-    icon: 'grid';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.String & Attribute.Required;
-    icon: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::react-icons.icon'>;
-  };
-}
-
-export interface HomeCompanyDescription extends Schema.Component {
-  collectionName: 'components_home_company_descriptions';
-  info: {
-    displayName: 'company description';
-    icon: 'write';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    motto: Attribute.Text & Attribute.Required;
-  };
-}
-
-export interface HomeCis extends Schema.Component {
-  collectionName: 'components_home_cis';
-  info: {
-    displayName: 'cis';
-    icon: 'discuss';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    feature: Attribute.Component<'home.desc-item', true>;
-    cta: Attribute.Component<'shared.cta-button'> & Attribute.Required;
-  };
-}
-
-export interface HomeAchievement extends Schema.Component {
-  collectionName: 'components_home_achievements';
-  info: {
-    displayName: 'achievement';
-    icon: 'crown';
-    description: '';
-  };
-  attributes: {
-    endpoint: Attribute.Text & Attribute.Required;
-  };
-}
-
 export interface CoverageItem extends Schema.Component {
   collectionName: 'components_coverage_items';
   info: {
@@ -687,16 +705,16 @@ export interface CoverageAffiliation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
-      'repeatable.title-desc': RepeatableTitleDesc;
-      'repeatable.seo-properties': RepeatableSeoProperties;
-      'repeatable.params': RepeatableParams;
       'shared.whatsapp': SharedWhatsapp;
       'shared.socmed-link': SharedSocmedLink;
       'shared.social-media': SharedSocialMedia;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
+      'repeatable.title-desc': RepeatableTitleDesc;
+      'repeatable.seo-properties': RepeatableSeoProperties;
+      'repeatable.params': RepeatableParams;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;
@@ -706,22 +724,14 @@ declare module '@strapi/types' {
       'profile.company-value': ProfileCompanyValue;
       'procurement.document': ProcurementDocument;
       'procurement.classification': ProcurementClassification;
+      'procurement.announcement-period': ProcurementAnnouncementPeriod;
       'procurement.announcement-doc': ProcurementAnnouncementDoc;
-      'organization.director': OrganizationDirector;
-      'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'investor.summary': InvestorSummary;
       'investor.data': InvestorData;
-      'evhc.promo': EvhcPromo;
-      'evhc.promo-item': EvhcPromoItem;
-      'evhc.procedure': EvhcProcedure;
-      'evhc.procedure-item': EvhcProcedureItem;
-      'evhc.incentive': EvhcIncentive;
-      'evhc.incentive-list': EvhcIncentiveList;
-      'evhc.faq': EvhcFaq;
-      'evhc.faq-item': EvhcFaqItem;
-      'evhc.compatibility': EvhcCompatibility;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -732,6 +742,15 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'evhc.promo': EvhcPromo;
+      'evhc.promo-item': EvhcPromoItem;
+      'evhc.procedure': EvhcProcedure;
+      'evhc.procedure-item': EvhcProcedureItem;
+      'evhc.incentive': EvhcIncentive;
+      'evhc.incentive-list': EvhcIncentiveList;
+      'evhc.faq': EvhcFaq;
+      'evhc.faq-item': EvhcFaqItem;
+      'evhc.compatibility': EvhcCompatibility;
       'coverage.item': CoverageItem;
       'coverage.head-office': CoverageHeadOffice;
       'coverage.affiliation': CoverageAffiliation;

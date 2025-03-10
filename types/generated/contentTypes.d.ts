@@ -1587,8 +1587,12 @@ export interface ApiProcAnnouncementPeriodProcAnnouncementPeriod
     draftAndPublish: false;
   };
   attributes: {
-    start_date: Attribute.Date & Attribute.Required;
-    end_date: Attribute.Date & Attribute.Required;
+    vendor: Attribute.Component<'procurement.announcement-period'> &
+      Attribute.Required;
+    schedule: Attribute.Component<'procurement.announcement-period'> &
+      Attribute.Required;
+    result: Attribute.Component<'procurement.announcement-period'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1920,7 +1924,7 @@ export interface ApiReportReport extends Schema.CollectionType {
   info: {
     singularName: 'report';
     pluralName: 'reports';
-    displayName: 'Report';
+    displayName: 'Annual Report';
     description: '';
   };
   options: {
@@ -1928,11 +1932,6 @@ export interface ApiReportReport extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    report_year: Attribute.Relation<
-      'api::report.report',
-      'manyToOne',
-      'api::report-year.report-year'
-    >;
     cover: Attribute.Media<'images'> & Attribute.Required;
     file: Attribute.Media<'files'> & Attribute.Required;
     createdAt: Attribute.DateTime;
@@ -1964,11 +1963,6 @@ export interface ApiReportYearReportYear extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    reports: Attribute.Relation<
-      'api::report-year.report-year',
-      'oneToMany',
-      'api::report.report'
-    >;
     year: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -2086,6 +2080,10 @@ export interface ApiSustainabilitySustainability extends Schema.SingleType {
     image: Attribute.Media<'images'>;
     image_label: Attribute.String;
     image_description: Attribute.Text;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    subtitle: Attribute.String;
+    report_title: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2096,6 +2094,39 @@ export interface ApiSustainabilitySustainability extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::sustainability.sustainability',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSustainabilityReportSustainabilityReport
+  extends Schema.CollectionType {
+  collectionName: 'sustainability_reports';
+  info: {
+    singularName: 'sustainability-report';
+    pluralName: 'sustainability-reports';
+    displayName: 'Sustainability Report';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    report_file: Attribute.Media<'files'> & Attribute.Required;
+    report_cover: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sustainability-report.sustainability-report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sustainability-report.sustainability-report',
       'oneToOne',
       'admin::user'
     > &
@@ -2195,6 +2226,7 @@ declare module '@strapi/types' {
       'api::service.service': ApiServiceService;
       'api::setting.setting': ApiSettingSetting;
       'api::sustainability.sustainability': ApiSustainabilitySustainability;
+      'api::sustainability-report.sustainability-report': ApiSustainabilityReportSustainabilityReport;
       'api::whistleblower.whistleblower': ApiWhistleblowerWhistleblower;
     }
   }

@@ -12,12 +12,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "start_date": {
-      "type": "date",
+    "vendor": {
+      "type": "component",
+      "repeatable": false,
+      "component": "procurement.announcement-period",
       "required": true
     },
-    "end_date": {
-      "type": "date",
+    "schedule": {
+      "type": "component",
+      "repeatable": false,
+      "component": "procurement.announcement-period",
+      "required": true
+    },
+    "result": {
+      "type": "component",
+      "repeatable": false,
+      "component": "procurement.announcement-period",
       "required": true
     }
   }

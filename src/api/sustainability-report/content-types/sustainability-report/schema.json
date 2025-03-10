@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "reports",
+  "collectionName": "sustainability_reports",
   "info": {
-    "singularName": "report",
-    "pluralName": "reports",
-    "displayName": "Annual Report",
+    "singularName": "sustainability-report",
+    "pluralName": "sustainability-reports",
+    "displayName": "Sustainability Report",
     "description": ""
   },
   "options": {
@@ -16,21 +16,21 @@
       "type": "string",
       "required": true
     },
-    "cover": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "file": {
+    "report_file": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
         "files"
       ]
+    },
+    "report_cover": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

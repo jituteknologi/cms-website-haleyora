@@ -2,7 +2,8 @@
   "collectionName": "components_home_cis",
   "info": {
     "displayName": "cis",
-    "icon": "discuss"
+    "icon": "discuss",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -19,12 +20,12 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "feature": {
       "type": "component",
@@ -35,6 +36,10 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.cta-button",
+      "required": true
+    },
+    "section_title": {
+      "type": "string",
       "required": true
     }
   }
