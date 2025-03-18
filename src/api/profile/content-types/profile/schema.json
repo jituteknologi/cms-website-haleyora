@@ -54,6 +54,14 @@
       "repeatable": false,
       "component": "profile.company-value",
       "required": true
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

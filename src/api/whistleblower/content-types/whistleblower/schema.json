@@ -4,7 +4,8 @@
   "info": {
     "singularName": "whistleblower",
     "pluralName": "whistleblowers",
-    "displayName": "whistleblower"
+    "displayName": "Whistleblower",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -26,11 +27,12 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "cta": {
       "type": "component",

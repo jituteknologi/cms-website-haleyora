@@ -20,7 +20,7 @@
     "background": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "videos"
@@ -33,6 +33,10 @@
     "cta_url": {
       "type": "string",
       "required": true
+    },
+    "video_url": {
+      "type": "string",
+      "required": false
     }
   }
 }

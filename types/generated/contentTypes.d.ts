@@ -1904,6 +1904,7 @@ export interface ApiProfileProfile extends Schema.SingleType {
     company_structure: Attribute.Media<'images'> & Attribute.Required;
     company_value: Attribute.Component<'profile.company-value'> &
       Attribute.Required;
+    thumbnail: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2042,6 +2043,7 @@ export interface ApiSettingSetting extends Schema.SingleType {
     company_phone: Attribute.String;
     whatsapp: Attribute.Component<'shared.whatsapp'> & Attribute.Required;
     social_media: Attribute.Component<'shared.social-media'>;
+    iso_number: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2141,7 +2143,8 @@ export interface ApiWhistleblowerWhistleblower extends Schema.SingleType {
   info: {
     singularName: 'whistleblower';
     pluralName: 'whistleblowers';
-    displayName: 'whistleblower';
+    displayName: 'Whistleblower';
+    description: '';
   };
   options: {
     draftAndPublish: false;
