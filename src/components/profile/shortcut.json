@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_profile_shortcuts",
+  "info": {
+    "displayName": "shortcut",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

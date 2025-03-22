@@ -1904,7 +1904,7 @@ export interface ApiProfileProfile extends Schema.SingleType {
     company_structure: Attribute.Media<'images'> & Attribute.Required;
     company_value: Attribute.Component<'profile.company-value'> &
       Attribute.Required;
-    thumbnail: Attribute.Media<'images'> & Attribute.Required;
+    shortcut: Attribute.Component<'profile.shortcut'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

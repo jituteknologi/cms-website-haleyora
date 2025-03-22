@@ -55,12 +55,11 @@
       "component": "profile.company-value",
       "required": true
     },
-    "thumbnail": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
+    "shortcut": {
+      "displayName": "shortcut",
+      "type": "component",
+      "repeatable": false,
+      "component": "profile.shortcut",
       "required": true
     }
   }

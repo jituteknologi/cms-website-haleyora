@@ -94,42 +94,6 @@ export interface ServiceMainService extends Schema.Component {
   };
 }
 
-export interface RepeatableTitleDesc extends Schema.Component {
-  collectionName: 'components_repeatable_title_descs';
-  info: {
-    displayName: 'title desc';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-  };
-}
-
-export interface RepeatableSeoProperties extends Schema.Component {
-  collectionName: 'components_repeatable_seo_properties';
-  info: {
-    displayName: 'SEOProperties';
-    icon: 'layout';
-  };
-  attributes: {
-    name: Attribute.String;
-    content: Attribute.Text;
-  };
-}
-
-export interface RepeatableParams extends Schema.Component {
-  collectionName: 'components_repeatable_params';
-  info: {
-    displayName: 'params';
-    icon: 'layer';
-  };
-  attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface ProfileVision extends Schema.Component {
   collectionName: 'components_profile_visions';
   info: {
@@ -178,6 +142,20 @@ export interface ProfileStructure extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface ProfileShortcut extends Schema.Component {
+  collectionName: 'components_profile_shortcuts';
+  info: {
+    displayName: 'shortcut';
+    icon: 'link';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    short_description: Attribute.Text;
+    thumbnail: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
@@ -243,6 +221,69 @@ export interface ProfileCompanyValue extends Schema.Component {
           preset: 'default';
         }
       >;
+  };
+}
+
+export interface RepeatableTitleDesc extends Schema.Component {
+  collectionName: 'components_repeatable_title_descs';
+  info: {
+    displayName: 'title desc';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface RepeatableSeoProperties extends Schema.Component {
+  collectionName: 'components_repeatable_seo_properties';
+  info: {
+    displayName: 'SEOProperties';
+    icon: 'layout';
+  };
+  attributes: {
+    name: Attribute.String;
+    content: Attribute.Text;
+  };
+}
+
+export interface RepeatableParams extends Schema.Component {
+  collectionName: 'components_repeatable_params';
+  info: {
+    displayName: 'params';
+    icon: 'layer';
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+    description: '';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -337,33 +378,6 @@ export interface MenuMenu extends Schema.Component {
   };
 }
 
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-    description: '';
-  };
-  attributes: {
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-    title: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface InvestorSummary extends Schema.Component {
   collectionName: 'components_investor_summaries';
   info: {
@@ -389,123 +403,6 @@ export interface InvestorData extends Schema.Component {
         maxLength: 4;
       }>;
     value: Attribute.Integer & Attribute.Required;
-  };
-}
-
-export interface EvhcPromo extends Schema.Component {
-  collectionName: 'components_evhc_promos';
-  info: {
-    displayName: 'promo';
-    icon: 'landscape';
-  };
-  attributes: {
-    item: Attribute.Component<'evhc.promo-item', true>;
-  };
-}
-
-export interface EvhcPromoItem extends Schema.Component {
-  collectionName: 'components_evhc_promo_items';
-  info: {
-    displayName: 'promo item';
-    icon: 'bulletList';
-  };
-  attributes: {
-    banner: Attribute.Media<'images'> & Attribute.Required;
-    term_condition: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-  };
-}
-
-export interface EvhcProcedure extends Schema.Component {
-  collectionName: 'components_evhc_procedures';
-  info: {
-    displayName: 'procedure';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    procedure_item: Attribute.Component<'evhc.procedure-item', true>;
-  };
-}
-
-export interface EvhcProcedureItem extends Schema.Component {
-  collectionName: 'components_evhc_procedure_items';
-  info: {
-    displayName: 'procedure item';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    icon: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::react-icons.icon'>;
-    label: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-  };
-}
-
-export interface EvhcIncentive extends Schema.Component {
-  collectionName: 'components_evhc_incentives';
-  info: {
-    displayName: 'incentive';
-    icon: 'layout';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    incentive_list: Attribute.Component<'evhc.incentive-list', true> &
-      Attribute.Required;
-    link: Attribute.Component<'shared.cta-button'>;
-  };
-}
-
-export interface EvhcIncentiveList extends Schema.Component {
-  collectionName: 'components_evhc_incentive_lists';
-  info: {
-    displayName: 'incentive list';
-    icon: 'bulletList';
-  };
-  attributes: {
-    item: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface EvhcFaq extends Schema.Component {
-  collectionName: 'components_evhc_faqs';
-  info: {
-    displayName: 'faq';
-    icon: 'bulletList';
-  };
-  attributes: {
-    item: Attribute.Component<'evhc.faq-item', true>;
-  };
-}
-
-export interface EvhcFaqItem extends Schema.Component {
-  collectionName: 'components_evhc_faq_items';
-  info: {
-    displayName: 'faq item';
-    icon: 'bulletList';
-  };
-  attributes: {
-    question: Attribute.String & Attribute.Required;
-    answer: Attribute.Text;
-  };
-}
-
-export interface EvhcCompatibility extends Schema.Component {
-  collectionName: 'components_evhc_compatibilities';
-  info: {
-    displayName: 'compatibility';
-    icon: 'landscape';
-    description: '';
-  };
-  attributes: {
-    brand_logo: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
@@ -705,6 +602,123 @@ export interface CoverageAffiliation extends Schema.Component {
   };
 }
 
+export interface EvhcPromo extends Schema.Component {
+  collectionName: 'components_evhc_promos';
+  info: {
+    displayName: 'promo';
+    icon: 'landscape';
+  };
+  attributes: {
+    item: Attribute.Component<'evhc.promo-item', true>;
+  };
+}
+
+export interface EvhcPromoItem extends Schema.Component {
+  collectionName: 'components_evhc_promo_items';
+  info: {
+    displayName: 'promo item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    term_condition: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
+export interface EvhcProcedure extends Schema.Component {
+  collectionName: 'components_evhc_procedures';
+  info: {
+    displayName: 'procedure';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    procedure_item: Attribute.Component<'evhc.procedure-item', true>;
+  };
+}
+
+export interface EvhcProcedureItem extends Schema.Component {
+  collectionName: 'components_evhc_procedure_items';
+  info: {
+    displayName: 'procedure item';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    icon: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::react-icons.icon'>;
+    label: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface EvhcIncentive extends Schema.Component {
+  collectionName: 'components_evhc_incentives';
+  info: {
+    displayName: 'incentive';
+    icon: 'layout';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    incentive_list: Attribute.Component<'evhc.incentive-list', true> &
+      Attribute.Required;
+    link: Attribute.Component<'shared.cta-button'>;
+  };
+}
+
+export interface EvhcIncentiveList extends Schema.Component {
+  collectionName: 'components_evhc_incentive_lists';
+  info: {
+    displayName: 'incentive list';
+    icon: 'bulletList';
+  };
+  attributes: {
+    item: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface EvhcFaq extends Schema.Component {
+  collectionName: 'components_evhc_faqs';
+  info: {
+    displayName: 'faq';
+    icon: 'bulletList';
+  };
+  attributes: {
+    item: Attribute.Component<'evhc.faq-item', true>;
+  };
+}
+
+export interface EvhcFaqItem extends Schema.Component {
+  collectionName: 'components_evhc_faq_items';
+  info: {
+    displayName: 'faq item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    question: Attribute.String & Attribute.Required;
+    answer: Attribute.Text;
+  };
+}
+
+export interface EvhcCompatibility extends Schema.Component {
+  collectionName: 'components_evhc_compatibilities';
+  info: {
+    displayName: 'compatibility';
+    icon: 'landscape';
+    description: '';
+  };
+  attributes: {
+    brand_logo: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -715,35 +729,27 @@ declare module '@strapi/types' {
       'shared.cta-button': SharedCtaButton;
       'service.other-service': ServiceOtherService;
       'service.main-service': ServiceMainService;
-      'repeatable.title-desc': RepeatableTitleDesc;
-      'repeatable.seo-properties': RepeatableSeoProperties;
-      'repeatable.params': RepeatableParams;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;
+      'profile.shortcut': ProfileShortcut;
       'profile.mission': ProfileMission;
       'profile.history': ProfileHistory;
       'profile.history-item': ProfileHistoryItem;
       'profile.company-value': ProfileCompanyValue;
+      'repeatable.title-desc': RepeatableTitleDesc;
+      'repeatable.seo-properties': RepeatableSeoProperties;
+      'repeatable.params': RepeatableParams;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'procurement.document': ProcurementDocument;
       'procurement.classification': ProcurementClassification;
       'procurement.announcement-period': ProcurementAnnouncementPeriod;
       'procurement.announcement-doc': ProcurementAnnouncementDoc;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
-      'organization.director': OrganizationDirector;
-      'organization.commissioner': OrganizationCommissioner;
       'investor.summary': InvestorSummary;
       'investor.data': InvestorData;
-      'evhc.promo': EvhcPromo;
-      'evhc.promo-item': EvhcPromoItem;
-      'evhc.procedure': EvhcProcedure;
-      'evhc.procedure-item': EvhcProcedureItem;
-      'evhc.incentive': EvhcIncentive;
-      'evhc.incentive-list': EvhcIncentiveList;
-      'evhc.faq': EvhcFaq;
-      'evhc.faq-item': EvhcFaqItem;
-      'evhc.compatibility': EvhcCompatibility;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -757,6 +763,15 @@ declare module '@strapi/types' {
       'coverage.item': CoverageItem;
       'coverage.head-office': CoverageHeadOffice;
       'coverage.affiliation': CoverageAffiliation;
+      'evhc.promo': EvhcPromo;
+      'evhc.promo-item': EvhcPromoItem;
+      'evhc.procedure': EvhcProcedure;
+      'evhc.procedure-item': EvhcProcedureItem;
+      'evhc.incentive': EvhcIncentive;
+      'evhc.incentive-list': EvhcIncentiveList;
+      'evhc.faq': EvhcFaq;
+      'evhc.faq-item': EvhcFaqItem;
+      'evhc.compatibility': EvhcCompatibility;
     }
   }
 }
