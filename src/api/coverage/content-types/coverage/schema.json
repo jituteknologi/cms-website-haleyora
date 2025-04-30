@@ -33,6 +33,12 @@
       "repeatable": false,
       "component": "shared.dynamic-endpoint",
       "required": true
+    },
+    "subsidiary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "coverage.affiliation",
+      "required": true
     }
   }
 }

@@ -26,6 +26,14 @@
     "google_maps_link": {
       "type": "text",
       "required": true
+    },
+    "working_area": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

@@ -16,22 +16,6 @@
       "type": "string",
       "required": true
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "file": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "files"
-      ]
-    },
     "class_item": {
       "type": "component",
       "repeatable": true,

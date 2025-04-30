@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "csrs",
+  "info": {
+    "singularName": "csr",
+    "pluralName": "csrs",
+    "displayName": "TJSL",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "csr_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::csr-category.csr-category",
+      "inversedBy": "csrs"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}

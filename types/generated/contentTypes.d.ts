@@ -882,6 +882,8 @@ export interface ApiCoverageCoverage extends Schema.SingleType {
     operational_area_title: Attribute.String & Attribute.Required;
     dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
       Attribute.Required;
+    subsidiary: Attribute.Component<'coverage.affiliation'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -892,6 +894,82 @@ export interface ApiCoverageCoverage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::coverage.coverage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCsrCsr extends Schema.CollectionType {
+  collectionName: 'csrs';
+  info: {
+    singularName: 'csr';
+    pluralName: 'csrs';
+    displayName: 'TJSL';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::csr.csr', 'title'> & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    featured_image: Attribute.Media<'images'> & Attribute.Required;
+    csr_categories: Attribute.Relation<
+      'api::csr.csr',
+      'manyToMany',
+      'api::csr-category.csr-category'
+    >;
+    short_description: Attribute.Text;
+    subtitle: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::csr.csr', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::csr.csr', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCsrCategoryCsrCategory extends Schema.CollectionType {
+  collectionName: 'csr_categories';
+  info: {
+    singularName: 'csr-category';
+    pluralName: 'csr-categories';
+    displayName: 'TJSL Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::csr-category.csr-category', 'name'> &
+      Attribute.Required;
+    csrs: Attribute.Relation<
+      'api::csr-category.csr-category',
+      'manyToMany',
+      'api::csr.csr'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::csr-category.csr-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::csr-category.csr-category',
       'oneToOne',
       'admin::user'
     > &
@@ -1163,6 +1241,9 @@ export interface ApiOperationalAreaOperationalArea
     subtitle: Attribute.String & Attribute.Required;
     address: Attribute.Text;
     google_maps_link: Attribute.Text & Attribute.Required;
+    working_area: Attribute.Text;
+    slug: Attribute.UID<'api::operational-area.operational-area', 'title'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1673,8 +1754,6 @@ export interface ApiProcClassificationProcClassification
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    image: Attribute.Media<'images'>;
-    file: Attribute.Media<'files'>;
     class_item: Attribute.Component<'repeatable.title-desc', true> &
       Attribute.Required;
     proc_sub_classifications: Attribute.Relation<
@@ -2199,6 +2278,8 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::client.client': ApiClientClient;
       'api::coverage.coverage': ApiCoverageCoverage;
+      'api::csr.csr': ApiCsrCsr;
+      'api::csr-category.csr-category': ApiCsrCategoryCsrCategory;
       'api::evhc.evhc': ApiEvhcEvhc;
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
