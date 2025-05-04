@@ -1350,6 +1350,38 @@ export interface ApiOrganizationalPositionOrganizationalPosition
   };
 }
 
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages';
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'Pages';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    featured_image: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageCsrPageCsr extends Schema.SingleType {
   collectionName: 'page_csrs';
   info: {
@@ -2290,6 +2322,7 @@ declare module '@strapi/types' {
       'api::operational-area.operational-area': ApiOperationalAreaOperationalArea;
       'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
       'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
+      'api::page.page': ApiPagePage;
       'api::page-csr.page-csr': ApiPageCsrPageCsr;
       'api::page-guideline.page-guideline': ApiPageGuidelinePageGuideline;
       'api::page-magazine.page-magazine': ApiPageMagazinePageMagazine;

@@ -1,5 +1,31 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
 export interface SharedWhatsapp extends Schema.Component {
   collectionName: 'components_shared_whatsapps';
   info: {
@@ -70,32 +96,6 @@ export interface SharedCtaButton extends Schema.Component {
   };
 }
 
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
 export interface RepeatableTitleDesc extends Schema.Component {
   collectionName: 'components_repeatable_title_descs';
   info: {
@@ -129,6 +129,66 @@ export interface RepeatableParams extends Schema.Component {
   attributes: {
     key: Attribute.String & Attribute.Required;
     value: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface ProcurementDocument extends Schema.Component {
+  collectionName: 'components_procurement_documents';
+  info: {
+    displayName: 'document';
+    icon: 'book';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.Text;
+    cover: Attribute.Media<'images'> & Attribute.Required;
+    file: Attribute.Media<'files'> & Attribute.Required;
+  };
+}
+
+export interface ProcurementClassification extends Schema.Component {
+  collectionName: 'components_proc_classes';
+  info: {
+    displayName: 'classification';
+    icon: 'bulletList';
+  };
+  attributes: {
+    proc_classification: Attribute.Relation<
+      'procurement.classification',
+      'oneToOne',
+      'api::proc-classification.proc-classification'
+    >;
+    proc_sub_classification: Attribute.Relation<
+      'procurement.classification',
+      'oneToOne',
+      'api::proc-sub-classification.proc-sub-classification'
+    >;
+  };
+}
+
+export interface ProcurementAnnouncementPeriod extends Schema.Component {
+  collectionName: 'components_procurement_announcement_periods';
+  info: {
+    displayName: 'announcement Period';
+    icon: 'calendar';
+    description: '';
+  };
+  attributes: {
+    start_date: Attribute.Date & Attribute.Required;
+    end_date: Attribute.Date & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface ProcurementAnnouncementDoc extends Schema.Component {
+  collectionName: 'components_procurement_announcement_docs';
+  info: {
+    displayName: 'announcement doc';
+    icon: 'archive';
+  };
+  attributes: {
+    document: Attribute.Media<'files'> & Attribute.Required;
+    submit_date: Attribute.Date & Attribute.Required;
   };
 }
 
@@ -317,66 +377,6 @@ export interface MenuMenu extends Schema.Component {
     url: Attribute.String;
     target: Attribute.Enumeration<['_blank', '_parent', '_top', '_self']>;
     sub_menu: Attribute.Component<'menu.sub-menu', true>;
-  };
-}
-
-export interface ProcurementDocument extends Schema.Component {
-  collectionName: 'components_procurement_documents';
-  info: {
-    displayName: 'document';
-    icon: 'book';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.Text;
-    cover: Attribute.Media<'images'> & Attribute.Required;
-    file: Attribute.Media<'files'> & Attribute.Required;
-  };
-}
-
-export interface ProcurementClassification extends Schema.Component {
-  collectionName: 'components_proc_classes';
-  info: {
-    displayName: 'classification';
-    icon: 'bulletList';
-  };
-  attributes: {
-    proc_classification: Attribute.Relation<
-      'procurement.classification',
-      'oneToOne',
-      'api::proc-classification.proc-classification'
-    >;
-    proc_sub_classification: Attribute.Relation<
-      'procurement.classification',
-      'oneToOne',
-      'api::proc-sub-classification.proc-sub-classification'
-    >;
-  };
-}
-
-export interface ProcurementAnnouncementPeriod extends Schema.Component {
-  collectionName: 'components_procurement_announcement_periods';
-  info: {
-    displayName: 'announcement Period';
-    icon: 'calendar';
-    description: '';
-  };
-  attributes: {
-    start_date: Attribute.Date & Attribute.Required;
-    end_date: Attribute.Date & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface ProcurementAnnouncementDoc extends Schema.Component {
-  collectionName: 'components_procurement_announcement_docs';
-  info: {
-    displayName: 'announcement doc';
-    icon: 'archive';
-  };
-  attributes: {
-    document: Attribute.Media<'files'> & Attribute.Required;
-    submit_date: Attribute.Date & Attribute.Required;
   };
 }
 
@@ -724,16 +724,20 @@ export interface CoverageAffiliation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
       'shared.whatsapp': SharedWhatsapp;
       'shared.socmed-link': SharedSocmedLink;
       'shared.social-media': SharedSocialMedia;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
       'repeatable.title-desc': RepeatableTitleDesc;
       'repeatable.seo-properties': RepeatableSeoProperties;
       'repeatable.params': RepeatableParams;
+      'procurement.document': ProcurementDocument;
+      'procurement.classification': ProcurementClassification;
+      'procurement.announcement-period': ProcurementAnnouncementPeriod;
+      'procurement.announcement-doc': ProcurementAnnouncementDoc;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;
@@ -746,10 +750,6 @@ declare module '@strapi/types' {
       'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
-      'procurement.document': ProcurementDocument;
-      'procurement.classification': ProcurementClassification;
-      'procurement.announcement-period': ProcurementAnnouncementPeriod;
-      'procurement.announcement-doc': ProcurementAnnouncementDoc;
       'investor.summary': InvestorSummary;
       'investor.data': InvestorData;
       'home.slide': HomeSlide;
