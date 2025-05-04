@@ -4,7 +4,8 @@
   "info": {
     "singularName": "page-service",
     "pluralName": "page-services",
-    "displayName": "Page Service"
+    "displayName": "Page Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -15,7 +16,8 @@
       "type": "dynamiczone",
       "components": [
         "service.other-service",
-        "service.main-service"
+        "service.main-service",
+        "home.our-client"
       ],
       "required": true
     }

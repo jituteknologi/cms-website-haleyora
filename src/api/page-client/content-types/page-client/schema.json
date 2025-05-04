@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_clients",
+  "info": {
+    "singularName": "page-client",
+    "pluralName": "page-clients",
+    "displayName": "Page Client"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    }
+  }
+}

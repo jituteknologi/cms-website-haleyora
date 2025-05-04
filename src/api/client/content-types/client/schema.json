@@ -23,6 +23,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "client_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client-category.client-category",
+      "inversedBy": "clients"
     }
   }
 }

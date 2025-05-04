@@ -847,6 +847,11 @@ export interface ApiClientClient extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     logo: Attribute.Media<'images'> & Attribute.Required;
+    client_category: Attribute.Relation<
+      'api::client.client',
+      'manyToOne',
+      'api::client-category.client-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -857,6 +862,41 @@ export interface ApiClientClient extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClientCategoryClientCategory extends Schema.CollectionType {
+  collectionName: 'client_categories';
+  info: {
+    singularName: 'client-category';
+    pluralName: 'client-categories';
+    displayName: 'Master Client Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    clients: Attribute.Relation<
+      'api::client-category.client-category',
+      'oneToMany',
+      'api::client.client'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::client-category.client-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::client-category.client-category',
       'oneToOne',
       'admin::user'
     > &
@@ -1383,6 +1423,39 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPageClientPageClient extends Schema.SingleType {
+  collectionName: 'page_clients';
+  info: {
+    singularName: 'page-client';
+    pluralName: 'page-clients';
+    displayName: 'Page Client';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    description: Attribute.Text;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-client.page-client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-client.page-client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageCsrPageCsr extends Schema.SingleType {
   collectionName: 'page_csrs';
   info: {
@@ -1514,6 +1587,39 @@ export interface ApiPageOrganizationPageOrganization extends Schema.SingleType {
   };
 }
 
+export interface ApiPagePartnerPagePartner extends Schema.SingleType {
+  collectionName: 'page_partners';
+  info: {
+    singularName: 'page-partner';
+    pluralName: 'page-partners';
+    displayName: 'Page Partner';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subtitle: Attribute.String;
+    description: Attribute.Text;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-partner.page-partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-partner.page-partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageProcurementPageProcurement extends Schema.SingleType {
   collectionName: 'page_procurements';
   info: {
@@ -1555,13 +1661,14 @@ export interface ApiPageServicePageService extends Schema.SingleType {
     singularName: 'page-service';
     pluralName: 'page-services';
     displayName: 'Page Service';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     services: Attribute.DynamicZone<
-      ['service.other-service', 'service.main-service']
+      ['service.other-service', 'service.main-service', 'home.our-client']
     > &
       Attribute.Required;
     createdAt: Attribute.DateTime;
@@ -2255,7 +2362,7 @@ export interface ApiWhistleblowerWhistleblower extends Schema.SingleType {
   info: {
     singularName: 'whistleblower';
     pluralName: 'whistleblowers';
-    displayName: 'Whistleblower';
+    displayName: 'Page Whistleblower';
     description: '';
   };
   options: {
@@ -2310,6 +2417,7 @@ declare module '@strapi/types' {
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::client.client': ApiClientClient;
+      'api::client-category.client-category': ApiClientCategoryClientCategory;
       'api::coverage.coverage': ApiCoverageCoverage;
       'api::csr.csr': ApiCsrCsr;
       'api::csr-category.csr-category': ApiCsrCategoryCsrCategory;
@@ -2324,10 +2432,12 @@ declare module '@strapi/types' {
       'api::organization-member.organization-member': ApiOrganizationMemberOrganizationMember;
       'api::organizational-position.organizational-position': ApiOrganizationalPositionOrganizationalPosition;
       'api::page.page': ApiPagePage;
+      'api::page-client.page-client': ApiPageClientPageClient;
       'api::page-csr.page-csr': ApiPageCsrPageCsr;
       'api::page-guideline.page-guideline': ApiPageGuidelinePageGuideline;
       'api::page-magazine.page-magazine': ApiPageMagazinePageMagazine;
       'api::page-organization.page-organization': ApiPageOrganizationPageOrganization;
+      'api::page-partner.page-partner': ApiPagePartnerPagePartner;
       'api::page-procurement.page-procurement': ApiPageProcurementPageProcurement;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::partner.partner': ApiPartnerPartner;

@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_partners",
+  "info": {
+    "singularName": "page-partner",
+    "pluralName": "page-partners",
+    "displayName": "Page Partner"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    }
+  }
+}
