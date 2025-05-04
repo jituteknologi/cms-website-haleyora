@@ -1372,6 +1372,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         }
       >;
     featured_image: Attribute.Media<'images'>;
+    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

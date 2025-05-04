@@ -35,6 +35,9 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "subtitle": {
+      "type": "string"
     }
   }
 }
