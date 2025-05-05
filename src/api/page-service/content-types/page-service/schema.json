@@ -17,7 +17,8 @@
       "components": [
         "service.other-service",
         "service.main-service",
-        "home.our-client"
+        "home.our-client",
+        "service.our-partner"
       ],
       "required": true
     }

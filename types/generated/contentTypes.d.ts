@@ -1668,7 +1668,12 @@ export interface ApiPageServicePageService extends Schema.SingleType {
   };
   attributes: {
     services: Attribute.DynamicZone<
-      ['service.other-service', 'service.main-service', 'home.our-client']
+      [
+        'service.other-service',
+        'service.main-service',
+        'home.our-client',
+        'service.our-partner'
+      ]
     > &
       Attribute.Required;
     createdAt: Attribute.DateTime;
