@@ -2067,7 +2067,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
   info: {
     singularName: 'product';
     pluralName: 'products';
-    displayName: 'Product';
+    displayName: 'Master Product';
     description: '';
   };
   options: {
@@ -2075,16 +2075,15 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-    link_detail: Attribute.String;
+    type: Attribute.String;
+    power: Attribute.String;
+    price: Attribute.BigInteger & Attribute.Required;
     service: Attribute.Relation<
       'api::product.product',
       'manyToOne',
       'api::service.service'
     >;
-    image: Attribute.Media<'images'>;
-    image_title: Attribute.String;
-    image_subtitle: Attribute.String;
+    image: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2218,7 +2217,8 @@ export interface ApiServiceService extends Schema.CollectionType {
   info: {
     singularName: 'service';
     pluralName: 'services';
-    displayName: 'Service';
+    displayName: 'Master Service';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -2226,7 +2226,18 @@ export interface ApiServiceService extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     description: Attribute.Text;
+    slug: Attribute.UID<'api::service.service', 'name'> & Attribute.Required;
+    service_category: Attribute.Relation<
+      'api::service.service',
+      'manyToOne',
+      'api::service-category.service-category'
+    >;
     image: Attribute.Media<'images'>;
+    image_title: Attribute.String;
+    image_subtitle: Attribute.String;
+    show_link: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     products: Attribute.Relation<
       'api::service.service',
       'oneToMany',
@@ -2242,6 +2253,44 @@ export interface ApiServiceService extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceCategoryServiceCategory
+  extends Schema.CollectionType {
+  collectionName: 'service_categories';
+  info: {
+    singularName: 'service-category';
+    pluralName: 'service-categories';
+    displayName: 'Master Service Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    image: Attribute.Media<'images'>;
+    services: Attribute.Relation<
+      'api::service-category.service-category',
+      'oneToMany',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service-category.service-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service-category.service-category',
       'oneToOne',
       'admin::user'
     > &
@@ -2459,6 +2508,7 @@ declare module '@strapi/types' {
       'api::report.report': ApiReportReport;
       'api::report-year.report-year': ApiReportYearReportYear;
       'api::service.service': ApiServiceService;
+      'api::service-category.service-category': ApiServiceCategoryServiceCategory;
       'api::setting.setting': ApiSettingSetting;
       'api::sustainability.sustainability': ApiSustainabilitySustainability;
       'api::sustainability-report.sustainability-report': ApiSustainabilityReportSustainabilityReport;

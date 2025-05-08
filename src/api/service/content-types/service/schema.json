@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service"
+    "displayName": "Master Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -18,12 +19,35 @@
     "description": {
       "type": "text"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "service_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service-category.service-category",
+      "inversedBy": "services"
+    },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "image_title": {
+      "type": "string"
+    },
+    "image_subtitle": {
+      "type": "string"
+    },
+    "show_link": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     },
     "products": {
       "type": "relation",

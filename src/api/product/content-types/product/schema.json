@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product",
+    "displayName": "Master Product",
     "description": ""
   },
   "options": {
@@ -16,11 +16,15 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "text"
-    },
-    "link_detail": {
+    "type": {
       "type": "string"
+    },
+    "power": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger",
+      "required": true
     },
     "service": {
       "type": "relation",
@@ -33,13 +37,8 @@
         "images"
       ],
       "type": "media",
-      "multiple": false
-    },
-    "image_title": {
-      "type": "string"
-    },
-    "image_subtitle": {
-      "type": "string"
+      "multiple": false,
+      "required": true
     }
   }
 }
