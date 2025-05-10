@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_service_detail_incentives",
+  "info": {
+    "displayName": "incentive",
+    "icon": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "incentive_list": {
+      "type": "component",
+      "repeatable": true,
+      "required": true,
+      "component": "service-detail.incentive-list"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    }
+  }
+}

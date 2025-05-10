@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_service_detail_faqs",
+  "info": {
+    "displayName": "faq",
+    "icon": "question"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service-detail.faq-item"
+    }
+  }
+}

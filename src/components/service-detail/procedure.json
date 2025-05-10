@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_service_detail_procedures",
+  "info": {
+    "displayName": "procedure",
+    "icon": "manyWays"
+  },
+  "options": {},
+  "attributes": {
+    "procedure_item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service-detail.procedure-item"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_service_detail_promos",
+  "info": {
+    "displayName": "promo",
+    "icon": "priceTag"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service-detail.promo-item"
+    },
+    "show_at": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
+    }
+  }
+}

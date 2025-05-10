@@ -2298,6 +2298,42 @@ export interface ApiServiceCategoryServiceCategory
   };
 }
 
+export interface ApiServiceDetailServiceDetail extends Schema.SingleType {
+  collectionName: 'service_details';
+  info: {
+    singularName: 'service-detail';
+    pluralName: 'service-details';
+    displayName: 'Page Service Detail';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    incentive: Attribute.Component<'service-detail.incentive'>;
+    title: Attribute.String & Attribute.Required;
+    banner_video_url: Attribute.String & Attribute.Required;
+    promo: Attribute.Component<'service-detail.promo'>;
+    faq: Attribute.Component<'service-detail.faq'>;
+    procedure: Attribute.Component<'service-detail.procedure'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service-detail.service-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service-detail.service-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSettingSetting extends Schema.SingleType {
   collectionName: 'settings';
   info: {
@@ -2509,6 +2545,7 @@ declare module '@strapi/types' {
       'api::report-year.report-year': ApiReportYearReportYear;
       'api::service.service': ApiServiceService;
       'api::service-category.service-category': ApiServiceCategoryServiceCategory;
+      'api::service-detail.service-detail': ApiServiceDetailServiceDetail;
       'api::setting.setting': ApiSettingSetting;
       'api::sustainability.sustainability': ApiSustainabilitySustainability;
       'api::sustainability-report.sustainability-report': ApiSustainabilityReportSustainabilityReport;

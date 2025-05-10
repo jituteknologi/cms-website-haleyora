@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_service_detail_procedure_items",
+  "info": {
+    "displayName": "procedure item",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::react-icons.icon"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
