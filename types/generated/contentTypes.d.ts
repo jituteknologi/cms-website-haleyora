@@ -1017,46 +1017,6 @@ export interface ApiCsrCategoryCsrCategory extends Schema.CollectionType {
   };
 }
 
-export interface ApiEvhcEvhc extends Schema.SingleType {
-  collectionName: 'evhcs';
-  info: {
-    singularName: 'evhc';
-    pluralName: 'evhcs';
-    displayName: 'Page EV Home Charging';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.String & Attribute.Required;
-    banner_video_url: Attribute.String & Attribute.Required;
-    product_photo: Attribute.Media<'images'> & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-    manual_book: Attribute.Media<'files'> & Attribute.Required;
-    compatibility: Attribute.Component<'evhc.compatibility', true> &
-      Attribute.Required;
-    incentive: Attribute.Component<'evhc.incentive'>;
-    promo: Attribute.Component<'evhc.promo'>;
-    faq: Attribute.Component<'evhc.faq'>;
-    procedure: Attribute.Component<'evhc.procedure'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::evhc.evhc', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiGovernanceGovernance extends Schema.SingleType {
   collectionName: 'governances';
   info: {
@@ -2511,7 +2471,6 @@ declare module '@strapi/types' {
       'api::coverage.coverage': ApiCoverageCoverage;
       'api::csr.csr': ApiCsrCsr;
       'api::csr-category.csr-category': ApiCsrCategoryCsrCategory;
-      'api::evhc.evhc': ApiEvhcEvhc;
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
       'api::home.home': ApiHomeHome;
