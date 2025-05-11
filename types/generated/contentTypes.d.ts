@@ -2276,6 +2276,9 @@ export interface ApiServiceDetailServiceDetail extends Schema.SingleType {
     promo: Attribute.Component<'service-detail.promo'>;
     faq: Attribute.Component<'service-detail.faq'>;
     procedure: Attribute.Component<'service-detail.procedure'>;
+    product_title: Attribute.String & Attribute.Required;
+    dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

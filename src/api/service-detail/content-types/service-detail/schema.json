@@ -39,6 +39,16 @@
       "type": "component",
       "repeatable": false,
       "component": "service-detail.procedure"
+    },
+    "product_title": {
+      "type": "string",
+      "required": true
+    },
+    "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_service_detail_products",
+  "info": {
+    "displayName": "products",
+    "icon": "store"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
