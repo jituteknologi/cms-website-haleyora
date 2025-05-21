@@ -1124,6 +1124,40 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiIntroPopupIntroPopup extends Schema.SingleType {
+  collectionName: 'intro_popups';
+  info: {
+    singularName: 'intro-popup';
+    pluralName: 'intro-popups';
+    displayName: 'Intro Popup';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    file: Attribute.Media<'images' | 'videos'>;
+    link: Attribute.String;
+    start_date: Attribute.Date & Attribute.Required;
+    end_date: Attribute.Date & Attribute.Required;
+    cta: Attribute.Component<'shared.cta-button'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::intro-popup.intro-popup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::intro-popup.intro-popup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInvestorInvestor extends Schema.SingleType {
   collectionName: 'investors';
   info: {
@@ -2477,6 +2511,7 @@ declare module '@strapi/types' {
       'api::governance.governance': ApiGovernanceGovernance;
       'api::guideline-and-policy.guideline-and-policy': ApiGuidelineAndPolicyGuidelineAndPolicy;
       'api::home.home': ApiHomeHome;
+      'api::intro-popup.intro-popup': ApiIntroPopupIntroPopup;
       'api::investor.investor': ApiInvestorInvestor;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::menu-list.menu-list': ApiMenuListMenuList;

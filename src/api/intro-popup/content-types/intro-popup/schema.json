@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "intro_popups",
+  "info": {
+    "singularName": "intro-popup",
+    "pluralName": "intro-popups",
+    "displayName": "Intro Popup"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "date",
+      "required": true
+    },
+    "end_date": {
+      "type": "date",
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    }
+  }
+}

@@ -543,47 +543,6 @@ export interface InvestorData extends Schema.Component {
   };
 }
 
-export interface CoverageItem extends Schema.Component {
-  collectionName: 'components_coverage_items';
-  info: {
-    displayName: 'item';
-    icon: 'layer';
-    description: '';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    phone: Attribute.String;
-    website: Attribute.String;
-    photo: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface CoverageHeadOffice extends Schema.Component {
-  collectionName: 'components_coverage_head_offices';
-  info: {
-    displayName: 'head office';
-    icon: 'star';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    item: Attribute.Component<'coverage.item'> & Attribute.Required;
-  };
-}
-
-export interface CoverageAffiliation extends Schema.Component {
-  collectionName: 'components_coverage_affiliations';
-  info: {
-    displayName: 'affiliation';
-    icon: 'store';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
-  };
-}
-
 export interface HomeSlide extends Schema.Component {
   collectionName: 'components_home_slides';
   info: {
@@ -741,6 +700,47 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
+export interface CoverageItem extends Schema.Component {
+  collectionName: 'components_coverage_items';
+  info: {
+    displayName: 'item';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    address: Attribute.Text & Attribute.Required;
+    phone: Attribute.String;
+    website: Attribute.String;
+    photo: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface CoverageHeadOffice extends Schema.Component {
+  collectionName: 'components_coverage_head_offices';
+  info: {
+    displayName: 'head office';
+    icon: 'star';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    item: Attribute.Component<'coverage.item'> & Attribute.Required;
+  };
+}
+
+export interface CoverageAffiliation extends Schema.Component {
+  collectionName: 'components_coverage_affiliations';
+  info: {
+    displayName: 'affiliation';
+    icon: 'store';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -782,9 +782,6 @@ declare module '@strapi/types' {
       'menu.menu': MenuMenu;
       'investor.summary': InvestorSummary;
       'investor.data': InvestorData;
-      'coverage.item': CoverageItem;
-      'coverage.head-office': CoverageHeadOffice;
-      'coverage.affiliation': CoverageAffiliation;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -795,6 +792,9 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'coverage.item': CoverageItem;
+      'coverage.head-office': CoverageHeadOffice;
+      'coverage.affiliation': CoverageAffiliation;
     }
   }
 }
