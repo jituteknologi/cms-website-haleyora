@@ -1130,13 +1130,14 @@ export interface ApiIntroPopupIntroPopup extends Schema.SingleType {
     singularName: 'intro-popup';
     pluralName: 'intro-popups';
     displayName: 'Intro Popup';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    file: Attribute.Media<'images' | 'videos'>;
+    file: Attribute.Media<'images'>;
     link: Attribute.String;
     start_date: Attribute.Date & Attribute.Required;
     end_date: Attribute.Date & Attribute.Required;

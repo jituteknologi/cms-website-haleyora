@@ -515,34 +515,6 @@ export interface MenuMenu extends Schema.Component {
   };
 }
 
-export interface InvestorSummary extends Schema.Component {
-  collectionName: 'components_investor_summaries';
-  info: {
-    displayName: 'summary';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    currency: Attribute.String & Attribute.Required;
-    data: Attribute.Component<'investor.data', true>;
-  };
-}
-
-export interface InvestorData extends Schema.Component {
-  collectionName: 'components_investor_data';
-  info: {
-    displayName: 'data';
-    icon: 'bulletList';
-  };
-  attributes: {
-    year: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 4;
-      }>;
-    value: Attribute.Integer & Attribute.Required;
-  };
-}
-
 export interface HomeSlide extends Schema.Component {
   collectionName: 'components_home_slides';
   info: {
@@ -700,6 +672,34 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
+export interface InvestorSummary extends Schema.Component {
+  collectionName: 'components_investor_summaries';
+  info: {
+    displayName: 'summary';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    currency: Attribute.String & Attribute.Required;
+    data: Attribute.Component<'investor.data', true>;
+  };
+}
+
+export interface InvestorData extends Schema.Component {
+  collectionName: 'components_investor_data';
+  info: {
+    displayName: 'data';
+    icon: 'bulletList';
+  };
+  attributes: {
+    year: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 4;
+      }>;
+    value: Attribute.Integer & Attribute.Required;
+  };
+}
+
 export interface CoverageItem extends Schema.Component {
   collectionName: 'components_coverage_items';
   info: {
@@ -780,8 +780,6 @@ declare module '@strapi/types' {
       'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
-      'investor.summary': InvestorSummary;
-      'investor.data': InvestorData;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -792,6 +790,8 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'investor.summary': InvestorSummary;
+      'investor.data': InvestorData;
       'coverage.item': CoverageItem;
       'coverage.head-office': CoverageHeadOffice;
       'coverage.affiliation': CoverageAffiliation;
