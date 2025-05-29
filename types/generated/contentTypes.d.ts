@@ -1279,6 +1279,7 @@ export interface ApiOperationalAreaOperationalArea
     working_area: Attribute.Text;
     slug: Attribute.UID<'api::operational-area.operational-area', 'title'> &
       Attribute.Required;
+    order: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1333,6 +1334,7 @@ export interface ApiOrganizationMemberOrganizationMember
     > &
       Attribute.Required;
     short_description: Attribute.Text;
+    order: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1803,7 +1805,7 @@ export interface ApiProcAnnouncementPeriodProcAnnouncementPeriod
   info: {
     singularName: 'proc-announcement-period';
     pluralName: 'proc-announcement-periods';
-    displayName: 'Procurement Announcement Period';
+    displayName: 'Proc. Masa Tayang';
     description: '';
   };
   options: {
@@ -1839,7 +1841,7 @@ export interface ApiProcAnouncementProcAnouncement
   info: {
     singularName: 'proc-anouncement';
     pluralName: 'proc-anouncements';
-    displayName: 'Procurement Anouncement';
+    displayName: 'Proc. Pengumuman';
     description: '';
   };
   options: {
@@ -1886,7 +1888,7 @@ export interface ApiProcClassificationProcClassification
   info: {
     singularName: 'proc-classification';
     pluralName: 'proc-classifications';
-    displayName: 'Procurement Classification';
+    displayName: 'Proc. Klasifikasi';
     description: '';
   };
   options: {
@@ -1924,7 +1926,7 @@ export interface ApiProcSubClassificationProcSubClassification
   info: {
     singularName: 'proc-sub-classification';
     pluralName: 'proc-sub-classifications';
-    displayName: 'Procurement Sub Classification';
+    displayName: 'Proc. Sub Klasifikasi';
     description: '';
   };
   options: {
@@ -1960,7 +1962,7 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
   info: {
     singularName: 'proc-tender';
     pluralName: 'proc-tenders';
-    displayName: 'Procurement Tender';
+    displayName: 'Proc. Tender';
     description: '';
   };
   options: {
@@ -2003,7 +2005,7 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
   info: {
     singularName: 'proc-vendor';
     pluralName: 'proc-vendors';
-    displayName: 'Procurement Vendor';
+    displayName: 'Proc. DPT';
     description: '';
   };
   options: {
@@ -2351,6 +2353,8 @@ export interface ApiSettingSetting extends Schema.SingleType {
     whatsapp: Attribute.Component<'shared.whatsapp'> & Attribute.Required;
     social_media: Attribute.Component<'shared.social-media'>;
     iso_number: Attribute.String;
+    company_email: Attribute.Email;
+    link_map_address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

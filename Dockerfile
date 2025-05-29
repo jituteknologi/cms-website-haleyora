@@ -11,12 +11,18 @@ COPY ./yarn.lock /app
 COPY ./.env /app
 COPY patches /app/patches
 COPY packages /app/packages
-RUN rm -f /.cache \
-# install dependencies
-    && npm cache clean --force \
-    && yarn install
+RUN rm -f /.cache
 
+# install dependencies
+RUN npm cache clean --force
+RUN yarn install
 COPY . /app
+
+# install dependencies own plugins
+RUN cd ./src/plugins/content-export-import && yarn install && cd ../../..
+
+# install dependencies own plugins
+RUN cd ./src/plugins/content-export-import && yarn install && cd ../../..
 
 # build app
 RUN yarn build --no-optimization

@@ -34,6 +34,9 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

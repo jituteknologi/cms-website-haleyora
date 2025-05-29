@@ -53,6 +53,9 @@
     },
     "short_description": {
       "type": "text"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }
