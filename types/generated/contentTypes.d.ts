@@ -2231,7 +2231,6 @@ export interface ApiServiceService extends Schema.CollectionType {
     >;
     image: Attribute.Media<'images'>;
     image_title: Attribute.String;
-    image_subtitle: Attribute.String;
     show_link: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
@@ -2240,6 +2239,9 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    video_url: Attribute.String & Attribute.Required;
+    incentive: Attribute.Component<'service-detail.incentive'>;
+    promo: Attribute.Component<'service-detail.promo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

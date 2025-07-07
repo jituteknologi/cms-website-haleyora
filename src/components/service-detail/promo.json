@@ -2,7 +2,8 @@
   "collectionName": "components_service_detail_promos",
   "info": {
     "displayName": "promo",
-    "icon": "priceTag"
+    "icon": "priceTag",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,11 +11,6 @@
       "type": "component",
       "repeatable": true,
       "component": "service-detail.promo-item"
-    },
-    "show_at": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::service.service"
     }
   }
 }

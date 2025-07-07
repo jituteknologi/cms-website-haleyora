@@ -22,6 +22,10 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   }
 }
