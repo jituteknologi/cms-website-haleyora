@@ -2289,7 +2289,6 @@ export interface ApiServiceService extends Schema.CollectionType {
     >;
     video_url: Attribute.String & Attribute.Required;
     incentive: Attribute.Component<'service-detail.incentive'>;
-    promo: Attribute.Component<'service-detail.promo'>;
     promos: Attribute.Relation<
       'api::service.service',
       'manyToMany',

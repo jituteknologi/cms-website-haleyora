@@ -61,11 +61,6 @@
       "repeatable": false,
       "component": "service-detail.incentive"
     },
-    "promo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "service-detail.promo"
-    },
     "promos": {
       "type": "relation",
       "relation": "manyToMany",

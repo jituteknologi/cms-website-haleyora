@@ -1,5 +1,75 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface SharedWhatsapp extends Schema.Component {
+  collectionName: 'components_shared_whatsapps';
+  info: {
+    displayName: 'whatsapp';
+    icon: 'message';
+    description: '';
+  };
+  attributes: {
+    phone_number: Attribute.String & Attribute.Required;
+    initial_message: Attribute.Text & Attribute.Required;
+    display_message: Attribute.Text & Attribute.Required;
+    sender_name: Attribute.String & Attribute.Required;
+    icon_image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface SharedSocmedLink extends Schema.Component {
+  collectionName: 'components_shared_socmed_links';
+  info: {
+    displayName: 'socmed link';
+    icon: 'link';
+  };
+  attributes: {
+    icon: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::react-icons.icon'>;
+    link: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface SharedSocialMedia extends Schema.Component {
+  collectionName: 'components_shared_social_medias';
+  info: {
+    displayName: 'social media';
+    icon: 'link';
+  };
+  attributes: {
+    caption: Attribute.Text & Attribute.Required;
+    socmed_link: Attribute.Component<'shared.socmed-link', true>;
+  };
+}
+
+export interface SharedDynamicEndpoint extends Schema.Component {
+  collectionName: 'components_shared_dynamic_endpoints';
+  info: {
+    displayName: 'dynamic endpoint';
+    icon: 'code';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface SharedCtaButton extends Schema.Component {
+  collectionName: 'components_shared_cta_buttons';
+  info: {
+    displayName: 'CTA button';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String & Attribute.Required;
+    url: Attribute.String;
+    variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
+      Attribute.DefaultTo<'default'>;
+    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
+  };
+}
+
 export interface ServiceDetailPromo extends Schema.Component {
   collectionName: 'components_service_detail_promos';
   info: {
@@ -115,76 +185,6 @@ export interface ServiceDetailFaqItem extends Schema.Component {
   attributes: {
     question: Attribute.String & Attribute.Required;
     answer: Attribute.Text;
-  };
-}
-
-export interface SharedWhatsapp extends Schema.Component {
-  collectionName: 'components_shared_whatsapps';
-  info: {
-    displayName: 'whatsapp';
-    icon: 'message';
-    description: '';
-  };
-  attributes: {
-    phone_number: Attribute.String & Attribute.Required;
-    initial_message: Attribute.Text & Attribute.Required;
-    display_message: Attribute.Text & Attribute.Required;
-    sender_name: Attribute.String & Attribute.Required;
-    icon_image: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface SharedSocmedLink extends Schema.Component {
-  collectionName: 'components_shared_socmed_links';
-  info: {
-    displayName: 'socmed link';
-    icon: 'link';
-  };
-  attributes: {
-    icon: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::react-icons.icon'>;
-    link: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface SharedSocialMedia extends Schema.Component {
-  collectionName: 'components_shared_social_medias';
-  info: {
-    displayName: 'social media';
-    icon: 'link';
-  };
-  attributes: {
-    caption: Attribute.Text & Attribute.Required;
-    socmed_link: Attribute.Component<'shared.socmed-link', true>;
-  };
-}
-
-export interface SharedDynamicEndpoint extends Schema.Component {
-  collectionName: 'components_shared_dynamic_endpoints';
-  info: {
-    displayName: 'dynamic endpoint';
-    icon: 'code';
-  };
-  attributes: {
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface SharedCtaButton extends Schema.Component {
-  collectionName: 'components_shared_cta_buttons';
-  info: {
-    displayName: 'CTA button';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String & Attribute.Required;
-    url: Attribute.String;
-    variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
-      Attribute.DefaultTo<'default'>;
-    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
   };
 }
 
@@ -540,47 +540,6 @@ export interface InvestorData extends Schema.Component {
   };
 }
 
-export interface CoverageItem extends Schema.Component {
-  collectionName: 'components_coverage_items';
-  info: {
-    displayName: 'item';
-    icon: 'layer';
-    description: '';
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    address: Attribute.Text & Attribute.Required;
-    phone: Attribute.String;
-    website: Attribute.String;
-    photo: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface CoverageHeadOffice extends Schema.Component {
-  collectionName: 'components_coverage_head_offices';
-  info: {
-    displayName: 'head office';
-    icon: 'star';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    item: Attribute.Component<'coverage.item'> & Attribute.Required;
-  };
-}
-
-export interface CoverageAffiliation extends Schema.Component {
-  collectionName: 'components_coverage_affiliations';
-  info: {
-    displayName: 'affiliation';
-    icon: 'store';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
-  };
-}
-
 export interface HomeSlide extends Schema.Component {
   collectionName: 'components_home_slides';
   info: {
@@ -738,9 +697,55 @@ export interface HomeAchievement extends Schema.Component {
   };
 }
 
+export interface CoverageItem extends Schema.Component {
+  collectionName: 'components_coverage_items';
+  info: {
+    displayName: 'item';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    address: Attribute.Text & Attribute.Required;
+    phone: Attribute.String;
+    website: Attribute.String;
+    photo: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface CoverageHeadOffice extends Schema.Component {
+  collectionName: 'components_coverage_head_offices';
+  info: {
+    displayName: 'head office';
+    icon: 'star';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    item: Attribute.Component<'coverage.item'> & Attribute.Required;
+  };
+}
+
+export interface CoverageAffiliation extends Schema.Component {
+  collectionName: 'components_coverage_affiliations';
+  info: {
+    displayName: 'affiliation';
+    icon: 'store';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    items: Attribute.Component<'coverage.item', true> & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'shared.whatsapp': SharedWhatsapp;
+      'shared.socmed-link': SharedSocmedLink;
+      'shared.social-media': SharedSocialMedia;
+      'shared.dynamic-endpoint': SharedDynamicEndpoint;
+      'shared.cta-button': SharedCtaButton;
       'service-detail.promo': ServiceDetailPromo;
       'service-detail.promo-item': ServiceDetailPromoItem;
       'service-detail.products': ServiceDetailProducts;
@@ -750,11 +755,6 @@ declare module '@strapi/types' {
       'service-detail.incentive-list': ServiceDetailIncentiveList;
       'service-detail.faq': ServiceDetailFaq;
       'service-detail.faq-item': ServiceDetailFaqItem;
-      'shared.whatsapp': SharedWhatsapp;
-      'shared.socmed-link': SharedSocmedLink;
-      'shared.social-media': SharedSocialMedia;
-      'shared.dynamic-endpoint': SharedDynamicEndpoint;
-      'shared.cta-button': SharedCtaButton;
       'service.our-partner': ServiceOurPartner;
       'service.other-service': ServiceOtherService;
       'service.main-service': ServiceMainService;
@@ -779,9 +779,6 @@ declare module '@strapi/types' {
       'menu.menu': MenuMenu;
       'investor.summary': InvestorSummary;
       'investor.data': InvestorData;
-      'coverage.item': CoverageItem;
-      'coverage.head-office': CoverageHeadOffice;
-      'coverage.affiliation': CoverageAffiliation;
       'home.slide': HomeSlide;
       'home.services': HomeServices;
       'home.service-item': HomeServiceItem;
@@ -792,6 +789,9 @@ declare module '@strapi/types' {
       'home.company-description': HomeCompanyDescription;
       'home.cis': HomeCis;
       'home.achievement': HomeAchievement;
+      'coverage.item': CoverageItem;
+      'coverage.head-office': CoverageHeadOffice;
+      'coverage.affiliation': CoverageAffiliation;
     }
   }
 }
