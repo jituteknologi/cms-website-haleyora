@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "incentive": {
-      "type": "component",
-      "repeatable": false,
-      "component": "service-detail.incentive"
-    },
     "title": {
       "type": "string",
       "required": true
@@ -24,11 +19,6 @@
     "banner_video_url": {
       "type": "string",
       "required": true
-    },
-    "promo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "service-detail.promo"
     },
     "faq": {
       "type": "component",
@@ -45,6 +35,12 @@
       "required": true
     },
     "dynamic_endpoint": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dynamic-endpoint",
+      "required": true
+    },
+    "promo_endpoint": {
       "type": "component",
       "repeatable": false,
       "component": "shared.dynamic-endpoint",

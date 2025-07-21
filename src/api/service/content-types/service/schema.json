@@ -65,6 +65,12 @@
       "type": "component",
       "repeatable": false,
       "component": "service-detail.promo"
+    },
+    "promos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::promo.promo",
+      "mappedBy": "services"
     }
   }
 }

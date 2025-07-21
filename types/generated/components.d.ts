@@ -1,75 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface SharedWhatsapp extends Schema.Component {
-  collectionName: 'components_shared_whatsapps';
-  info: {
-    displayName: 'whatsapp';
-    icon: 'message';
-    description: '';
-  };
-  attributes: {
-    phone_number: Attribute.String & Attribute.Required;
-    initial_message: Attribute.Text & Attribute.Required;
-    display_message: Attribute.Text & Attribute.Required;
-    sender_name: Attribute.String & Attribute.Required;
-    icon_image: Attribute.Media<'images'> & Attribute.Required;
-  };
-}
-
-export interface SharedSocmedLink extends Schema.Component {
-  collectionName: 'components_shared_socmed_links';
-  info: {
-    displayName: 'socmed link';
-    icon: 'link';
-  };
-  attributes: {
-    icon: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::react-icons.icon'>;
-    link: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface SharedSocialMedia extends Schema.Component {
-  collectionName: 'components_shared_social_medias';
-  info: {
-    displayName: 'social media';
-    icon: 'link';
-  };
-  attributes: {
-    caption: Attribute.Text & Attribute.Required;
-    socmed_link: Attribute.Component<'shared.socmed-link', true>;
-  };
-}
-
-export interface SharedDynamicEndpoint extends Schema.Component {
-  collectionName: 'components_shared_dynamic_endpoints';
-  info: {
-    displayName: 'dynamic endpoint';
-    icon: 'code';
-  };
-  attributes: {
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface SharedCtaButton extends Schema.Component {
-  collectionName: 'components_shared_cta_buttons';
-  info: {
-    displayName: 'CTA button';
-    icon: 'stack';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String & Attribute.Required;
-    url: Attribute.String;
-    variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
-      Attribute.DefaultTo<'default'>;
-    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
-  };
-}
-
 export interface ServiceDetailPromo extends Schema.Component {
   collectionName: 'components_service_detail_promos';
   info: {
@@ -185,6 +115,76 @@ export interface ServiceDetailFaqItem extends Schema.Component {
   attributes: {
     question: Attribute.String & Attribute.Required;
     answer: Attribute.Text;
+  };
+}
+
+export interface SharedWhatsapp extends Schema.Component {
+  collectionName: 'components_shared_whatsapps';
+  info: {
+    displayName: 'whatsapp';
+    icon: 'message';
+    description: '';
+  };
+  attributes: {
+    phone_number: Attribute.String & Attribute.Required;
+    initial_message: Attribute.Text & Attribute.Required;
+    display_message: Attribute.Text & Attribute.Required;
+    sender_name: Attribute.String & Attribute.Required;
+    icon_image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
+export interface SharedSocmedLink extends Schema.Component {
+  collectionName: 'components_shared_socmed_links';
+  info: {
+    displayName: 'socmed link';
+    icon: 'link';
+  };
+  attributes: {
+    icon: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::react-icons.icon'>;
+    link: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface SharedSocialMedia extends Schema.Component {
+  collectionName: 'components_shared_social_medias';
+  info: {
+    displayName: 'social media';
+    icon: 'link';
+  };
+  attributes: {
+    caption: Attribute.Text & Attribute.Required;
+    socmed_link: Attribute.Component<'shared.socmed-link', true>;
+  };
+}
+
+export interface SharedDynamicEndpoint extends Schema.Component {
+  collectionName: 'components_shared_dynamic_endpoints';
+  info: {
+    displayName: 'dynamic endpoint';
+    icon: 'code';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface SharedCtaButton extends Schema.Component {
+  collectionName: 'components_shared_cta_buttons';
+  info: {
+    displayName: 'CTA button';
+    icon: 'stack';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String & Attribute.Required;
+    url: Attribute.String;
+    variant: Attribute.Enumeration<['default', 'outlined', 'text']> &
+      Attribute.DefaultTo<'default'>;
+    icon: Attribute.String & Attribute.CustomField<'plugin::react-icons.icon'>;
   };
 }
 
@@ -394,33 +394,6 @@ export interface ProfileCompanyValue extends Schema.Component {
   };
 }
 
-export interface OrganizationDirector extends Schema.Component {
-  collectionName: 'components_organization_directors';
-  info: {
-    displayName: 'director';
-    icon: 'shield';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface OrganizationCommissioner extends Schema.Component {
-  collectionName: 'components_organization_commissioners';
-  info: {
-    displayName: 'commissioner';
-    icon: 'shield';
-    description: '';
-  };
-  attributes: {
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-    title: Attribute.String & Attribute.Required;
-  };
-}
-
 export interface ProcurementDocument extends Schema.Component {
   collectionName: 'components_procurement_documents';
   info: {
@@ -478,6 +451,33 @@ export interface ProcurementAnnouncementDoc extends Schema.Component {
   attributes: {
     document: Attribute.Media<'files'> & Attribute.Required;
     submit_date: Attribute.Date & Attribute.Required;
+  };
+}
+
+export interface OrganizationDirector extends Schema.Component {
+  collectionName: 'components_organization_directors';
+  info: {
+    displayName: 'director';
+    icon: 'shield';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface OrganizationCommissioner extends Schema.Component {
+  collectionName: 'components_organization_commissioners';
+  info: {
+    displayName: 'commissioner';
+    icon: 'shield';
+    description: '';
+  };
+  attributes: {
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -741,11 +741,6 @@ export interface HomeAchievement extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'shared.whatsapp': SharedWhatsapp;
-      'shared.socmed-link': SharedSocmedLink;
-      'shared.social-media': SharedSocialMedia;
-      'shared.dynamic-endpoint': SharedDynamicEndpoint;
-      'shared.cta-button': SharedCtaButton;
       'service-detail.promo': ServiceDetailPromo;
       'service-detail.promo-item': ServiceDetailPromoItem;
       'service-detail.products': ServiceDetailProducts;
@@ -755,6 +750,11 @@ declare module '@strapi/types' {
       'service-detail.incentive-list': ServiceDetailIncentiveList;
       'service-detail.faq': ServiceDetailFaq;
       'service-detail.faq-item': ServiceDetailFaqItem;
+      'shared.whatsapp': SharedWhatsapp;
+      'shared.socmed-link': SharedSocmedLink;
+      'shared.social-media': SharedSocialMedia;
+      'shared.dynamic-endpoint': SharedDynamicEndpoint;
+      'shared.cta-button': SharedCtaButton;
       'service.our-partner': ServiceOurPartner;
       'service.other-service': ServiceOtherService;
       'service.main-service': ServiceMainService;
@@ -769,12 +769,12 @@ declare module '@strapi/types' {
       'profile.history': ProfileHistory;
       'profile.history-item': ProfileHistoryItem;
       'profile.company-value': ProfileCompanyValue;
-      'organization.director': OrganizationDirector;
-      'organization.commissioner': OrganizationCommissioner;
       'procurement.document': ProcurementDocument;
       'procurement.classification': ProcurementClassification;
       'procurement.announcement-period': ProcurementAnnouncementPeriod;
       'procurement.announcement-doc': ProcurementAnnouncementDoc;
+      'organization.director': OrganizationDirector;
+      'organization.commissioner': OrganizationCommissioner;
       'menu.sub-menu': MenuSubMenu;
       'menu.menu': MenuMenu;
       'investor.summary': InvestorSummary;

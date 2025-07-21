@@ -2142,6 +2142,54 @@ export interface ApiProfileProfile extends Schema.SingleType {
   };
 }
 
+export interface ApiPromoPromo extends Schema.CollectionType {
+  collectionName: 'promos';
+  info: {
+    singularName: 'promo';
+    pluralName: 'promos';
+    displayName: 'Master Promo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    banner: Attribute.Media<'images'> & Attribute.Required;
+    term_and_condition: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    start_at: Attribute.Date & Attribute.Required;
+    end_at: Attribute.Date & Attribute.Required;
+    is_active: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    services: Attribute.Relation<
+      'api::promo.promo',
+      'manyToMany',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::promo.promo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::promo.promo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiReportReport extends Schema.CollectionType {
   collectionName: 'reports';
   info: {
@@ -2242,6 +2290,11 @@ export interface ApiServiceService extends Schema.CollectionType {
     video_url: Attribute.String & Attribute.Required;
     incentive: Attribute.Component<'service-detail.incentive'>;
     promo: Attribute.Component<'service-detail.promo'>;
+    promos: Attribute.Relation<
+      'api::service.service',
+      'manyToMany',
+      'api::promo.promo'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2309,14 +2362,14 @@ export interface ApiServiceDetailServiceDetail extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    incentive: Attribute.Component<'service-detail.incentive'>;
     title: Attribute.String & Attribute.Required;
     banner_video_url: Attribute.String & Attribute.Required;
-    promo: Attribute.Component<'service-detail.promo'>;
     faq: Attribute.Component<'service-detail.faq'>;
     procedure: Attribute.Component<'service-detail.procedure'>;
     product_title: Attribute.String & Attribute.Required;
     dynamic_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
+      Attribute.Required;
+    promo_endpoint: Attribute.Component<'shared.dynamic-endpoint'> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2545,6 +2598,7 @@ declare module '@strapi/types' {
       'api::proc-vendor.proc-vendor': ApiProcVendorProcVendor;
       'api::product.product': ApiProductProduct;
       'api::profile.profile': ApiProfileProfile;
+      'api::promo.promo': ApiPromoPromo;
       'api::report.report': ApiReportReport;
       'api::report-year.report-year': ApiReportYearReportYear;
       'api::service.service': ApiServiceService;

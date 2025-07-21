@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promos",
+  "info": {
+    "singularName": "promo",
+    "pluralName": "promos",
+    "displayName": "Master Promo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "term_and_condition": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "start_at": {
+      "type": "date",
+      "required": true
+    },
+    "end_at": {
+      "type": "date",
+      "required": true
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "inversedBy": "promos"
+    }
+  }
+}
