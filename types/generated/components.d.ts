@@ -70,6 +70,82 @@ export interface SharedCtaButton extends Schema.Component {
   };
 }
 
+export interface ServiceOurPartner extends Schema.Component {
+  collectionName: 'components_service_our_partners';
+  info: {
+    displayName: 'our partner';
+    icon: 'handHeart';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceOtherService extends Schema.Component {
+  collectionName: 'components_service_other_services';
+  info: {
+    displayName: 'other service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface ServiceMainService extends Schema.Component {
+  collectionName: 'components_service_main_services';
+  info: {
+    displayName: 'main service';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    endpoint: Attribute.String & Attribute.Required;
+    params: Attribute.Component<'repeatable.params', true>;
+  };
+}
+
+export interface RepeatableTitleDesc extends Schema.Component {
+  collectionName: 'components_repeatable_title_descs';
+  info: {
+    displayName: 'title desc';
+    icon: 'bulletList';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface RepeatableSeoProperties extends Schema.Component {
+  collectionName: 'components_repeatable_seo_properties';
+  info: {
+    displayName: 'SEOProperties';
+    icon: 'layout';
+  };
+  attributes: {
+    name: Attribute.String;
+    content: Attribute.Text;
+  };
+}
+
+export interface RepeatableParams extends Schema.Component {
+  collectionName: 'components_repeatable_params';
+  info: {
+    displayName: 'params';
+    icon: 'layer';
+  };
+  attributes: {
+    key: Attribute.String & Attribute.Required;
+    value: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ServiceDetailPromo extends Schema.Component {
   collectionName: 'components_service_detail_promos';
   info: {
@@ -185,82 +261,6 @@ export interface ServiceDetailFaqItem extends Schema.Component {
   attributes: {
     question: Attribute.String & Attribute.Required;
     answer: Attribute.Text;
-  };
-}
-
-export interface ServiceOurPartner extends Schema.Component {
-  collectionName: 'components_service_our_partners';
-  info: {
-    displayName: 'our partner';
-    icon: 'handHeart';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceOtherService extends Schema.Component {
-  collectionName: 'components_service_other_services';
-  info: {
-    displayName: 'other service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface ServiceMainService extends Schema.Component {
-  collectionName: 'components_service_main_services';
-  info: {
-    displayName: 'main service';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    endpoint: Attribute.String & Attribute.Required;
-    params: Attribute.Component<'repeatable.params', true>;
-  };
-}
-
-export interface RepeatableTitleDesc extends Schema.Component {
-  collectionName: 'components_repeatable_title_descs';
-  info: {
-    displayName: 'title desc';
-    icon: 'bulletList';
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
-  };
-}
-
-export interface RepeatableSeoProperties extends Schema.Component {
-  collectionName: 'components_repeatable_seo_properties';
-  info: {
-    displayName: 'SEOProperties';
-    icon: 'layout';
-  };
-  attributes: {
-    name: Attribute.String;
-    content: Attribute.Text;
-  };
-}
-
-export interface RepeatableParams extends Schema.Component {
-  collectionName: 'components_repeatable_params';
-  info: {
-    displayName: 'params';
-    icon: 'layer';
-  };
-  attributes: {
-    key: Attribute.String & Attribute.Required;
-    value: Attribute.String & Attribute.Required;
   };
 }
 
@@ -746,6 +746,12 @@ declare module '@strapi/types' {
       'shared.social-media': SharedSocialMedia;
       'shared.dynamic-endpoint': SharedDynamicEndpoint;
       'shared.cta-button': SharedCtaButton;
+      'service.our-partner': ServiceOurPartner;
+      'service.other-service': ServiceOtherService;
+      'service.main-service': ServiceMainService;
+      'repeatable.title-desc': RepeatableTitleDesc;
+      'repeatable.seo-properties': RepeatableSeoProperties;
+      'repeatable.params': RepeatableParams;
       'service-detail.promo': ServiceDetailPromo;
       'service-detail.promo-item': ServiceDetailPromoItem;
       'service-detail.products': ServiceDetailProducts;
@@ -755,12 +761,6 @@ declare module '@strapi/types' {
       'service-detail.incentive-list': ServiceDetailIncentiveList;
       'service-detail.faq': ServiceDetailFaq;
       'service-detail.faq-item': ServiceDetailFaqItem;
-      'service.our-partner': ServiceOurPartner;
-      'service.other-service': ServiceOtherService;
-      'service.main-service': ServiceMainService;
-      'repeatable.title-desc': RepeatableTitleDesc;
-      'repeatable.seo-properties': RepeatableSeoProperties;
-      'repeatable.params': RepeatableParams;
       'profile.vision': ProfileVision;
       'profile.value': ProfileValue;
       'profile.structure': ProfileStructure;

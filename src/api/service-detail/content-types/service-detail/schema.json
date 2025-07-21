@@ -12,14 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "banner_video_url": {
-      "type": "string",
-      "required": true
-    },
     "faq": {
       "type": "component",
       "repeatable": false,

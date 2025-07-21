@@ -2361,8 +2361,6 @@ export interface ApiServiceDetailServiceDetail extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    banner_video_url: Attribute.String & Attribute.Required;
     faq: Attribute.Component<'service-detail.faq'>;
     procedure: Attribute.Component<'service-detail.procedure'>;
     product_title: Attribute.String & Attribute.Required;
