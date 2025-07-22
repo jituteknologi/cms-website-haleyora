@@ -35,7 +35,7 @@ export default [
   "strapi::session",
   "strapi::favicon",
   "strapi::public",
-  "global::file-sanitize",
+  // "global::file-sanitize",
   "global::sanitize-input",
   "global::redirect",
 ];
