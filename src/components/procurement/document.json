@@ -2,7 +2,8 @@
   "collectionName": "components_procurement_documents",
   "info": {
     "displayName": "document",
-    "icon": "book"
+    "icon": "book",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,21 +14,13 @@
     "subtitle": {
       "type": "text"
     },
-    "cover": {
-      "allowedTypes": [
-        "images"
-      ],
+    "file": {
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "file": {
+      "required": true,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     }
   }
 }
