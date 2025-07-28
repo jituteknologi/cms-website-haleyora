@@ -2285,7 +2285,7 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
-    video_url: Attribute.String & Attribute.Required;
+    video_url: Attribute.String;
     incentive: Attribute.Component<'service-detail.incentive'>;
     promos: Attribute.Relation<
       'api::service.service',
