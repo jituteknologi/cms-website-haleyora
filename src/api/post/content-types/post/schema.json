@@ -52,14 +52,6 @@
       "type": "integer",
       "required": false,
       "default": 0
-    },
-    "short_description": {
-      "pluginOptions": {},
-      "type": "text",
-      "required": true
-    },
-    "subtitle": {
-      "type": "string"
     }
   }
 }

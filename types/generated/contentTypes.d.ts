@@ -1750,8 +1750,6 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::post-category.post-category'
     >;
     views: Attribute.Integer & Attribute.DefaultTo<0>;
-    short_description: Attribute.Text & Attribute.Required;
-    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2287,7 +2285,7 @@ export interface ApiServiceService extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
-    video_url: Attribute.String & Attribute.Required;
+    video_url: Attribute.String;
     incentive: Attribute.Component<'service-detail.incentive'>;
     promos: Attribute.Relation<
       'api::service.service',
