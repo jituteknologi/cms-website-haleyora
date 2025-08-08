@@ -21,9 +21,6 @@ COPY . /app
 # install dependencies own plugins
 RUN cd ./src/plugins/content-export-import && yarn install && cd ../../..
 
-# install dependencies own plugins
-RUN cd ./src/plugins/content-export-import && yarn install && cd ../../..
-
 # build app
 RUN yarn build --no-optimization
 
