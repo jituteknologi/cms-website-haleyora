@@ -970,6 +970,7 @@ export interface ApiCsrCsr extends Schema.CollectionType {
     >;
     short_description: Attribute.Text;
     subtitle: Attribute.String;
+    post_date: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1750,6 +1751,7 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::post-category.post-category'
     >;
     views: Attribute.Integer & Attribute.DefaultTo<0>;
+    post_date: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

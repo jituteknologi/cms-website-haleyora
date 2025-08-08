@@ -47,6 +47,10 @@
     },
     "subtitle": {
       "type": "string"
+    },
+    "post_date": {
+      "type": "date",
+      "required": true
     }
   }
 }

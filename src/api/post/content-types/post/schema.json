@@ -52,6 +52,10 @@
       "type": "integer",
       "required": false,
       "default": 0
+    },
+    "post_date": {
+      "type": "date",
+      "required": true
     }
   }
 }
