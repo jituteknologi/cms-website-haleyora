@@ -1982,7 +1982,7 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
       'oneToOne',
       'api::proc-anouncement.proc-anouncement'
     >;
-    tender_value: Attribute.Integer & Attribute.Required;
+    tender_value: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

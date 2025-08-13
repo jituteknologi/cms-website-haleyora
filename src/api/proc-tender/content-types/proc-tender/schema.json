@@ -59,8 +59,8 @@
       "mappedBy": "tender"
     },
     "tender_value": {
-      "type": "integer",
-      "required": true
+      "type": "float",
+      "required": false
     }
   }
 }
