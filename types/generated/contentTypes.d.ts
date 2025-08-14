@@ -1896,8 +1896,7 @@ export interface ApiProcClassificationProcClassification
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    class_item: Attribute.Component<'repeatable.title-desc', true> &
-      Attribute.Required;
+    class_item: Attribute.Component<'repeatable.title-desc', true>;
     proc_sub_classifications: Attribute.Relation<
       'api::proc-classification.proc-classification',
       'oneToMany',
@@ -2013,7 +2012,7 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
   };
   attributes: {
     company_name: Attribute.String & Attribute.Required;
-    location: Attribute.String & Attribute.Required;
+    location: Attribute.String;
     last_update: Attribute.Date;
     next_update: Attribute.Date;
     certificate_expiry: Attribute.Date;
