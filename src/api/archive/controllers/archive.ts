@@ -8,14 +8,20 @@ export default {
   find: async (ctx: { body: {} }) => {
     try {
       const posts = await strapi.entityService.findMany("api::post.post", {
-        sort: { createdAt: "desc" },
+        sort: {
+          post_date: "desc",
+        },
+        pagination: {
+          page: 1,
+          pageSize: 1000,
+        },
       });
 
       // Kelompokkan berdasarkan bulan dan tahun
       const grouped = posts.reduce((acc, post) => {
-        const monthYear = moment(post.createdAt).format("MMMM YYYY"); // Contoh: "January 2024"
-        const month = moment(post.createdAt).format("MM"); // Contoh: "January 2024"
-        const year = moment(post.createdAt).format("YYYY"); // Contoh: "January 2024"
+        const monthYear = moment(post.post_date).format("MMMM YYYY"); // Contoh: "January 2024"
+        const month = moment(post.post_date).format("MM"); // Contoh: "January 2024"
+        const year = moment(post.post_date).format("YYYY"); // Contoh: "January 2024"
 
         if (!acc[monthYear]) {
           acc[monthYear] = { month, year }; // Buat grup baru
