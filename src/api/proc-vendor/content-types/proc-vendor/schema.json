@@ -75,9 +75,9 @@
       "type": "email",
       "required": true
     },
-    "anouncement": {
+    "anouncements": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::proc-anouncement.proc-anouncement",
       "inversedBy": "vendors"
     }

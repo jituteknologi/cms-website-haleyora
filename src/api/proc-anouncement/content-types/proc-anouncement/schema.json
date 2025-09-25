@@ -28,9 +28,9 @@
     },
     "vendors": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::proc-vendor.proc-vendor",
-      "mappedBy": "anouncement"
+      "mappedBy": "anouncements"
     },
     "announcement_doc": {
       "displayName": "announcement doc",
