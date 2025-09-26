@@ -1849,11 +1849,6 @@ export interface ApiProcAnouncementProcAnouncement
   };
   attributes: {
     number: Attribute.String & Attribute.Required & Attribute.Unique;
-    tender: Attribute.Relation<
-      'api::proc-anouncement.proc-anouncement',
-      'oneToOne',
-      'api::proc-tender.proc-tender'
-    >;
     objection_period: Attribute.Date;
     announcement_doc: Attribute.Component<
       'procurement.announcement-doc',
@@ -1862,6 +1857,7 @@ export interface ApiProcAnouncementProcAnouncement
       Attribute.Required;
     vendors: Attribute.String;
     deal_price: Attribute.Float;
+    tender: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1973,11 +1969,6 @@ export interface ApiProcTenderProcTender extends Schema.CollectionType {
     aawijizing_end: Attribute.DateTime;
     document: Attribute.Media<'files'> & Attribute.Required;
     type: Attribute.Enumeration<['KHS', 'Non-KHS']> & Attribute.Required;
-    anouncement: Attribute.Relation<
-      'api::proc-tender.proc-tender',
-      'oneToOne',
-      'api::proc-anouncement.proc-anouncement'
-    >;
     tender_value: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

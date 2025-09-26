@@ -17,12 +17,6 @@
       "required": true,
       "unique": true
     },
-    "tender": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::proc-tender.proc-tender",
-      "inversedBy": "anouncement"
-    },
     "objection_period": {
       "type": "date"
     },
@@ -38,6 +32,9 @@
     },
     "deal_price": {
       "type": "float"
+    },
+    "tender": {
+      "type": "text"
     }
   }
 }
