@@ -75,11 +75,20 @@
       "type": "email",
       "required": true
     },
-    "anouncements": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::proc-anouncement.proc-anouncement",
-      "inversedBy": "vendors"
+    "next_update_2": {
+      "type": "date"
+    },
+    "next_update_3": {
+      "type": "date"
+    },
+    "next_update_4": {
+      "type": "date"
+    },
+    "next_update_5": {
+      "type": "date"
+    },
+    "next_update_6": {
+      "type": "date"
     }
   }
 }

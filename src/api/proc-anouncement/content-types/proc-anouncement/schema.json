@@ -26,18 +26,18 @@
     "objection_period": {
       "type": "date"
     },
-    "vendors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::proc-vendor.proc-vendor",
-      "mappedBy": "anouncements"
-    },
     "announcement_doc": {
       "displayName": "announcement doc",
       "type": "component",
       "repeatable": true,
       "component": "procurement.announcement-doc",
       "required": true
+    },
+    "vendors": {
+      "type": "string"
+    },
+    "deal_price": {
+      "type": "float"
     }
   }
 }

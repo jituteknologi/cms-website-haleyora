@@ -1855,16 +1855,13 @@ export interface ApiProcAnouncementProcAnouncement
       'api::proc-tender.proc-tender'
     >;
     objection_period: Attribute.Date;
-    vendors: Attribute.Relation<
-      'api::proc-anouncement.proc-anouncement',
-      'manyToMany',
-      'api::proc-vendor.proc-vendor'
-    >;
     announcement_doc: Attribute.Component<
       'procurement.announcement-doc',
       true
     > &
       Attribute.Required;
+    vendors: Attribute.String;
+    deal_price: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2036,11 +2033,11 @@ export interface ApiProcVendorProcVendor extends Schema.CollectionType {
     company_npwp: Attribute.String & Attribute.Required;
     company_phone: Attribute.String & Attribute.Required;
     company_email: Attribute.Email & Attribute.Required;
-    anouncements: Attribute.Relation<
-      'api::proc-vendor.proc-vendor',
-      'manyToMany',
-      'api::proc-anouncement.proc-anouncement'
-    >;
+    next_update_2: Attribute.Date;
+    next_update_3: Attribute.Date;
+    next_update_4: Attribute.Date;
+    next_update_5: Attribute.Date;
+    next_update_6: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
